@@ -1,13 +1,13 @@
 Welcome:
-  Buttons too small in phones
+  DONE: Buttons too small in phones
 All:
-  Height property of Body and/or Container of some pages, in some browsers
-    Try adding a footer
-  Make a separate version: purple background, gray main content area, purple glow around boxes
+  DONE: Height property of Body and/or Container of some pages, in some browsers
+  Done: Try adding a footer
+  Done: Make a separate version: purple background, gray main content area, purple glow around boxes
   Make compatible with Firefox and IE
   DONE: Pick a better font
   Validate!!
-  Fix size of footer
+  DONE: Fix size of footer
 Login:
   DONE: Extra Help page from Login
 Rider:
