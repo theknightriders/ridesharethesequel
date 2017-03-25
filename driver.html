@@ -57,17 +57,20 @@
               <form id="newTripForm">
                 <div class="row">
                   <div class="col-sm-4 col-xs-2"></div>
-
                   <div class="col-sm-4 col-xs-8">
                     <div>
-                      <input id="newTripDate" type="date" class="form-control" name="newTripDateInput">
-                      <div class="input-group bootstrap-timepicker timepicker">
+                        <p> Please click Schedule Trip when finished.</p>
+                        <br> 
+                    </div>
+                    <div>
+                      <input id="newTripDate" type="date" class="form-control" name="newTripDateInput" required>
+                      <div class="input-group bootstrap-timepicker timepicker" required>
                         <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div><br>
                       <div class="text-center">
                         <div>Is this a repeat trip?</div>
-                        <label class="radio-inline">
+                        <label class="radio-inline" required>
                           <input id="newTripRepeatBooleanYes" type="radio">
                           Yes
                         </label>
@@ -89,21 +92,21 @@
                       <div class="text-center">Ends:</div>
                       <input id="newTripRepeatDate" type="date" class="form-control" name="newTripDateInput">
                       <br><br>
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
+                      <select class="selectpicker orangeDropdown form-control" data-width="100%" required>
                         <option selected disabled>Departing From:</option>
-                        <option value="Department01">Cochran</option>
-                        <option value="Department02">Dublin</option>
-                        <option value="Department03">Eastman</option>
-                        <option value="Department04">Macon</option>
-                        <option value="Department05">Warner Robins</option>
+                        <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department02">Dublin Center Annex Building, Dublin</option>
+                        <option value="Department03">Corporate Hangar, Eastman</option>
+                        <option value="Department04">Charles H. Jones Building, Macon</option>
+                        <option value="Department05">Academic Services Building, Warner Robins</option>
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Destination:</option>
-                        <option value="Department01">Cochran</option>
-                        <option value="Department02">Dublin</option>
-                        <option value="Department03">Eastman</option>
-                        <option value="Department04">Macon</option>
-                        <option value="Department05">Warner Robins</option>
+                        <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department02">Dublin Center Annex Building, Dublin</option>
+                        <option value="Department03">Corporate Hangar, Eastman</option>
+                        <option value="Department04">Charles H. Jones Building, Macon</option>
+                        <option value="Department05">Academic Services Building, Warner Robins</option>
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Number of Seats:</option>
@@ -112,6 +115,9 @@
                         <option value="Department03">3</option>
                         <option value="Department04">4</option>
                         <option value="Department05">5</option>
+                        <option value="Department05">6</option>
+                        <option value="Department05">7</option>
+                        <option value="Department05">8</option>
                       </select><br>
                       <div class="text-center"><br>
                         <div>Is your vehicle<br>smoke-free?</div>
@@ -135,14 +141,10 @@
                           No
                         </label>
                       </div>
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
-                        <option selected disabled>Package Max-Size:</option>
-                        <option value="Department01">1x1</option>
-                        <option value="Department02">2x2</option>
-                        <option value="Department03">3x3</option>
-                        <option value="Department04">4x4</option>
-                        <option value="Department05">5x5</option>
-                      </select><br><br>
+                        <div>
+                        <br>
+                        <p> Please note all packages must be smaller than a 10 inch x 13 inch envelope </p>
+                        </div>
                       <div class="text-center">
                         <input type="submit" class="btn btn-primary" name="submitNewTripButton" value="Schedule Trip">
                       </div><br>
