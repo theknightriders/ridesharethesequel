@@ -5,10 +5,11 @@ All:
     Try adding a footer
   Make a separate version: purple background, gray main content area, purple glow around boxes
   Make compatible with Firefox and IE
-  Pick a better font
+  DONE: Pick a better font
   Validate!!
+  Fix size of footer
 Login:
-  Extra Help page from Login
+  DONE: Extra Help page from Login
 Rider:
   Say something better than "contact" on the Rider page
 Driver:
