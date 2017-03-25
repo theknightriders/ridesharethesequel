@@ -1,0 +1,15 @@
+Welcome:
+  Buttons too small in phones
+All:
+  Height property of Body and/or Container of some pages, in some browsers
+    Try adding a footer
+  Make a separate version: purple background, gray main content area, purple glow around boxes
+  Make compatible with Firefox and IE
+  Pick a better font
+  Validate!!
+Login:
+  Extra Help page from Login
+Rider:
+  Say something better than "contact" on the Rider page
+Driver:
+  Fix form for adding a ride

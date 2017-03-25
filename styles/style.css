@@ -1,0 +1,353 @@
+/** Color Scheme: 
+ *  #B0B6BB rgba(176, 182, 187, 1)  (Gray/Silver)
+ *  #633393 rgba(99, 51, 147, 1)    (Purple)
+ *  #F77F00 rgba(247, 127, 0, 1)   (Orange)
+ *  #AABA0A rgba(170, 186, 10, 1)   (Green)
+ *  #FCBB14 rgba(252, 187, 20, 1)   (Gold)
+ *  #FFFFFF rgba(255, 255, 255, 1)  (White)
+ *  #000000 rgba(0, 0, 0, 1)        (Black)
+ */
+
+/** Images: 
+ *  ../images/soft_wallpaper.jpg  (Background gray)
+ *  ../images/mga/MiddleGeorgia_Inst_Vert.jpg  (Header - Small)
+ *  ../images/mga/MiddleGeorgia_Inst_EXHoriz.jpg  (Header - Large)
+ */
+
+/** Fonts: 
+ *  font-family: Arial, Helvetica, sans-serif;  (Main Text - Small)
+ *  ../fonts/Trajan_Pro_Regular.ttf  (Submenus - Trajan Pro)
+ */
+
+/*----------------------------------------------------------------*/
+
+
+
+/** Extra small devices (portrait phones, less than 576px) */
+/** No media query since this is the default in Bootstrap */
+
+
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+html, body, .container {
+  height: 100%;
+}
+
+.stretchPage, .profileStretchPage {
+  height: auto;
+}
+
+.container {
+  padding-bottom: 3em;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+}
+
+#container {
+  min-height:100%;
+  position:relative;
+}
+
+#body {
+  padding:10px;
+  padding-bottom:15em;   /* Height of the footer */
+}
+
+#footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:10em;   /* Height of the footer */
+}
+
+.logoBig {
+  display: none;
+}
+
+@font-face {
+  font-family: trajan;
+  src: url('../fonts/Trajan_Pro_Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../images/soft_wallpaper.png);
+}
+
+.container {
+  background-color: #FFFFFF;
+  box-shadow: 6px 0px 10px -7px #888, -6px 0px 10px -7px #888;
+  position: relative;
+}
+
+.logoSmall {
+  display: block;
+  position: relative;
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header {
+  border-bottom: none;
+}
+
+.indexButton {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.modal-header {
+  border: none;
+}
+
+span.avoidwrap {
+  display:inline-block;
+}
+
+.topRightMenu {
+  list-style: none;
+  position: absolute;
+  padding: 8px;
+  right: 0%;
+  top: 0%;
+}
+
+.form-control:focus {
+  border-color: #F77F00;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+}
+
+.form-control:hover {
+  background-color: #FFFFFF;
+  border-color: #F77F00;
+  color: #633393;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+  outline: none !important;
+}
+
+.orangeDropdown:focus, .orangeDropdown:active, .btn-default:active:focus {
+  border-color: #F77F00;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+  background-color: #FFFFFF;
+  outline: none !important;
+}
+
+option {
+  outline: none !important;
+}
+
+h1.welcomeHeader {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+h2.welcomeHeader {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h3.welcomeHeader {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h4.welcomeHeader {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.welcomeSelectImage, #cochranBigMap, #dublinBigMap, #eastmanBigMap, #maconBigMap, #wrBigMap {
+  max-width: 100%;
+}
+
+.profilePic {
+  max-width: 50%;
+}
+
+#cochranLittleMap, #dublinLittleMap, #eastmanLittleMap, #maconLittleMap, #wrLittleMap {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 200px;
+  display: inline;
+}
+
+#cochranModal, #dublinModal, #eastmanModal, #maconModal, #wrModal {
+  width: 100%;
+}
+
+.btn-default:hover, .btn-default:active, .btn-default:focus, .btn-default:hover:active, .btn-default:hover:focus, .btn-default:focus:active {
+  background-color: #FFFFFF;
+  border-color: #F77F00;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+  outline: none !important;
+}
+
+.btn-primary, .btn-primary:focus {
+  background-color: #633393;
+  border-color: #633393;
+  outline: none !important;
+}
+
+.btn-primary:active, .btn-primary:active:focus {
+  background-color: #F77F00;
+  border-color: #F77F00;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+  outline: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #FFFFFF;
+  border-color: #F77F00;
+  color: #633393;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(247, 127, 0, 0.6);
+  outline: none !important;
+}
+
+#profileEmail {
+  visibility: hidden;
+}
+
+.editableProfile {
+  display: none;
+}
+
+.profileAlign {
+  display: none;
+}
+
+.centerDiv {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+
+
+
+
+/** Small devices (landscape phones, 576px and up) */
+@media only screen and (min-device-width: 576px) {
+
+  #registerButton::after {
+    content: "   ";
+  }
+
+  .indexButton {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  h1.welcomeHeader {
+    font-size: 4em;
+  }
+
+  h2.welcomeHeader {
+    font-size: 3em;
+  }
+
+  h3.welcomeHeader {
+    font-size: 2em;
+  }
+
+  h4.welcomeHeader {
+    font-size: 1em;
+  }
+
+
+
+
+}
+
+/** Medium devices (tablets, 768px and up) */
+@media only screen and (min-device-width: 768px) {
+
+  .logoSmall {
+    display: none;
+  }
+  
+  .logoBig {
+    display: block;
+    position: relative;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1.welcomeHeader {
+    font-size: 5em;
+  }
+
+  h2.welcomeHeader {
+    font-size: 4em;
+  }
+
+  h3.welcomeHeader {
+    font-size: 3em;
+  }
+
+  h4.welcomeHeader {
+    font-size: 2em;
+  }
+
+  .profilePic {
+    max-width: 100%;
+  }
+
+  .container {
+    max-width: 80%;
+  }
+
+
+
+
+}
+
+/** Large devices (desktops, 992px and up) */
+@media only screen and (min-device-width: 992px) {
+
+  .profileAlign {
+    display: block;
+  }
+
+
+
+
+
+
+
+
+}
+
+/** Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-device-width: 1200px) {
+
+
+
+
+
+
+
+}
