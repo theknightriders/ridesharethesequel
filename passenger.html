@@ -13,6 +13,7 @@
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
     <script src="scripts/datatablesDriver.js"></script>
+    <script src="scripts/modernizr-custom.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -26,8 +27,8 @@
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.html" title="MGA Knight Riders: Homepage">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg" />
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" />
+            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -68,10 +69,10 @@
           </div>
 
           <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
              <br>
-              <table id="example" class="display nowrap" cellspacing="0" width="100%">
+              <table id="example" class="display nowrap" cellspacing="0" width="75%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -79,10 +80,10 @@
                         <th>Time</th>
                         <th>Departing</th>
                         <th>Destination</th>
-                        <th># of Seats</th>
+                        <th>Number <br> of Seats</th>
                         <th>Smoke Free</th>
                         <th>Packages</th>
-                        <th>Contact</th>
+                        <th>Click for Contact Information </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +96,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -106,7 +107,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -117,7 +118,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -128,7 +129,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -139,7 +140,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -150,7 +151,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -161,7 +162,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -172,7 +173,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -183,7 +184,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -194,7 +195,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -205,7 +206,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -216,7 +217,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -227,7 +228,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -238,7 +239,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -249,7 +250,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -260,7 +261,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -271,7 +272,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -282,7 +283,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -293,7 +294,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -304,7 +305,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -315,7 +316,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -326,7 +327,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -337,7 +338,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -348,7 +349,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -359,7 +360,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -370,7 +371,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -381,7 +382,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -392,7 +393,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -403,7 +404,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -414,7 +415,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -425,7 +426,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -436,7 +437,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -447,7 +448,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -458,7 +459,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -469,7 +470,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -480,7 +481,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -491,7 +492,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -502,7 +503,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -513,7 +514,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -524,7 +525,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -535,7 +536,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -546,7 +547,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -557,7 +558,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -568,7 +569,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -579,7 +580,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -590,7 +591,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -601,7 +602,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -612,7 +613,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -623,7 +624,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>3x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -634,7 +635,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -645,7 +646,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -656,7 +657,7 @@
                         <td>1</td>
                         <td>No</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -667,7 +668,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -678,7 +679,7 @@
                         <td>2</td>
                         <td>Yes</td>
                         <td>No</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -689,7 +690,7 @@
                         <td>2</td>
                         <td>No</td>
                         <td>1x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                     <tr>
                         <td>Some Person</td>
@@ -700,7 +701,7 @@
                         <td>3</td>
                         <td>Yes</td>
                         <td>5x5</td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Contact</button></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                       </tr>
                 </tbody>
               </table>
