@@ -19,16 +19,16 @@
     <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
-          <a href="welcome.html" title="MGA Knight Riders: Homepage">
+          <a href="welcome.php" title="MGA Knight Riders: Homepage">
             <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
             <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li>Welcome</li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="help.html">Help</a></li>
-              <li><a href="index.html">Logout</a></li>
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="help.php">Help</a></li>
+              <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -51,7 +51,7 @@
           <div class="col-sm-2 col-xs-1"></div>
 
           <div class="col-sm-3 col-xs-4">
-            <a href="driver.html" class="btn btn-default">
+            <a href="driver.php" class="btn btn-default">
               <img class="welcomeSelectImage" src="images/driver.png" alt="Passenger Image"><br>
               <h4 class="welcomeHeader text-center">Drive</h4>
             </a>
@@ -60,7 +60,7 @@
           <div class="col-sm-2 col-xs-2"></div>
 
           <div class="col-sm-3 col-xs-4">
-            <a href="passenger.html" class="btn btn-default">
+            <a href="passenger.php" class="btn btn-default">
               <img class="welcomeSelectImage" src="images/passenger.png" alt="Passenger Image">
               <h4 class="welcomeHeader text-center">Ride</h4>
             </a>
