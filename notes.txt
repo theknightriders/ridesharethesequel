@@ -14,3 +14,22 @@ Rider:
   Say something better than "contact" on the Rider page
 Driver:
   Fix form for adding a ride
+
+
+
+
+Profile Information:
+1) Make the Edit Profile button change user's information to form elements.
+2) Have the buttons all disappear while the information is editable.
+3) When information is editable, a submit button needs to appear.
+4) When the submit button is pressed, it should post all of the new information to the database, overwriting whatever else was there.
+5) Also, when the submit button is pressed, the information should become text again, and the buttons should reappear.
+
+Change Password:
+1) Narrow the text boxes a bit.
+2) Validate old email with database,
+3) Validate new email (make sure the two match)
+4) Post new password to database when Submit Change button is pressed
+
+Change Profile Picture:
+Not sure how this works yet.. Do we have any new information from Addison or Brian on how to do pictures?
