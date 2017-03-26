@@ -4,13 +4,13 @@ All:
   DONE: Height property of Body and/or Container of some pages, in some browsers
   Done: Try adding a footer
   Done: Make a separate version: purple background, gray main content area, purple glow around boxes
-  Make compatible with Firefox and IE
+  Potenitally done...Make compatible with Firefox and IE
   DONE: Pick a better font
-  Validate!!
+  DONE:Validate!!
   DONE: Fix size of footer
 Login:
   DONE: Extra Help page from Login
 Rider:
-  Say something better than "contact" on the Rider page
+  DONE:Say something better than "contact" on the Rider page
 Driver:
-  Fix form for adding a ride
+  DONE:Fix form for adding a ride
