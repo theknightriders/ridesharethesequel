@@ -19,16 +19,16 @@
     <div class="container profileStretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
-          <a href="welcome.html" title="MGA Knight Riders: Homepage">
+          <a href="welcome.php" title="MGA Knight Riders: Homepage">
             <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
             <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
-              <li><a href="welcome.html">Welcome</a></li>
+              <li><a href="welcome.php">Welcome</a></li>
               <li>Profile</li>
-              <li><a href="help.html">Help</a></li>
-              <li><a href="index.html">Logout</a></li>
+              <li><a href="help.php">Help</a></li>
+              <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
         </div>

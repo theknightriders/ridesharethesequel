@@ -18,7 +18,7 @@
     <div class="container"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
-          <a href="index.html" title="MGA Knight Riders: Login">
+          <a href="index.php" title="MGA Knight Riders: Login">
             <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
             <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
@@ -39,7 +39,7 @@
               <div class="center">
                 <button type="button" class="btn btn-primary indexButton" name="registerButton" data-toggle="modal" data-target="#registrationModal">Register</button>
   <!-- PLACEHOLDER - Remove this button and uncomment the submit button. -->
-                <a class="btn btn-primary indexButton" href="welcome.html">Sign In</a>
+                <a class="btn btn-primary indexButton" href="welcome.php">Sign In</a>
   <!--          <input type="submit" class="btn btn-primary indexButton" name="submitButton" value="Sign In">  -->
               </div>
             </form>
