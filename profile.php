@@ -46,37 +46,42 @@
           <div class="profilePicContainer">
             <img src="images/profile.jpg" class="profilePic" alt="profile picture">
           </div>
-          <button type="button" class="btn btn-primary profilePic" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
+          <button type="button" class="btn btn-primary profilePic viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
         </div>
 
         <div class="col-sm-5 col-sm-pull-5">
           <div class="profileAlign"><br><br><br><br></div><div><br><br><br><br></div>
-            <div class="editableProfile">
-              <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
-              <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
-              <input id="profileEmail" type="text" class="form-control" name="profileEmailInput" placeholder="MGA Email">
-              <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
-              <select class="selectpicker orangeDropdown form-control" data-width="100%">
-                <option selected disabled>Department</option>
-                <option value="Department01">Department01</option>
-                <option value="Department02">Department02</option>
-                <option value="Department03">Department03</option>
-                <option value="Department04">Department04</option>
-                <option value="Department05">Department05</option>
-                <option value="Department06">Department06</option>
-                <option value="Department07">Department07</option>
-                <option value="Department08">Department08</option>
-                <option value="Department09">Department09</option>
-                <option value="Department10">Department10</option>
-                <option value="Department11">Department11</option>
-                <option value="Department12">Department12</option>
-                <option value="Department13">Department13</option>
-                <option value="Department14">Department14</option>
-                <option value="Department15">Department15</option>
-                <option value="Department16">Department16</option>
-                <option value="Department17">Department17</option>
-                <option value="Department18">Department18</option>
-              </select><br>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <div class="editableProfile">
+                  <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
+                  <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
+                  <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                  <select class="selectpicker orangeDropdown form-control" data-width="100%">
+                    <option selected disabled>Department</option>
+                    <option value="Department01">Department01</option>
+                    <option value="Department02">Department02</option>
+                    <option value="Department03">Department03</option>
+                    <option value="Department04">Department04</option>
+                    <option value="Department05">Department05</option>
+                    <option value="Department06">Department06</option>
+                    <option value="Department07">Department07</option>
+                    <option value="Department08">Department08</option>
+                    <option value="Department09">Department09</option>
+                    <option value="Department10">Department10</option>
+                    <option value="Department11">Department11</option>
+                    <option value="Department12">Department12</option>
+                    <option value="Department13">Department13</option>
+                    <option value="Department14">Department14</option>
+                    <option value="Department15">Department15</option>
+                    <option value="Department16">Department16</option>
+                    <option value="Department17">Department17</option>
+                    <option value="Department18">Department18</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-2"></div>
             </div>
 
             <div class="row viewableProfile">
@@ -100,9 +105,10 @@
 
             <div class="text-center">
               <br>
-              <input type="submit" class="btn btn-primary" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <input type="submit" class="btn btn-primary showHideProfileButton viewableProfile" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <input type="submit" class="btn btn-primary showHideProfileButton editableProfile" id="submitProfileButton" name="submitProfileButton" value="Submit Changes">
               <br><br>
-              <input type="submit" class="btn btn-primary" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
+              <input type="submit" class="btn btn-primary viewableProfile" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
             </div>
           </div>
 
