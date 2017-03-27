@@ -243,14 +243,6 @@ h4.welcomeHeader {
   outline: none !important;
 }
 
-#profileEmail {
-  visibility: hidden;
-}
-
-.editableProfile {
-  display: none;
-}
-
 .profileAlign {
   display: none;
 }
