@@ -1,4 +1,81 @@
 <!DOCTYPE HTML>
+<?php
+	if ($_SERVER['REQUEST_METHOD'] == "POST")
+		{
+			session_start();
+			
+			require ('mysqli_connect.php'); //PHP file that executes connection to the database (EDITING REQUIRED)
+			
+			//Define variables used to compare user input to the database
+			$email = $_REQUEST['Email']; 
+			$password = $_REQUEST['Pword'];	
+			
+			//SQL query from the database to select email and password from the table that contains both
+			$sql = "SELECT User_ID, Email, Pword FROM Users WHERE Email = '$email' AND Pword= '$password'"; 
+			
+			$rs = mysqli_query($dbc, $sql); //record set variable from connection to database and sql query statement
+			
+	        if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
+				{
+					$row = mysqli_fetch_array($rs);
+					$_SESSION['U_ID'] = $row['User_ID']; //Fetch the ID of the matching email and password from the database
+					header("Location:welcome.php"); //If login is successful, take them to this page.
+				}
+				
+			else //invalid login
+				{
+					$errmsg = "== Username or Password is Not Correct =="; //Or set some sort of error message of your choice
+				}
+		}
+?>
+
+<?php
+	//Define validation method for Registration inputs
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			$errors = Validate();
+		}
+	function Validate()
+	{
+		//Define variables to bind input to the database
+		$email = $_REQUEST['Email'];
+		$firstName = $_REQUEST['FName'];
+		$lastName = $_REQUEST['LName'];
+		$phone = $_REQUEST['Phone'];
+		$department = $_REQUEST['Department'];
+		$password = $_REQUEST['Pword'];
+		
+		//Develop regular expressions
+		$regex_email = "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/"; //For e-mail
+		$regex_phone = "/^[^0-9]{10}$/"; //For phone
+									
+		$errors = array(); //Set array to store error messages
+									
+		//Perform validation checks
+		if (strpbrk($email, '@') == FALSE)
+			{$errors[] = "E-mail must contain '@'.";}
+		elseif (preg_match($regex_email,$email))
+			{$errors[] = "E-mail format is incorrect.";} //regular expression validation for e-mail 
+		if (empty($_POST['FName']))
+			{$errors[] = "Please enter a First Name.";}
+		if (empty($_POST['LName']))
+			{$errors[] = "Please enter a Last Name.";}
+		if (empty($_POST['Phone']))
+			{$errors[] = "Please enter a Phone Number.";}
+		elseif (preg_match($regex_phone,$phone))
+			{$errors[] = "Please enter a phone number without dashes.";} //regular expression validation for phone 
+		if (empty($_POST['Department']))
+			{$errors[] = "Please select a department.";}
+		if (strlen($_POST['Pword']) < 8 )
+			{$errors[] = "Password must be at least 8 characters.";}
+		elseif (strpbrk($password, '0123456789') == FALSE)
+			{$errors[] = "Password must contain at least one number.";}
+
+		return $errors;
+	}
+?>
+
+
 
 <html lang="en">
   <head>
@@ -10,7 +87,6 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-    <script src="scripts/modernizr-custom.js"></script>
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
@@ -19,8 +95,8 @@
       <div class="page-header">
         <div class="logoContainer">
           <a href="index.html" title="MGA Knight Riders: Login">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg" />
+            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" />
           </a>
         </div>
       </div>
@@ -48,92 +124,6 @@
           <div class="col-sm-4 col-xs-2"></div>
         </div>
 
-        <div class="row text-center">
-          <br><a href="#" data-toggle="modal" data-target="#whatDoModal">What is MGA Rideshare?</a>
-        </div>
-
-  <!-- WHAT DO MODAL -->
-        <div id="whatDoModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header" id="whatDoModalHeader">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <br><br>
-                  <h4 class="welcomeHeader text-center">What is MGA Rideshare?</h4>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                    <h4 class="welcomeHeader">Description:</h4>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <p>This is probably the greatest thing that's ever happened in my life. A happy cloud. Let's make a nice big leafy tree. You're the greatest thing that has ever been or ever will be. You're special. You're so very special.</p>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                    <h4 class="welcomeHeader">Driver:</h4>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <p>If you've been in Alaska less than a year you're a Cheechako. Let's give him a friend too. Everybody needs a friend. There is immense joy in just watching - watching all the little creatures in nature. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. Isn't it great to do something you can't fail at? We'll take a little bit of Van Dyke Brown.</p>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <h4 class="welcomeHeader">Passenger:</h4>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <p>Let's get crazy. Just go back and put one little more happy tree in there. Isn't it fantastic that you can change your mind and create all these happy things? We wash our brush with odorless thinner. You got your heavy coat out yet? It's getting colder.</p>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <h4 class="welcomeHeader">Safety:</h4>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-1"></div>
-                  <div class="col-xs-10">
-                  <p>Put it in, leave it alone. They say everything looks better with odd numbers of things. But sometimes I put even numbers—just to upset the critics. Every day I learn. Let's build an almighty mountain. You have to allow the paint to break to make it beautiful.</p>
-                  </div>
-                  <div class="col-xs-1"></div>
-                </div>
-                <br><br><br>
-              </div>
-            </div>
-          </div>
-        </div>        
-
   <!-- REGISTRATION FORM -->
         <div id="registrationModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -143,6 +133,67 @@
               </div>
               <div class="modal-body">
                 <h1 class="text-center">Register:</h1><br>
+			<div id="registration form">
+				<?php
+					if (empty($errors) && $_SERVER['REQUEST_METHOD'] == 'POST') //Submission information is valid
+						{
+							echo "A verification email has been sent to your email address."; //NEEDS EXECUTION STATEMENT
+									
+							//Variables for the major tables are stripped from user inputs to prevent XSS attacks
+							$email = strip_tags($_POST['Email']);
+							$firstname = strip_tags($_POST['FName']);
+							$lastname = strip_tags($_POST['LName']);
+							$phone = strip_tags($_POST['Phone']);
+							$department = strip_tags($_POST['Department']);
+							$password = strip_tags($_POST['Pword']);
+								
+							//Connect to the database
+							include('mysqli_connect.php');
+									
+							//Begin transaction
+							mysqli_begin_transaction($dbc);   
+									
+							//Insertion queries for use into prepared statements
+							$sqlInsertUsers = "INSERT INTO Users(Email,FName,LName,Phone,Department,Pword) VALUES (?,?,?,?,?,?)";
+											
+							//Initilaize (auto)incrementors          
+							$count=0;
+							$user_id=0;
+									
+							$stmt = mysqli_stmt_init($dbc);
+									
+							//Prepared Statements for users table -- prevent SQL injection
+							if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
+								{
+									mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
+									mysqli_stmt_execute($stmt);
+									$count = mysqli_stmt_affected_rows($stmt);
+									$user_id = mysqli_stmt_insert_id($stmt);
+								}
+									
+							//If all records are inserted, commit the transaction, or else rollback
+							if ($count == 1)
+								{
+									mysqli_commit($dbc); //commit transaction
+								}     
+							else
+								{  
+									echo ("Data not inserted.");
+									mysqli_rollback($dbc); //rollback transaction
+								}
+									  
+							mysqli_stmt_close($stmt);
+							mysqli_close($dbc);
+						}
+					elseif (!empty($errors) && $_SERVER['REQUEST_METHOD'] == 'POST') //Display errors for invalid transmission
+						{
+							foreach ($errors as $msg)
+							{
+								echo $msg . "<br>";
+							}
+						}
+				?>
+			</div>				
                 <form id="registrationForm">
                   <div class="row">
                     <div class="col-sm-4 col-xs-2"></div>
@@ -155,29 +206,24 @@
                         <input id="registrationPhone" type="text" class="form-control" name="registrationPhoneInput" placeholder="Phone Number">
                         <select class="selectpicker orangeDropdown form-control" data-width="100%">
                           <option selected disabled>Department</option>
-                          <option value="Department01">English</option>
-                          <option value="Department02">History and Political Science</option>
-                          <option value="Department03">Mathematics</option>
-                          <option value="Department04">Media, Culture, and the Arts </option>
-                          <option value="Department05">Natural Sciences</option>
-                          <option value="Department06">Psychology, Sociology, and Criminal Justice</option>
-                          <option value="Department07">Aviation Maintenance and Structural Technology</option>
-                          <option value="Department08">Aviation Science and Management</option>
-                          <option value="Department09">Flight</option>
-                          <option value="Department10">Business</option>
-                          <option value="Department11">Education</option>
-                          <option value="Department12">Health Services Administration</option>
-                          <option value="Department13">Nursing</option>
-                          <option value="Department14">Occupational Therapy Assistant</option>
-                          <option value="Department15">Respitory</option>
-                          <option value="Department16">Information Technology</option>
-                          <option value="Department17">Office of Graduate Studies</option>
-                          <option value="Department18">Office of the President </option>
-                          <option value="Department19">Division of University Advancement</option>
-                          <option value="Department20">Division of Finance and Operations </option>
-                          <option value="Department21">Division of Recruitment and Marketing</option>
-                          <option value="Department22">Division of Student Affairs </option>
-                          <option value="Department23">Other</option>
+                          <option value="Department01">Department01</option>
+                          <option value="Department02">Department02</option>
+                          <option value="Department03">Department03</option>
+                          <option value="Department04">Department04</option>
+                          <option value="Department05">Department05</option>
+                          <option value="Department06">Department06</option>
+                          <option value="Department07">Department07</option>
+                          <option value="Department08">Department08</option>
+                          <option value="Department09">Department09</option>
+                          <option value="Department10">Department10</option>
+                          <option value="Department11">Department11</option>
+                          <option value="Department12">Department12</option>
+                          <option value="Department13">Department13</option>
+                          <option value="Department14">Department14</option>
+                          <option value="Department15">Department15</option>
+                          <option value="Department16">Department16</option>
+                          <option value="Department17">Department17</option>
+                          <option value="Department18">Department18</option>
                         </select>
                         <input id="registrationPassword" type="password" class="form-control" name="registrationpasswordInput" placeholder="Password">
                       </div>

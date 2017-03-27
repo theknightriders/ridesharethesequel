@@ -11,23 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <script src="scripts/modernizr-custom.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
   <body>
-    <div class="container"><div id="container">
+    <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
-          <a href="welcome.html" title="MGA Knight Riders: Homepage">
+          <a href="welcome.php" title="MGA Knight Riders: Homepage">
             <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
             <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
-              <li><a href="welcome.html">Welcome</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="help.html">Help</a></li>
-              <li><a href="index.html">Logout</a></li>
+              <li>Welcome</li>
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="help.php">Help</a></li>
+              <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -35,13 +36,42 @@
 
       <div id="body">
         <div class="row">
-          <div class="col-xs-4"></div>
+          <div class="col-lg-4"></div>
           
-          <div class="col-xs-4"></div>
+          <div class="col-lg-4 text-center">
+            <h1 class="welcomeHeader animated lightSpeedIn">Welcome!</h1>
+            <h3 class="welcomeHeader">&nbsp;&nbsp;I would like to...</h3><br>
+          </div>
           
-          <div class="col-xs-4"></div>
+          <div class="col-lg-4"></div>
 
         </div>
+
+        <div class="row">
+          <div class="col-sm-2 col-xs-1"></div>
+
+          <div class="col-sm-3 col-xs-4">
+            <a href="driver.php" class="btn btn-default">
+              <img class="welcomeSelectImage" src="images/driver.png" alt="Passenger Image"><br>
+              <h4 class="welcomeHeader text-center">Drive</h4>
+            </a>
+          </div>
+
+          <div class="col-sm-2 col-xs-2"></div>
+
+          <div class="col-sm-3 col-xs-4">
+            <a href="passenger.php" class="btn btn-default">
+              <img class="welcomeSelectImage" src="images/passenger.png" alt="Passenger Image">
+              <h4 class="welcomeHeader text-center">Ride</h4>
+            </a>
+          </div>
+          
+          <div class="col-sm-2 col-xs-1"></div>
+
+        </div>
+
+
+
 
 
 
@@ -57,5 +87,6 @@
       </div>
 
     </div></div>
+
   </body>
 </html>
