@@ -343,6 +343,9 @@ h4.welcomeHeader {
   .container {
     max-width: 80%;
   }
+  .textbold {
+    font-weight: bold;
+  }
 
 
 

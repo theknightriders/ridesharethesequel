@@ -66,15 +66,15 @@
                         <br> 
                     </div>
                     <div>
-                      <input id="newTripDate" type="date" class="form-control" name="newTripDateInput">
+                      <input id="newTripDate" type="date" class="form-control" name="newTripDateInput" required>
                       <div class="input-group bootstrap-timepicker timepicker">
-                        <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput">
+                        <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput" required>
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div><br>
                       <div class="text-center">
                         <div>Is this a repeat trip?</div>
                         <label class="radio-inline">
-                          <input id="newTripRepeatBooleanYes" type="radio">
+                          <input id="newTripRepeatBooleanYes" type="radio" required>
                           Yes
                         </label>
                         <label class="radio-inline">
@@ -146,7 +146,7 @@
                       </div>
                         <div>
                         <br>
-                        <p class="text-center"> Please note all packages must be smaller than a 10 inch x 13 inch envelope </p>
+                        <p class="text-center textbold"> Please note all packages must be smaller than a 10 inch x 13 inch envelope </p>
                         </div>
                       <div class="text-center">
                         <input type="submit" class="btn btn-primary" name="submitNewTripButton" value="Schedule Trip">
