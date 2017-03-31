@@ -331,6 +331,9 @@ h4.welcomeHeader {
   h4.welcomeHeader {
     font-size: 2em;
   }
+  h5.welcomeHeader{
+    font-size: 1em;
+  }
 
   .profilePic {
     max-width: 100%;

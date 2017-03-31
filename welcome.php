@@ -26,8 +26,9 @@
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li>Welcome</li>
+              <li><a href="aboutus.php">About Us</a></li>
               <li><a href="profile.php">Profile</a></li>
-              <li><a href="help.php">Help</a></li>
+              <li><a href="help.php">Help</li>
               <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
@@ -39,7 +40,7 @@
           <div class="col-lg-4"></div>
           
           <div class="col-lg-4 text-center">
-            <h1 class="welcomeHeader animated lightSpeedIn">Welcome!</h1>
+            <h1 class="welcomeHeader">Welcome!</h1>
             <h3 class="welcomeHeader">&nbsp;&nbsp;I would like to...</h3><br>
           </div>
           

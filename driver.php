@@ -12,21 +12,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+ <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script> -->
     <script src="scripts/datatablesDriver.js"></script>
-    <script src="scripts/bootstrap-timepicker.js"></script>
-    <script src="scripts/modernizr-custom.js"></script>
     <link rel="stylesheet" href="styles/bootstrap-timepicker.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> -->
     <link rel="stylesheet" href="styles/style.css">
   </head>
-
+<!-- 
   <body class="extendForTable stretchPage">
     <script type="text/javascript">
       $('newTripTime').timepicker();
-    </script>
+    </script> -->
     <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -37,8 +35,9 @@
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
               <li><a href="profile.php">Profile</a></li>
-              <li><a href="help.php">Help</a></li>
+              <li><a href="help.php">Help</li>
               <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
@@ -67,9 +66,9 @@
                     </div>
                     <div>
                       <input id="newTripDate" type="date" class="form-control" name="newTripDateInput" required>
-                      <div class="input-group bootstrap-timepicker timepicker">
-                        <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput" required>
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      <div class="text-center">Depart Time</div> <input id="newDepartTime" type="time" name="tripdeparttime" required>
+<!--                       <div class="input-group bootstrap-timepicker timepicker">
+                        <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput" required> -->
                       </div><br>
                       <div class="text-center">
                         <div>Is this a repeat trip?</div>
@@ -98,30 +97,40 @@
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Departing From:</option>
                         <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department01">Anderson Hall, Cochran</option>
                         <option value="Department02">Dublin Center Annex Building, Dublin</option>
                         <option value="Department03">Corporate Hangar, Eastman</option>
                         <option value="Department04">Charles H. Jones Building, Macon</option>
-                        <option value="Department05">Academic Services Building, Warner Robins</option>
+                        <option value="Department04">Student Life Center, Macon</option>
+                        <option value="Department05">Oak Hall, Warner Robins</option>
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Destination:</option>
                         <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department01">Anderson Hall, Cochran</option>
                         <option value="Department02">Dublin Center Annex Building, Dublin</option>
                         <option value="Department03">Corporate Hangar, Eastman</option>
                         <option value="Department04">Charles H. Jones Building, Macon</option>
-                        <option value="Department05">Academic Services Building, Warner Robins</option>
+                        <option value="Department04">student Life Center, Macon</option>
+                        <option value="Department05">Oak Hall, Warner Robins</option>
                       </select>
+                      
+                      <input id="driverCarYear" type="text" class="form-control" name="driverCarYear" placeholder="Car Year" required>
+                      <input id="driverCareMake" type="text" class="form-control" name="driverCarYear" placeholder="Car Make" required>
+                      <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required>
+
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Number of Seats:</option>
-                        <option value="Department01">1</option>
-                        <option value="Department02">2</option>
-                        <option value="Department03">3</option>
-                        <option value="Department04">4</option>
-                        <option value="Department05">5</option>
-                        <option value="Department05">6</option>
-                        <option value="Department05">7</option>
-                        <option value="Department05">8</option>
+                        <option value="Seats01">1</option>
+                        <option value="Seats02">2</option>
+                        <option value="Seats03">3</option>
+                        <option value="Seats04">4</option>
+                        <option value="Seats05">5</option>
+                        <option value="Seats06">6</option>
+                        <option value="Seats07">7</option>
+                        <option value="Seats08">8</option>
                       </select><br>
+
                       <div class="text-center"><br>
                         <div>Is your vehicle<br>smoke-free?</div>
                         <label class="radio-inline">
@@ -176,6 +185,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTripModal">New</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTripModal">Edit</button>
                 <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-primary"><a href="dropoffpoints.php"> Drop Off Points </a></button>
               </div>
             </div>
             <div class="col-md-8"></div>
