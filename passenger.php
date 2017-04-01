@@ -33,8 +33,9 @@
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
               <li><a href="profile.php">Profile</a></li>
-              <li><a href="help.php">Help</a></li>
+              <li><a href="help.php">Help</li>
               <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
@@ -83,7 +84,7 @@
                         <th>Number <br> of Seats</th>
                         <th>Smoke Free</th>
                         <th>Packages</th>
-                        <th>Click for Contact Information </th>
+                        <th><button><a href ="dropoffpoints.php">View Drop Off Points</button>
                     </tr>
                 </thead>
                 <tbody>
