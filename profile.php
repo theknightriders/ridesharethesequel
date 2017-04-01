@@ -47,7 +47,7 @@
           <div class="profilePicContainer">
             <img src="images/profile.jpg" class="profilePic" alt="profile picture">
           </div>
-          <button type="button" class="btn btn-primary profilePic" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
+          <button type="button" class="btn btn-primary profilePic viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
         </div>
 
         <div class="col-sm-5 col-sm-pull-5">
@@ -87,28 +87,43 @@
 
             <div class="row viewableProfile">
               <div class="centerDiv">
-                <div class="col-xs-6">
-                  <h4>First Name:</h4>
-                  <h4>Last Name:</h4>
-                  <h4>Email:</h4>
-                  <h4>Phone Number:</h4>
-                  <h4>Department:</h4>
+                <div class="col-xs-2 col-sm"></div>
+                <div class="col-xs-8 col-sm-12">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th>First Name:</th>
+                        <td>(FName)</td>
+                      </tr>
+                      <tr>
+                        <th>Last Name:</th>
+                        <td>(LName)</td>
+                      </tr>
+                      <tr>
+                        <th>Email:</th>
+                        <td>(something@mga.edu)</td>
+                      </tr>
+                      <tr>
+                        <th>Phone Number:</th>
+                        <td>(555) 555-5555</td>
+                      </tr>
+                      <tr>
+                        <th>Department:</th>
+                        <td>(Department)</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="col-xs-6">
-                  <h4>(FName)</h4>
-                  <h4>(LName)</h4>
-                  <h4>(something@mga.edu)</h4>
-                  <h4>(555) 555-5555</h4>
-                  <h4>(SomeDepartment)</h4>
-                </div>
+                <div class="col-xs-2 col-sm"></div>
               </div>
             </div>
 
             <div class="text-center">
               <br>
-              <input type="submit" class="btn btn-primary" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <input type="submit" class="btn btn-primary showHideProfileButton viewableProfile" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <input type="submit" class="btn btn-primary showHideProfileButton editableProfile" id="submitProfileButton" name="submitProfileButton" value="Submit Changes">
               <br><br>
-              <input type="submit" class="btn btn-primary" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
+              <input type="submit" class="btn btn-primary viewableProfile" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
             </div>
           </div>
 
