@@ -1,3 +1,23 @@
+<!--
+  I just added the session bits (at the very top of the page) so that I have a session variable to work with on the profile page. (lines 16-19)
+  I looked through this and wasn't able to find any session variables at all (neither email nor user ID)
+  Feel free to remove the line that says
+            $_SESSION["email"] = "email@mga.edu";
+  Just make sure that you have it set someplace else.
+  (Logically, the place you want to set it is just after the email & password are confirmed)
+  Don't move or remove the session_start(); line, though. That's necessary for the session variables to work at all.
+
+  Also: I've changed the login button back to a link for now.
+  I commented out the actual login button again.
+  Obviously this will need to be fixed.
+  I only changed it because I wasn't able to click it and get to the welcome page, which I believe I have to do in order to maintain the session that begins here. (lines 119-122)
+-->
+
+<?php
+session_start();
+$_SESSION["email"] = "email@mga.edu";
+?>
+
 <!DOCTYPE HTML>
 
 <?php
@@ -96,7 +116,10 @@
               <br>
               <div class="center">
                 <button type="button" class="btn btn-primary indexButton" name="Register" data-toggle="modal" data-target="#registrationModal">Register</button>
-				<input type="submit" class="btn btn-primary indexButton" name="Submit" value="Sign In">
+<!--
+                <input type="submit" class="btn btn-primary indexButton" name="Submit" value="Sign In">  
+-->
+                <a class="btn btn-primary indexButton" href="welcome.php">Sign In</a>
               </div>
             </form>
           </div>
