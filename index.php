@@ -1,16 +1,86 @@
+<!--
+  I just added the session bits (at the very top of the page) so that I have a session variable to work with on the profile page. (lines 16-19)
+  I looked through this and wasn't able to find any session variables at all (neither email nor user ID)
+  Feel free to remove the line that says
+            $_SESSION["email"] = "email@mga.edu";
+  Just make sure that you have it set someplace else.
+  (Logically, the place you want to set it is just after the email & password are confirmed)
+  Don't move or remove the session_start(); line, though. That's necessary for the session variables to work at all.
+
+  Also: I've changed the login button back to a link for now.
+  I commented out the actual login button again.
+  Obviously this will need to be fixed.
+  I only changed it because I wasn't able to click it and get to the welcome page, which I believe I have to do in order to maintain the session that begins here. (lines 119-122)
+-->
+
+<?php
+session_start();
+$_SESSION["email"] = "email@mga.edu";
+?>
+
 <!DOCTYPE HTML>
+
+<?php
+	//Define validation method for Registration inputs
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			$errors = Validate();
+		}
+		
+	function Validate() //Validate registration form inputs
+	{
+		//Define variables to bind input to the database
+		$email = $_POST['Email'];
+		$firstName = $_POST['FName'];
+		$lastName = $_POST['LName'];
+		$phone = $_POST['Phone'];
+		if (isset($_POST['Department']) && !$_POST['Department'] == '0') //Validate dropdown selection
+			{$department = $_POST['Department'];}
+		$password = $_POST['Password'];
+		
+		//Develop regular expressions
+		$regex_email = "/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD";
+		// "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/"; //For e-mail
+		$regex_phone = "/^[^0-9]{10}$/"; //For phone
+		
+		$errors = array(); //Set array to store error messages
+		
+		//Perform validation checks
+		if (strpbrk($email, '@') == FALSE)
+			{$errors[] = "E-mail must contain '@'.";}
+		elseif (preg_match($regex_email,$email))
+			{$errors[] = "E-mail format is incorrect.";} //regular expression validation for e-mail 
+		if (empty($_POST['FName']))
+			{$errors[] = "Please enter a First Name.";}
+		if (empty($_POST['LName']))
+			{$errors[] = "Please enter a Last Name.";}
+		if (empty($_POST['Phone']))
+			{$errors[] = "Please enter a Phone Number.";}
+		elseif (preg_match($regex_phone,$phone))
+			{$errors[] = "Please enter a phone number without dashes.";} //regular expression validation for phone 
+		if (!isset($_POST['Department']))
+			{$errors[] = "Please select a department.";}
+		if (strlen($_POST['Password']) < 8 )
+			{$errors[] = "Password must be at least 8 characters.";}
+		elseif (strpbrk($password, '0123456789') == FALSE)
+			{$errors[] = "Password must contain at least one number.";}
+			
+		return $errors;
+	}
+?>
+
+
 
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>MGA Knight Riders</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-    <script src="scripts/modernizr-custom.js"></script>
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
@@ -19,8 +89,8 @@
       <div class="page-header">
         <div class="logoContainer">
           <a href="index.php" title="MGA Knight Riders: Login">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg" />
+            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" />
           </a>
         </div>
       </div>
@@ -29,24 +99,34 @@
           <div class="col-sm-4 col-xs-2"></div>
           
           <div class="col-sm-4 col-xs-8">
-  <!-- SIGN IN FORM -->        
-            <form id="loginForm" class="text-center center">
+  <!-- SIGN IN FORM --> 
+			<div>
+				<?php
+					if(isset($errmsg))
+						{
+							echo $errmsg;
+						}
+				?>
+			</div>
+            <form id="loginForm" class="text-center center" action="login.php" method="post">
               <div>
-                <input id="email" type="text" class="form-control text-center" name="emailInput" placeholder="MGA Email">
-                <input id="password" type="password" class="form-control text-center" name="passwordInput" placeholder="Password">
+                <input id="Email" type="text" class="form-control text-center" name="Email" placeholder="MGA Email">
+                <input id="Password" type="Password" class="form-control text-center" name="Password" placeholder="Password">
               </div>
               <br>
               <div class="center">
-                <button type="button" class="btn btn-primary indexButton" name="registerButton" data-toggle="modal" data-target="#registrationModal">Register</button>
-  <!-- PLACEHOLDER - Remove this button and uncomment the submit button. -->
+                <button type="button" class="btn btn-primary indexButton" name="Register" data-toggle="modal" data-target="#registrationModal">Register</button>
+<!--
+                <input type="submit" class="btn btn-primary indexButton" name="Submit" value="Sign In">  
+-->
                 <a class="btn btn-primary indexButton" href="welcome.php">Sign In</a>
-  <!--          <input type="submit" class="btn btn-primary indexButton" name="submitButton" value="Sign In">  -->
               </div>
             </form>
           </div>
           
           <div class="col-sm-4 col-xs-2"></div>
         </div>
+
 
         <div class="row text-center">
           <br><a href="#" data-toggle="modal" data-target="#whatDoModal">What is MGA Rideshare?</a>
@@ -173,6 +253,7 @@
           </div>
         </div>        
 
+        
   <!-- REGISTRATION FORM -->
         <div id="registrationModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -182,7 +263,10 @@
               </div>
               <div class="modal-body">
                 <h1 class="text-center">Register:</h1><br>
-                <form id="registrationForm">
+			<div id="registration form">
+
+			</div>				
+                <form id="registrationForm" enctype="multipart/form-data" action="index.php" method="post">
                   <div class="row">
                     <div class="col-sm-4 col-xs-2"></div>
 
@@ -273,8 +357,8 @@
 
                     <div class="col-xs-1"></div>
                   </div>
-
                   <div class="text-center">
+
                     <label><input type="checkbox" value="agree" required>&nbsp;I have read and agree to the Terms &amp; Conditions.</label><br><br>
                      <label><input type="checkbox" value="agree" required>&nbsp;FRANCIS</label><br><br>
                     <input type="submit" class="btn btn-primary" name="submitRegistrationButton" value="Submit Registration"><br>
@@ -284,6 +368,75 @@
             </div>
           </div>
         </div>
+		<?php
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+		{
+			if ((isset($_POST['agree'])))
+				{
+					if (empty($errors)) //Submission information is valid
+					{
+						echo "A verification email has been sent to your email address."; //NEEDS EXECUTION STATEMENT
+						
+						//Variables for the major tables are stripped from user inputs to prevent XSS attacks
+						$email = strip_tags($_POST['Email']); //Derived from HTML input variables from 'name'
+						$firstname = strip_tags($_POST['FName']);
+						$lastname = strip_tags($_POST['LName']);
+						$phone = strip_tags($_POST['Phone']);
+						$department = strip_tags($_POST['Department']);
+						$password = strip_tags($_POST['Password']);
+						
+						//Connect to the database
+						include('mysqli_connect.php');
+						
+						//Begin transaction
+						mysqli_begin_transaction($dbc);   
+						
+						//Insertion queries for use into prepared statements
+						$sqlInsertUsers = "INSERT INTO users(Email,FName,LName,Phone,Department,Pword) VALUES (?,?,?,?,?,?)";
+						
+						//initialize (auto)incrementors          
+						$count=0;
+						$user_id=0;
+						
+						$stmt = mysqli_stmt_init($dbc);
+						
+						//Prepared Statements for users table -- prevent SQL injection
+						if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
+							{
+								mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
+								mysqli_stmt_execute($stmt);
+								$count = mysqli_stmt_affected_rows($stmt);
+								$user_id = mysqli_stmt_insert_id($stmt);
+							}
+								
+						//If all records are inserted, commit the transaction, or else rollback
+						if ($count == 1)
+							{
+								mysqli_commit($dbc); //commit transaction
+							}     
+						else
+							{  
+								echo ("Data not inserted.");
+								mysqli_rollback($dbc); //rollback transaction
+							}
+							
+						mysqli_stmt_close($stmt); //close statement
+						mysqli_close($dbc); //close connection
+					}	
+					else //Invalid inputs
+					{
+						foreach ($errors as $msg)
+						{
+							echo $msg . "<br>";
+						}
+					}
+				}
+			else
+				{
+					echo "== You must agree to the Terms of Service. ==";
+				}
+		}		
+?>
       </div>
 
       <div id="footer" class="text-center center">

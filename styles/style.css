@@ -243,14 +243,6 @@ h4.welcomeHeader {
   outline: none !important;
 }
 
-#profileEmail {
-  visibility: hidden;
-}
-
-.editableProfile {
-  display: none;
-}
-
 .profileAlign {
   display: none;
 }
@@ -259,10 +251,26 @@ h4.welcomeHeader {
   margin-left: auto;
   margin-right: auto;
 }
+
 .modalDriver {
   max-width: 41.66%;
   height: 80%;
 }
+
+.table > thead > tr:first-child > td, 
+.table > tbody > tr:first-child > td,
+.table > thead > tr:first-child > th, 
+.table > tbody > tr:first-child > th {
+  border: none;
+}
+
+.error {
+  color: #f00;
+}
+
+
+
+
 
 
 /** Small devices (landscape phones, 576px and up) */
@@ -329,7 +337,7 @@ h4.welcomeHeader {
   }
 
   h4.welcomeHeader {
-    font-size: 2em;
+    font-size: 1.25em;
   }
   h5.welcomeHeader{
     font-size: 1em;
@@ -369,6 +377,10 @@ h4.welcomeHeader {
 
 /** Extra large devices (large desktops, 1200px and up) */
 @media only screen and (min-device-width: 1200px) {
+
+  h4.welcomeHeader {
+    font-size: 1.5em;
+  }
 
 
 

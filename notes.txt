@@ -1,16 +1,22 @@
-Welcome:
-  DONE: Buttons too small in phones
-All:
-  DONE: Height property of Body and/or Container of some pages, in some browsers
-  Done: Try adding a footer
-  Done: Make a separate version: purple background, gray main content area, purple glow around boxes
-  Potenitally done...Make compatible with Firefox and IE
-  DONE: Pick a better font
-  DONE:Validate!!
-  DONE: Fix size of footer
-Login:
-  DONE: Extra Help page from Login
-Rider:
-  DONE:Say something better than "contact" on the Rider page
-Driver:
-  DONE:Fix form for adding a ride
+Profile Page work:
+
+
+Profile Information:
+1) 
+
+
+Change Password:
+1) Narrow the text boxes a bit.
+2) Validate old email with database,
+3) Validate new email (make sure the two match)
+4) Post new password to database when Submit Change button is pressed
+
+
+Change Profile Picture:
+Not sure how this works yet.. Do we have any new information from Addison or Brian on how to do pictures?
+
+
+
+
+RANDOM TO DO (to do only if time permits)
+Give better option for entering phone numbers

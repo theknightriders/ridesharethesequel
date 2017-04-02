@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE HTML>
 
 <html class="profileStretchPage" lang="en">
@@ -26,9 +30,8 @@
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
-              <li><a href="aboutus.php">About Us</a></li>
               <li>Profile</li>
-              <li><a href="help.php">Help</li>
+              <li><a href="help.php">Help</a></li>
               <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
@@ -47,68 +50,91 @@
           <div class="profilePicContainer">
             <img src="images/profile.jpg" class="profilePic" alt="profile picture">
           </div>
-          <button type="button" class="btn btn-primary profilePic" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
+          <button type="button" class="btn btn-primary profilePic viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
         </div>
 
         <div class="col-sm-5 col-sm-pull-5">
           <div class="profileAlign"><br><br><br><br></div><div><br><br><br><br></div>
-            <div class="editableProfile">
-              <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
-              <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
-              <input id="profileEmail" type="text" class="form-control" name="profileEmailInput" placeholder="MGA Email">
-              <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
-              <select class="selectpicker orangeDropdown form-control" data-width="100%">
-                <option selected disabled>Department</option>
-                          <option value="Department01">English</option>
-                          <option value="Department02">History and Political Science</option>
-                          <option value="Department03">Mathematics</option>
-                          <option value="Department04">Media, Culture, and the Arts </option>
-                          <option value="Department05">Natural Sciences</option>
-                          <option value="Department06">Psychology, Sociology, and Criminal Justice</option>
-                          <option value="Department07">Aviation Maintenance and Structural Technology</option>
-                          <option value="Department08">Aviation Science and Management</option>
-                          <option value="Department09">Flight</option>
-                          <option value="Department10">Business</option>
-                          <option value="Department11">Education</option>
-                          <option value="Department12">Health Services Administration</option>
-                          <option value="Department13">Nursing</option>
-                          <option value="Department14">Occupational Therapy Assistant</option>
-                          <option value="Department15">Respitory</option>
-                          <option value="Department16">Information Technology</option>
-                          <option value="Department17">Office of Graduate Studies</option>
-                          <option value="Department18">Office of the President </option>
-                          <option value="Department19">Division of University Advancement</option>
-                          <option value="Department20">Division of Finance and Operations </option>
-                          <option value="Department21">Division of Recruitment and Marketing</option>
-                          <option value="Department22">Division of Student Affairs </option>
-                          <option value="Department23">Other</option>
-              </select><br>
+            <div class="row">
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+              <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+                <div class="editableProfile">
+                  <!--<form action="profileProcess.php" method="post">--><form>
+                    <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
+                    <br>
+                    <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
+                    <br>
+                    <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                    <br>
+                    <select class="selectpicker orangeDropdown form-control" data-width="100%" name="profileDepartmentInput">
+                      <option selected disabled>Department</option>
+                      <option value="Department01">Department01</option>
+                      <option value="Department02">Department02</option>
+                      <option value="Department03">Department03</option>
+                      <option value="Department04">Department04</option>
+                      <option value="Department05">Department05</option>
+                      <option value="Department06">Department06</option>
+                      <option value="Department07">Department07</option>
+                      <option value="Department08">Department08</option>
+                      <option value="Department09">Department09</option>
+                      <option value="Department10">Department10</option>
+                      <option value="Department11">Department11</option>
+                      <option value="Department12">Department12</option>
+                      <option value="Department13">Department13</option>
+                      <option value="Department14">Department14</option>
+                      <option value="Department15">Department15</option>
+                      <option value="Department16">Department16</option>
+                      <option value="Department17">Department17</option>
+                      <option value="Department18">Department18</option>
+                    </select>
+                  </form>
+                </div>
+              </div>
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
             </div>
 
             <div class="row viewableProfile">
               <div class="centerDiv">
-                <div class="col-xs-6">
-                  <h4>First Name:</h4>
-                  <h4>Last Name:</h4>
-                  <h4>Email:</h4>
-                  <h4>Phone Number:</h4>
-                  <h4>Department:</h4>
+                <div class="col-xs-2 col-sm"></div>
+                <div class="col-xs-8 col-sm-12">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th>First Name:</th>
+                        <td>(FName)</td>
+                      </tr>
+                      <tr>
+                        <th>Last Name:</th>
+                        <td>(LName)</td>
+                      </tr>
+                      <tr>
+                        <th>Email:</th>
+                        <td><?php echo $_SESSION["email"]?></td>
+                      </tr>
+                      <tr>
+                        <th>Phone Number:</th>
+                        <td>(555) 555-5555</td>
+                      </tr>
+                      <tr>
+                        <th>Department:</th>
+                        <td>(Department)</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="col-xs-6">
-                  <h4>(FName)</h4>
-                  <h4>(LName)</h4>
-                  <h4>(something@mga.edu)</h4>
-                  <h4>(555) 555-5555</h4>
-                  <h4>(SomeDepartment)</h4>
-                </div>
+                <div class="col-xs-2 col-sm"></div>
               </div>
             </div>
 
             <div class="text-center">
               <br>
-              <input type="submit" class="btn btn-primary" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <input type="submit" class="btn btn-primary showHideProfileButton viewableProfile" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
+              <span class="editableProfile">
+                <br>
+                <input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes">
+              </span>
               <br><br>
-              <input type="submit" class="btn btn-primary" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
+              <input type="submit" class="btn btn-primary viewableProfile" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
             </div>
           </div>
 

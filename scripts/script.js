@@ -3,10 +3,10 @@
 
 $(document).ready(function() {
 
-  $("#editableProfile").hide();
-  $( "#editProfileButton" ).click(function() {
-    $("#viewableProfile").hide();
-    $("#editableProfile").show();
+  $(".editableProfile").hide();
+  $( ".showHideProfileButton" ).click(function() {
+    $(".viewableProfile").toggle();
+    $(".editableProfile").toggle();
   });
 
 })
