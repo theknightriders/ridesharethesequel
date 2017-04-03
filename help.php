@@ -25,7 +25,7 @@
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
-              <li><a href="aboutus">About Us</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
               <li><a href="profile.php">Profile</a></li>
               <li>Help</li>
               <li><a href="index.php">Logout</a></li>

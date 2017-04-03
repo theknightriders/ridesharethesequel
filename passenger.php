@@ -59,11 +59,33 @@ session_start();
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Driver's Contact Information:</h1><br>
-                  Name:<br>
-                  Email:<br>
-                  Phone:<br>
+                  <div class="row">
+                    <div class="col-sm-6 text-center">
+                      (REPLACE WITH NAME)<br>
+                      (REPLACE WITH P NUMBER)<br>
+                      (REPLACE WITH EMAIL)<br>
+                    </div>
+
+                    <div class="col-sm-6 text-center">
+                      (REPLACE WITH COLOR)<br>
+                      (REPLACE WITH YEAR)<br>
+                      (REPLACE WITH MAKE)<br>
+                      (REPLACE WITH MODEL)<br>
+                    </div>
+                  </div>
+
                   <br>
                   Message from the driver:
+                  <br>
+                  (REPLACE WITH MESSAGE FROM THE DRIVER)
+                  <br><br>
+                  <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6 text-center textbold">
+                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. 
+                    </div>
+                    <div class="col-sm-3"></div>
+                  </div>
                 </div>
               </div>
             </div>

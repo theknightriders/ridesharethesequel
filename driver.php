@@ -126,9 +126,10 @@ session_start();
                         <option value="Department05">Oak Hall, Warner Robins</option>
                       </select><br><br>
                       
-                      <input id="driverCarYear" type="text" class="form-control" name="driverCarYear" placeholder="Car Year" required>
-                      <input id="driverCareMake" type="text" class="form-control" name="driverCarYear" placeholder="Car Make" required>
-                      <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required><br>
+                      <input id="vehicleYear" type="text" class="form-control" name="vehicleYear" placeholder="Vehicle Year" required>
+                      <input id="vehicleeMake" type="text" class="form-control" name="vehicleYear" placeholder="Vehicle Make" required>
+                      <input id="vehicleModel" type="text" class="form-control" name="vehicleModel" placeholder="Vehicle Model" required>
+                      <input id="vehicleColor" type="text" class="form-control" name="vehicleColor" placeholder="Vehicle Color" required><br>
 
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Number of Seats:</option>
