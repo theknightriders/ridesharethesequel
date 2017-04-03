@@ -9,6 +9,24 @@ $(document).ready(function() {
     $(".editableProfile").toggle();
   });
 
+
+  $(".repeatTripFromTo").hide();
+  $("input[name='oneOrRepeatTrip']").click(function () {
+      $('.repeatTripFromTo').css('display', ($(this).val() === 'yes') ? 'block':'none');
+  });
+
+
+  $(".packageNotice").hide();
+  $("input[name='packageYesOrNo']").click(function () {
+      $('.packageNotice').css('display', ($(this).val() === 'yes') ? 'block':'none');
+  });
+
+
+  $(".messageToPassengers").hide();
+  $("input[name='messageYesOrNo']").click(function () {
+      $('.messageToPassengers').css('display', ($(this).val() === 'yes') ? 'block':'none');
+  });
+
 })
 
 
