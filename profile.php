@@ -43,6 +43,46 @@ session_start();
         <h4 class="welcomeHeader">Your Profile:</h4>
       </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="row">
         <div class="col-sm-1"></div>
 
@@ -150,14 +190,22 @@ session_start();
               </div>
               <div class="modal-body">
                 <h1 class="text-center">Change Password</h1><br>
-                <form>
-                  <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Old Password"><br>
-                  <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
-                  <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br><br>
-                  <div class="text-center">
-                    <input type="submit" class="btn btn-primary" name="submitPasswordChangeButton" value="Submit Change"><br>
-                 </div>
-                </form>
+                <div class="row">
+                  <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+
+                  <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+                    <form>
+                      <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Old Password"><br>
+                      <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
+                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br><br>
+                      <div class="text-center">
+                        <input type="submit" class="btn btn-primary" name="submitPasswordChangeButton" value="Submit Change"><br>
+                     </div>
+                    </form>
+                  </div>
+                  
+                  <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+                </div>
               </div>
             </div>
           </div>
