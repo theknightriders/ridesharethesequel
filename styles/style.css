@@ -268,6 +268,10 @@ h4.welcomeHeader {
   color: #f00;
 }
 
+.centerWhenSmol {
+  text-align: center;
+}
+
 
 
 
@@ -364,6 +368,14 @@ h4.welcomeHeader {
 
   .profileAlign {
     display: block;
+  }
+
+  .centerWhenSmol {
+    text-align: right;
+  }
+
+  .visibleWhenSmol {
+    display: none;
   }
 
 

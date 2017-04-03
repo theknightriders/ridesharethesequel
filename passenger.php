@@ -88,7 +88,7 @@ session_start();
                         <th>Number <br> of Seats</th>
                         <th>Smoke Free</th>
                         <th>Packages</th>
-                        <th><button><a href ="dropoffpoints.php">View Drop Off Points</button>
+                        <th><a href ="dropoffpoints.php" class="btn btn-primary">View Drop Off Points</a>
                     </tr>
                 </thead>
                 <tbody>

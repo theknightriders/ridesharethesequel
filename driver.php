@@ -23,6 +23,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
 <!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> -->
     <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/script.js"></script>
   </head>
 <!-- 
   <body class="extendForTable stretchPage">
@@ -69,35 +70,41 @@ session_start();
                         <br> 
                     </div>
                     <div>
+                      <div class="text-center">Departure Date &amp; Time</div>
                       <input id="newTripDate" type="date" class="form-control" name="newTripDateInput" required>
-                      <div class="text-center">Depart Time</div> <input id="newDepartTime" type="time" name="tripdeparttime" required>
+                      <input id="newDepartTime" type="time" class="form-control" name="tripdeparttime" required>
 <!--                       <div class="input-group bootstrap-timepicker timepicker">
                         <input id="newTripTime" type="text" class="form-control" name="newTripLnameInput" required> -->
                       </div><br>
+
                       <div class="text-center">
                         <div>Is this a repeat trip?</div>
                         <label class="radio-inline">
-                          <input id="newTripRepeatBooleanYes" type="radio" required>
+                          <input id="newTripRepeatBooleanYes" type="radio" value="yes" name="oneOrRepeatTrip">
                           Yes
                         </label>
                         <label class="radio-inline">
-                          <input id="newTripRepeatBooleanNo" type="radio">
+                          <input id="newTripRepeatBooleanNo" type="radio" value="no" name="oneOrRepeatTrip" checked="checked">
                           No
                         </label>
                       </div>
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
-                        <option selected disabled>Repeats On:</option>
-                        <option value="Department01">Sundays</option>
-                        <option value="Department02">Mondays</option>
-                        <option value="Department03">Tuesdays</option>
-                        <option value="Department04">Wednesdays</option>
-                        <option value="Department05">Thursdays</option>
-                        <option value="Department06">Fridays</option>
-                        <option value="Department07">Saturdays</option>
-                      </select>
-                      <div class="text-center">Ends:</div>
-                      <input id="newTripRepeatDate" type="date" class="form-control" name="newTripDateInput">
-                      <br><br>
+
+                      <div class="repeatTripFromTo">
+                        <select class="selectpicker orangeDropdown form-control" data-width="100%">
+                          <option selected disabled>Repeats On:</option>
+                          <option value="Department01">Sundays</option>
+                          <option value="Department02">Mondays</option>
+                          <option value="Department03">Tuesdays</option>
+                          <option value="Department04">Wednesdays</option>
+                          <option value="Department05">Thursdays</option>
+                          <option value="Department06">Fridays</option>
+                          <option value="Department07">Saturdays</option>
+                        </select>
+                        <div class="text-center">End Date</div>
+                        <input id="newTripRepeatDate" type="date" class="form-control" name="newTripDateInput">
+                      </div>
+
+                      <br>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Departing From:</option>
                         <option value="Department01">Ebenezer Hall, Cochran</option>
@@ -117,11 +124,11 @@ session_start();
                         <option value="Department04">Charles H. Jones Building, Macon</option>
                         <option value="Department04">student Life Center, Macon</option>
                         <option value="Department05">Oak Hall, Warner Robins</option>
-                      </select>
+                      </select><br><br>
                       
                       <input id="driverCarYear" type="text" class="form-control" name="driverCarYear" placeholder="Car Year" required>
                       <input id="driverCareMake" type="text" class="form-control" name="driverCarYear" placeholder="Car Make" required>
-                      <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required>
+                      <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required><br>
 
                       <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Number of Seats:</option>
@@ -138,30 +145,52 @@ session_start();
                       <div class="text-center"><br>
                         <div>Is your vehicle<br>smoke-free?</div>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanYes" type="radio">
+                          <input id="newTripSmokeFreeBooleanYes" type="radio" name="smokeFreeYesOrNo" value="yes" checked="checked">
                           Yes
                         </label>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanNo" type="radio">
+                          <input id="newTripSmokeFreeBooleanNo" type="radio" name="smokeFreeYesOrNo" value="no">
                           No
                         </label>
                       </div><br>
+
                       <div class="text-center">
                         <div>Are you willing<br>to deliver a package?</div>
                         <label class="radio-inline">
-                          <input id="newTripPackageBooleanYes" type="radio">
+                          <input id="newTripPackageBooleanYes" type="radio" name="packageYesOrNo" value="yes">
                           Yes
                         </label>
                         <label class="radio-inline">
-                          <input id="newTripPackageBooleanNo" type="radio">
+                          <input id="newTripPackageBooleanNo" type="radio" name="packageYesOrNo" value="no" checked="checked">
+                          No
+                        </label><br><br>
+                      </div>
+
+                      <div class="packageNotice">
+                        <p class="text-center textbold">
+                          Please note all packages must be smaller than a<br>10&quot; x 13&quot; envelope
+                        </p>
+                      </div>
+
+                      <div class="text-center">
+                        <div>Would you like to leave a note for potential passengers?</div>
+                        <label class="radio-inline">
+                          <input id="newTripMessageBooleanYes" type="radio" name="messageYesOrNo" value="yes">
+                          Yes
+                        </label>
+                        <label class="radio-inline">
+                          <input id="newTripMessageBooleanNo" type="radio" name="messageYesOrNo" value="no" checked="checked">
                           No
                         </label>
                       </div>
-                        <div>
+
+                      <div class="messageToPassengers">
                         <br>
-                        <p class="text-center textbold"> Please note all packages must be smaller than a 10 inch x 13 inch envelope </p>
-                        </div>
+                        <textarea class="form-control" rows="3" id="messageToPassengers">Leave your message here.</textarea>
+                      </div>
+
                       <div class="text-center">
+                        <br>
                         <input type="submit" class="btn btn-primary" name="submitNewTripButton" value="Schedule Trip">
                       </div><br>
                     </div>
@@ -189,10 +218,12 @@ session_start();
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTripModal">New</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTripModal">Edit</button>
                 <button type="button" class="btn btn-primary">Delete</button>
-                <button type="button" class="btn btn-primary"><a href="dropoffpoints.php"> Drop Off Points </a></button>
               </div>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-7 centerWhenSmol">
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+            </div>
+            <div class="col-md-1"></div>
           </div>
 
           <div class="row">
