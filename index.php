@@ -14,8 +14,8 @@
 -->
 
 <?php
-session_start();
-$_SESSION["email"] = "email@mga.edu";
+//session_start();
+//$_SESSION["email"] = "email@mga.edu";
 ?>
 
 <!DOCTYPE HTML>
@@ -108,14 +108,14 @@ $_SESSION["email"] = "email@mga.edu";
 						}
 				?>
 			</div>
-            <form id="loginForm" class="text-center center" action="login.php" method="post">
+            <form id="loginForm" class="text-center center" action="index.php" method="post">
               <div>
                 <input id="Email" type="text" class="form-control text-center" name="Email" placeholder="MGA Email">
                 <input id="Password" type="Password" class="form-control text-center" name="Password" placeholder="Password">
               </div>
               <br>
               <div class="center">
-                <button type="button" class="btn btn-primary indexButton" name="Register" data-toggle="modal" data-target="#registrationModal">Register</button>
+                <button type="button" class="btn btn-primary indexButton" name="login" data-toggle="modal" data-target="#registrationModal">Register</button>
 <!--
                 <input type="submit" class="btn btn-primary indexButton" name="Submit" value="Sign In">  
 -->
@@ -272,37 +272,37 @@ $_SESSION["email"] = "email@mga.edu";
 
                     <div class="col-sm-4 col-xs-8">
                       <div>
-                        <input id="registrationFname" type="text" class="form-control" name="registrationFnameInput" placeholder="First Name" required>
-                        <input id="registrationLname" type="text" class="form-control" name="registrationLnameInput" placeholder="Last Name" required>
-                        <input id="registrationEmail" type="text" class="form-control" name="registrationEmailInput" placeholder="MGA Email" required>
-                        <input id="registrationPhone" type="text" class="form-control" name="registrationPhoneInput" placeholder="Phone Number" required>
-                        <select class="selectpicker orangeDropdown form-control" data-width="100%">
+                        <input id="registrationFname" type="text" class="form-control" name="registrationFname" placeholder="First Name" required>
+                        <input id="registrationLname" type="text" class="form-control" name="registrationLname" placeholder="Last Name" required>
+                        <input id="registrationEmail" type="text" class="form-control" name="registrationEmail" placeholder="MGA Email" required>
+                        <input id="registrationPhone" type="text" class="form-control" name="registrationPhone" placeholder="Phone Number" required>
+                        <select class="selectpicker orangeDropdown form-control" data-width="100%" name="Department">
                           <option selected disabled required>Department</option>
-                          <option value="Department01">English</option>
-                          <option value="Department02">History and Political Science</option>
-                          <option value="Department03">Mathematics</option>
-                          <option value="Department04">Media, Culture, and the Arts </option>
-                          <option value="Department05">Natural Sciences</option>
-                          <option value="Department06">Psychology, Sociology, and Criminal Justice</option>
-                          <option value="Department07">Aviation Maintenance and Structural Technology</option>
-                          <option value="Department08">Aviation Science and Management</option>
-                          <option value="Department09">Flight</option>
-                          <option value="Department10">Business</option>
-                          <option value="Department11">Education</option>
-                          <option value="Department12">Health Services Administration</option>
-                          <option value="Department13">Nursing</option>
-                          <option value="Department14">Occupational Therapy Assistant</option>
-                          <option value="Department15">Respitory</option>
-                          <option value="Department16">Information Technology</option>
-                          <option value="Department17">Office of Graduate Studies</option>
-                          <option value="Department18">Office of the President </option>
-                          <option value="Department19">Division of University Advancement</option>
-                          <option value="Department20">Division of Finance and Operations </option>
-                          <option value="Department21">Division of Recruitment and Marketing</option>
-                          <option value="Department22">Division of Student Affairs </option>
-                          <option value="Department23">Other</option>
+                          <option value="ENGL">English</option>
+                          <option value="HPSC">History and Political Science</option>
+                          <option value="MATH">Mathematics</option>
+                          <option value="ARTS">Media, Culture, and the Arts </option>
+                          <option value="NSCI">Natural Sciences</option>
+                          <option value="PSCJ">Psychology, Sociology, and Criminal Justice</option>
+                          <option value="AVMT">Aviation Maintenance and Structural Technology</option>
+                          <option value="ASCM">Aviation Science and Management</option>
+                          <option value="FLGT">Flight</option>
+                          <option value="BSNS">Business</option>
+                          <option value="EDUC">Education</option>
+                          <option value="HSCA">Health Services Administration</option>
+                          <option value="NURS">Nursing</option>
+                          <option value="OCTA">Occupational Therapy Assistant</option>
+                          <option value="RESP">Respitory</option>
+                          <option value="ITEC">Information Technology</option>
+                          <option value="GRAD">Office of Graduate Studies</option>
+                          <option value="PRES">Office of the President </option>
+                          <option value="UADV">Division of University Advancement</option>
+                          <option value="FINO">Division of Finance and Operations </option>
+                          <option value="RMAR">Division of Recruitment and Marketing</option>
+                          <option value="STAF">Division of Student Affairs </option>
+                          <option value="OTHR">Other</option>
                         </select>
-                        <input id="registrationPassword" type="password" class="form-control" name="registrationpasswordInput" placeholder="Password" required>
+                        <input id="registrationPassword" type="password" class="form-control" name="password" placeholder="Password" required>
                       </div>
                     </div>
 
@@ -361,79 +361,116 @@ $_SESSION["email"] = "email@mga.edu";
 
                     <label><input type="checkbox" value="agree" required>&nbsp;I have read and agree to the Terms &amp; Conditions.</label><br><br>
                      <label><input type="checkbox" value="agree" required>&nbsp;FRANCIS</label><br><br>
-                    <input type="submit" class="btn btn-primary" name="submitRegistrationButton" value="Submit Registration"><br>
+                    <input type="submit" class="btn btn-primary" name="register" value="Submit Registration"><br>
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-		<?php
+	<?php
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 		{
-			if ((isset($_POST['agree'])))
-				{
-					if (empty($errors)) //Submission information is valid
+			if ($_POST['register'])
+				{if ((isset($_POST['agree'])))
 					{
-						echo "A verification email has been sent to your email address."; //NEEDS EXECUTION STATEMENT
-						
-						//Variables for the major tables are stripped from user inputs to prevent XSS attacks
-						$email = strip_tags($_POST['Email']); //Derived from HTML input variables from 'name'
-						$firstname = strip_tags($_POST['FName']);
-						$lastname = strip_tags($_POST['LName']);
-						$phone = strip_tags($_POST['Phone']);
-						$department = strip_tags($_POST['Department']);
-						$password = strip_tags($_POST['Password']);
-						
-						//Connect to the database
-						include('mysqli_connect.php');
-						
-						//Begin transaction
-						mysqli_begin_transaction($dbc);   
-						
-						//Insertion queries for use into prepared statements
-						$sqlInsertUsers = "INSERT INTO users(Email,FName,LName,Phone,Department,Pword) VALUES (?,?,?,?,?,?)";
-						
-						//initialize (auto)incrementors          
-						$count=0;
-						$user_id=0;
-						
-						$stmt = mysqli_stmt_init($dbc);
-						
-						//Prepared Statements for users table -- prevent SQL injection
-						if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
-							{
-								mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
-								mysqli_stmt_execute($stmt);
-								$count = mysqli_stmt_affected_rows($stmt);
-								$user_id = mysqli_stmt_insert_id($stmt);
-							}
-								
-						//If all records are inserted, commit the transaction, or else rollback
-						if ($count == 1)
-							{
-								mysqli_commit($dbc); //commit transaction
-							}     
-						else
-							{  
-								echo ("Data not inserted.");
-								mysqli_rollback($dbc); //rollback transaction
-							}
-							
-						mysqli_stmt_close($stmt); //close statement
-						mysqli_close($dbc); //close connection
-					}	
-					else //Invalid inputs
-					{
-						foreach ($errors as $msg)
+						if (empty($errors)) //Submission information is valid
 						{
-							echo $msg . "<br>";
+							echo "A verification email has been sent to your email address."; //NEEDS EXECUTION STATEMENT
+							
+							//Variables for the major tables are stripped from user inputs to prevent XSS attacks
+							$email = strip_tags($_POST['Email']); //Derived from HTML input variables from 'name'
+							$firstname = strip_tags($_POST['FName']);
+							$lastname = strip_tags($_POST['LName']);
+							$phone = strip_tags($_POST['Phone']);
+							$department = strip_tags($_POST['Department']);
+							$password = strip_tags($_POST['Password']);
+							
+							//Connect to the database
+							include('mysqli_connect.php');
+							
+							//Begin transaction
+							mysqli_begin_transaction($dbc);   
+							
+							//Insertion queries for use into prepared statements
+							$sqlInsertUsers = "INSERT INTO users(Email,FName,LName,Phone,Department,Pword) VALUES (?,?,?,?,?,?)";
+							
+							//initialize (auto)incrementors          
+							$count=0;
+							$user_id=0;
+							
+							$stmt = mysqli_stmt_init($dbc);
+							
+							//Prepared Statements for users table -- prevent SQL injection
+							if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
+								{
+									mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
+									mysqli_stmt_execute($stmt);
+									$count = mysqli_stmt_affected_rows($stmt);
+									$user_id = mysqli_stmt_insert_id($stmt);
+								}
+									
+							//If all records are inserted, commit the transaction, or else rollback
+							if ($count == 1)
+								{
+									mysqli_commit($dbc); //commit transaction
+								}     
+							else
+								{  
+									echo ("Data not inserted.");
+									mysqli_rollback($dbc); //rollback transaction
+								}
+								
+							mysqli_stmt_close($stmt); //close statement
+							mysqli_close($dbc); //close connection
+						}	
+						else //Invalid inputs
+						{
+							foreach ($errors as $msg)
+							{
+								echo $msg . "<br>";
+							}
 						}
 					}
+					else
+					{
+						echo "== You must agree to the Terms of Service. ==";
+					}
 				}
-			else
+			elseif ($_POST['login'])
 				{
-					echo "== You must agree to the Terms of Service. ==";
+					if ((empty($_POST['Email']) || (empty($_POST['Password'])))) //Blank email or password field
+						{
+							echo "== Enter an Email and Password. ==";
+						}
+					else
+						{
+							session_start();			
+							require ('mysqli_connect.php'); //PHP file that executes connection to the database
+							
+							//Define variables used to compare user input to the database
+							$email = $_POST['Email']; 
+							$password = $_POST['Password'];	
+							
+							//SQL query from the database to select email and password from the table that contains both
+							$sql = "SELECT User_ID, Email, Pword FROM users WHERE Email = '$email' AND Pword = '$password'"; 
+							//TESTING PURPOSES ONLY
+							//echo $sql;
+							
+							$rs = mysqli_query($dbc, $sql); //record set variable from connection to database and sql query statement
+							
+							if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
+								{
+									$row = mysqli_fetch_array($rs);
+									$_SESSION['U_ID'] = $row['User_ID']; //Fetch the ID of the matching email and password from the database
+									header("Location:welcome.php"); //If login is successful, take them to this page.
+								}
+							else //invalid login
+								{
+									$errmsg = "== Invalid Email or Password. ==";
+									echo $errmsg;
+								}
+						}
 				}
 		}		
 ?>
