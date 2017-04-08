@@ -3,70 +3,6 @@ session_start();
 ?>
 
 <!DOCTYPE HTML>
-		<?php
-			if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-		{
-					$newTripDateInput = $_POST['newTripDateInput'];
-					$tripdeparttime = $_POST['tripdeparttime'];
-					if($_POST['oneOrRepeatTrip'] == 'yes'){
-						$oneOrRepeatTrip = 1;
-					}
-					elseif($_POST['oneOrRepeatTrip']= 'no'){
-						$oneOrRepeatTrip = 0;
-					}
-					$repeatTripFromTo = $_POST['repeatTripFromTo'];
-					$newTripDateInput = $_POST['newTripDateInput'];
-					$departSelect = $_POST['departSelect'];
-					$destinationSelect = $_POST['destinationSelect'];
-					$driverCarYear = $_POST['driverCarYear'];
-					$driverCarMake = $_POST['driverCarMake'];
-					$driverCarModel = $_POST['driverCarModel'];
-					$seatSelect = $_POST['seatSelect'];
-					$smokeFreeYesOrNo = $_POST['smokeFreeYesOrNo'];
-					if($_POST['packageYesOrNo'] == 'yes'){
-						$packageYesOrNo = 1;
-					}
-					elseif($_POST['packageYesOrNo']= 'no'){
-						$packageYesOrNo = 0;
-					}
-					$messageYesOrNo = $_POST['messageYesOrNo'];
-					if($messageYesOrNo = 'no'){
-						$message = "no Message";
-					}
-					$message = $_POST['messageToPassengers'];
-					
-
-					include('mysql_connect.php'); 
-					
-					$sqlInsertVehicle="INSERT INTO vehicle(smoke_description,seats_total,package_able,vehicle_year,vehicle_make,vehicle_model) VALUES
-						('$smokeFreeYesOrNo','$seatSelect','$packageYesOrNo','$driverCarYear','$driverCarMake','$driverCarModel')";
-					
-					if ($conn->query($sqlInsertVehicle) === TRUE) {
-						//echo "New Vehicle record created successfully";
-					} else {
-						echo "Error: " . $sqlInsertVehicle . "<br>" . $conn->error;
-					}
-					$sqlInsertRide="INSERT INTO ride(location_start,location_end,message) VALUES
-						('$departSelect','$destinationSelect','$message')";
-						
-					if ($conn->query($sqlInsertRide) === TRUE) {
-						//echo "New Ride record created successfully";
-					} else {
-						echo "Error: " . $sqlInsertRide . "<br>" . $conn->error;
-					}
-					
-					$sqlInsertTrip="INSERT INTO trip(trip_date,trip_time,trip_repeat,repeat_day) VALUES
-						('$newTripDateInput','$tripdeparttime','$oneOrRepeatTrip','$repeatTripFromTo')";
-					
-					if ($conn->query($sqlInsertTrip) === TRUE) {
-						//echo "New Trip record created successfully";
-					} else {
-						echo "Error: " . $sqlInsertTrip . "<br>" . $conn->error;
-					}
-					
-		}
-		
-		?>
 
 <html class="stretchPage" lang="en">
   <head>
@@ -125,7 +61,7 @@ session_start();
             </div>
             <div class="modal-body">
               <h1 class="text-center">Trip Details:</h1><br>
-              <form id="newTripForm" action="driver.php" method="post">
+              <form id="newTripForm">
                 <div class="row">
                   <div class="col-sm-4 col-xs-2"></div>
                   <div class="col-sm-4 col-xs-8">
@@ -154,67 +90,66 @@ session_start();
                       </div>
 
                       <div class="repeatTripFromTo">
-                        <select class="selectpicker orangeDropdown form-control" data-width="100%" name ="repeatTripFromTo">
-                          <option selected disabled >Repeats On:</option>
-						  <option value="none" hidden selected ="selected"></option> <!-- necessary to display none and act as a default -->			  		  
-                          <option value="Sundays" >Sundays</option>
-                          <option value="Mondays">Mondays</option>
-                          <option value="Tuesdays">Tuesdays</option>
-                          <option value="Wednesdays">Wednesdays</option>
-                          <option value="Thursdays">Thursdays</option>
-                          <option value="Fridays">Fridays</option>
-                          <option value="Saturdays">Saturdays</option>
+                        <select class="selectpicker orangeDropdown form-control" data-width="100%">
+                          <option selected disabled>Repeats On:</option>
+                          <option value="Department01">Sundays</option>
+                          <option value="Department02">Mondays</option>
+                          <option value="Department03">Tuesdays</option>
+                          <option value="Department04">Wednesdays</option>
+                          <option value="Department05">Thursdays</option>
+                          <option value="Department06">Fridays</option>
+                          <option value="Department07">Saturdays</option>
                         </select>
                         <div class="text-center">End Date</div>
-                        <input id="newTripRepeatDate" type="date" class="form-control" name="newTripDateInputRepeat">
+                        <input id="newTripRepeatDate" type="date" class="form-control" name="newTripDateInput">
                       </div>
 
                       <br>
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "departSelect">
+                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Departing From:</option>
-                        <option value="EbenezerDepart">Ebenezer Hall, Cochran</option>
-                        <option value="AndersonDepart">Anderson Hall, Cochran</option>
-                        <option value="DublinDepart">Dublin Center Annex Building, Dublin</option>
-                        <option value="EastmanDepart">Corporate Hangar, Eastman</option>
-                        <option value="JonesDepart">Charles H. Jones Building, Macon</option>
-                        <option value="SLCMaconDepart">Student Life Center, Macon</option>
-                        <option value="OakDepart">Oak Hall, Warner Robins</option>
+                        <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department01">Anderson Hall, Cochran</option>
+                        <option value="Department02">Dublin Center Annex Building, Dublin</option>
+                        <option value="Department03">Corporate Hangar, Eastman</option>
+                        <option value="Department04">Charles H. Jones Building, Macon</option>
+                        <option value="Department04">Student Life Center, Macon</option>
+                        <option value="Department05">Oak Hall, Warner Robins</option>
                       </select>
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "destinationSelect">
+                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Destination:</option>
-                        <option value="EbenezerArrive">Ebenezer Hall, Cochran</option>
-                        <option value="AndersonArrive">Anderson Hall, Cochran</option>
-                        <option value="DublinArrive">Dublin Center Annex Building, Dublin</option>
-                        <option value="EastmanArrive">Corporate Hangar, Eastman</option>
-                        <option value="JonesArrive">Charles H. Jones Building, Macon</option>
-                        <option value="SLCMaconArrive">student Life Center, Macon</option>
-                        <option value="OakArrive">Oak Hall, Warner Robins</option>
+                        <option value="Department01">Ebenezer Hall, Cochran</option>
+                        <option value="Department01">Anderson Hall, Cochran</option>
+                        <option value="Department02">Dublin Center Annex Building, Dublin</option>
+                        <option value="Department03">Corporate Hangar, Eastman</option>
+                        <option value="Department04">Charles H. Jones Building, Macon</option>
+                        <option value="Department04">student Life Center, Macon</option>
+                        <option value="Department05">Oak Hall, Warner Robins</option>
                       </select><br><br>
                       
                       <input id="driverCarYear" type="text" class="form-control" name="driverCarYear" placeholder="Car Year" required>
-                      <input id="driverCarMake" type="text" class="form-control" name="driverCarMake" placeholder="Car Make" required>
+                      <input id="driverCareMake" type="text" class="form-control" name="driverCarYear" placeholder="Car Make" required>
                       <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required><br>
 
-                      <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "seatSelect">
+                      <select class="selectpicker orangeDropdown form-control" data-width="100%">
                         <option selected disabled>Number of Seats:</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
+                        <option value="Seats01">1</option>
+                        <option value="Seats02">2</option>
+                        <option value="Seats03">3</option>
+                        <option value="Seats04">4</option>
+                        <option value="Seats05">5</option>
+                        <option value="Seats06">6</option>
+                        <option value="Seats07">7</option>
+                        <option value="Seats08">8</option>
                       </select><br>
 
                       <div class="text-center"><br>
                         <div>Is your vehicle<br>smoke-free?</div>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanYes" type="radio" name="smokeFreeYesOrNo" value="1" checked="checked">
+                          <input id="newTripSmokeFreeBooleanYes" type="radio" name="smokeFreeYesOrNo" value="yes" checked="checked">
                           Yes
                         </label>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanNo" type="radio" name="smokeFreeYesOrNo" value="0">
+                          <input id="newTripSmokeFreeBooleanNo" type="radio" name="smokeFreeYesOrNo" value="no">
                           No
                         </label>
                       </div><br>
@@ -251,7 +186,7 @@ session_start();
 
                       <div class="messageToPassengers">
                         <br>
-                        <textarea class="form-control" rows="3" id="messageToPassengers" name = "messageToPassengers"value = "none">Leave your message here.</textarea>
+                        <textarea class="form-control" rows="3" id="messageToPassengers">Leave your message here.</textarea>
                       </div>
 
                       <div class="text-center">
@@ -309,6 +244,16 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>12/25/2016</td>
+                        <td>3:30 PM</td>
+                        <td>none</td>
+                        <td>Eastman</td>
+                        <td>Warner Robins</td>
+                        <td>1</td>
+                        <td>No</td>
+                        <td>3x5</td>
+                    </tr>
                     <tr>
                         <td>12/23/2016</td>
                         <td>3:30 PM</td>
@@ -868,10 +813,7 @@ session_start();
 
 
 
-		<?php 
-			$conn->close();
-			//mysqli_close($dbc); //close connection
-		?>
+
         <div id="footer" class="text-center center">
             <hr>
             Copyright &copy; 2017 MGA Knight Riders<br>
