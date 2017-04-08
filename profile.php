@@ -30,7 +30,6 @@ session_start();
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
-              <li><a href="aboutus.php">About Us</a></li>
               <li>Profile</li>
               <li><a href="help.php">Help</a></li>
               <li><a href="index.php">Logout</a></li>

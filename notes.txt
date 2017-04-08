@@ -25,9 +25,14 @@ Give better option for entering phone numbers
 
 FRONT END:
 
-DONE: • Link to About Us isn't on the Profile page.
-DONE: • Link to About Us doesn't work from the Help page.
-DONE: • Clean up and reorganize the "Book Ride" modal
-DONE: • Add area to output vehicle details on the "Book Ride" modal
-• Need to add pictures of drop off points (Just add them in the modal that contains the larger image of each map)
-• Is there better wording for the "Drop Off Points" button on the Driver page? (It's also a Pick Up point - maybe Meetup Locations would be better?)
+DONE: Depart time in Driver form is shorter than the other boxes
+DONE: Driver form needs to be centered 
+DONE: Add a text area for a message from the Driver to the potential Passengers
+DONE: Radio buttons need names for grouping in the Driver form
+DONE: Button on Driver page is not readable (text is wrong color)
+DONE: Button on Driver page should be in a better location
+DONE: Show/Hide relevant information in Driver form
+
+DONE: Button on Passenger page is wrong format/color
+
+NOT NEEDED: Make checkboxes bigger for phones
