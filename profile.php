@@ -3,7 +3,7 @@
 session_start();
 
 // TEST - temporarily override the session variable
-$_SESSION['email'] = "'myrddincat@gmail.com'";
+$_SESSION['email'] = "myrddincat@gmail.com";
 
 // Make sure the user is logged in
 if ($_SESSION['email'] == "")
@@ -18,44 +18,118 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } else {
   // If nothing was posted, do this
-  // Set a variable for email equal to the session variable for email
-  $email = $_SESSION['email'];
 
   // Connect to the database
-  // Store the database connect info into variables
-  $servername = "168.16.222.102";
-  $username = "addisongernannt";
-  $password = "ILiveInMacon2!";
-  $dbname = "addisongernannt1617db";
+  // Move all of this to a separate file and just call it here
+        // Store the database connect info into variables
+        $servername = "168.16.222.102";
+        $username = "addisongernannt";
+        $password = "ILiveInMacon2!";
+        $dbname = "addisongernannt1617db";
 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-  // Check connection
-  if ($conn->connect_error) {
-    // If the connect failed, display an error
-    die("Connection failed: " . $conn->connect_error);
-  }
+        // Check connection
+        if ($conn->connect_error) {
+          // If the connect failed, display an error
+          die("Connection failed: " . $conn->connect_error);
+        }
   // If the connect works, display do this
 
-  // TEST - Let me know if it worked
-  echo "Connected successfully <br>";
-
   // Prepare the SQL statement
-  $sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = " . $email;
+  $sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = '" . $_SESSION['email'] . "'";
 
-  // Bind the results to a variable
+  // Bind the result set to a variable
   $result = $conn->query($sql);
 
   // Put the result set into an array
   if ($result->num_rows > 0) {
-    // output data of each row
+    // Store each element of the array in its own global variable
     while($row = $result->fetch_assoc()) {
-      echo "First Name: " . $row['first_name'] . "<br>";
-      echo "Last Name: " . $row['last_name'] . "<br>";
-      echo "Email: " . $email . "<br>";
-      echo "Phone Number: " . $row['phone'] . "<br>";
-      echo "Department: " . $row['department'];
+      $fname = $row['first_name'];
+      $lname = $row['last_name'];
+      $email = $_SESSION['email'];
+      $phone = $row['phone'];
+      // Phone is a little different
+      // It's normally an integer, but we need to display it so that it looks like a phone number.
+      // First, change it to a string.
+      settype($phone, "string");
+      // Next, format the string
+      $phone = "(".substr($phone, 0, 3).") ".substr($phone, 3, 3)."-".substr($phone,6);
+      // Department is also a little different.
+      // We need to look at the department code and store its corresponding department name in the string instead
+      $deptCode = $row['department'];
+      If ($deptCode == "ENGL") {
+      $dept = "English";
+      }
+      If ($deptCode == "HPSC") {
+      $dept = "History and Political Science";
+      }
+      If ($deptCode == "MATH") {
+      $dept = "Mathematics";
+      }
+      If ($deptCode == "ARTS") {
+      $dept = "Media, Culture, and the Arts ";
+      }
+      If ($deptCode == "NSCI") {
+      $dept = "Natural Sciences";
+      }
+      If ($deptCode == "PSCJ") {
+      $dept = "Psychology, Sociology, and Criminal Justice";
+      }
+      If ($deptCode == "AMST") {
+      $dept = "Aviation Maintenance and Structural Technology";
+      }
+      If ($deptCode == "AVSM") {
+      $dept = "Aviation Science and Management";
+      }
+      If ($deptCode == "FLGT") {
+      $dept = "Flight";
+      }
+      If ($deptCode == "BUSN") {
+      $dept = "Business";
+      }
+      If ($deptCode == "EDUC") {
+      $dept = "Education";
+      }
+      If ($deptCode == "HSAD") {
+      $dept = "Health Services Administration";
+      }
+      If ($deptCode == "NURS") {
+      $dept = "Nursing";
+      }
+      If ($deptCode == "OCTA") {
+      $dept = "Occupational Therapy Assistant";
+      }
+      If ($deptCode == "RESP") {
+      $dept = "Respiratory";
+      }
+      If ($deptCode == "ITEC") {
+      $dept = "Information Technology";
+      }
+      If ($deptCode == "GRAD") {
+      $dept = "Office of Graduate Studies";
+      }
+      If ($deptCode == "PRES") {
+      $dept = "Office of the President ";
+      }
+      If ($deptCode == "UADV") {
+      $dept = "Division of University Advancement";
+      }
+      If ($deptCode == "FINO") {
+      $dept = "Division of Finance and Operations ";
+      }
+      If ($deptCode == "RMAR") {
+      $dept = "Division of Recruitment and Marketing";
+      }
+      If ($deptCode == "STAF") {
+      $dept = "Division of Student Affairs ";
+      }
+      If ($deptCode == "OTHR") {
+      $dept = "Other";
+      }
+      echo "Department: " . $dept;
     }
   }
 
@@ -65,10 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-
-
-
 ?>
+
+
+
+
 
 <!DOCTYPE HTML>
 
@@ -175,23 +250,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                       <tr>
                         <th>First Name:</th>
-                        <td>(FName)</td>
+                        <td><?php echo $fname?></td>
                       </tr>
                       <tr>
                         <th>Last Name:</th>
-                        <td>(LName)</td>
+                        <td><?php echo $lname?></td>
                       </tr>
                       <tr>
                         <th>Email:</th>
-                        <td><?php echo $_SESSION["email"]?></td>
+                        <td><?php echo $email?></td>
                       </tr>
                       <tr>
                         <th>Phone Number:</th>
-                        <td>(555) 555-5555</td>
+                        <td><?php echo $phone?></td>
                       </tr>
                       <tr>
                         <th>Department:</th>
-                        <td>(Department)</td>
+                        <td><?php echo $dept?></td>
                       </tr>
                     </tbody>
                   </table>
