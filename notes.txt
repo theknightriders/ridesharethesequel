@@ -24,7 +24,7 @@ Fix Department field (DONE)
 Just copy/paste the one that works from the registration form
 
 
-Fill out Profile Info
+Fill out Profile Info (DONE)
 *
 Connect to DB
 Bind the needed values (first_name, last_name, email[session variable], phone, department) to some global variables
