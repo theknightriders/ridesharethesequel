@@ -1,5 +1,73 @@
 <?php
+// Needs to be at the top of every page
 session_start();
+
+// TEST - temporarily override the session variable
+$_SESSION['email'] = "'myrddincat@gmail.com'";
+
+// Make sure the user is logged in
+if ($_SESSION['email'] == "")
+  {
+    // If they're  not logged in, go to the login page
+    header("Location:login.php");
+  }
+
+// Check to see if anything was submitted via POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // If something was posted, do this
+
+} else {
+  // If nothing was posted, do this
+  // Set a variable for email equal to the session variable for email
+  $email = $_SESSION['email'];
+
+  // Connect to the database
+  // Store the database connect info into variables
+  $servername = "168.16.222.102";
+  $username = "addisongernannt";
+  $password = "ILiveInMacon2!";
+  $dbname = "addisongernannt1617db";
+
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+  // Check connection
+  if ($conn->connect_error) {
+    // If the connect failed, display an error
+    die("Connection failed: " . $conn->connect_error);
+  }
+  // If the connect works, display do this
+
+  // TEST - Let me know if it worked
+  echo "Connected successfully <br>";
+
+  // Prepare the SQL statement
+  $sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = " . $email;
+
+  // Bind the results to a variable
+  $result = $conn->query($sql);
+
+  // Put the result set into an array
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo "First Name: " . $row['first_name'] . "<br>";
+      echo "Last Name: " . $row['last_name'] . "<br>";
+      echo "Email: " . $email . "<br>";
+      echo "Phone Number: " . $row['phone'] . "<br>";
+      echo "Department: " . $row['department'];
+    }
+  }
+
+  // Close the connection
+  $conn->close();
+}
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -30,6 +98,7 @@ session_start();
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
               <li><a href="welcome.php">Welcome</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
               <li>Profile</li>
               <li><a href="help.php">Help</a></li>
               <li><a href="index.php">Logout</a></li>
@@ -42,46 +111,6 @@ session_start();
       <div class="row text-center">
         <h4 class="welcomeHeader">Your Profile:</h4>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div class="row">
         <div class="col-sm-1"></div>
@@ -106,26 +135,31 @@ session_start();
                     <br>
                     <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
                     <br>
-                    <select class="selectpicker orangeDropdown form-control" data-width="100%" name="profileDepartmentInput">
-                      <option selected disabled>Department</option>
-                      <option value="Department01">Department01</option>
-                      <option value="Department02">Department02</option>
-                      <option value="Department03">Department03</option>
-                      <option value="Department04">Department04</option>
-                      <option value="Department05">Department05</option>
-                      <option value="Department06">Department06</option>
-                      <option value="Department07">Department07</option>
-                      <option value="Department08">Department08</option>
-                      <option value="Department09">Department09</option>
-                      <option value="Department10">Department10</option>
-                      <option value="Department11">Department11</option>
-                      <option value="Department12">Department12</option>
-                      <option value="Department13">Department13</option>
-                      <option value="Department14">Department14</option>
-                      <option value="Department15">Department15</option>
-                      <option value="Department16">Department16</option>
-                      <option value="Department17">Department17</option>
-                      <option value="Department18">Department18</option>
+                    <select class="selectpicker orangeDropdown form-control" name="registrationDeptInput" data-width="100%">
+                      <option selected disabled required>Department</option>
+                      <option value="ENGL">English</option>
+                      <option value="HPSC">History and Political Science</option>
+                      <option value="MATH">Mathematics</option>
+                      <option value="ARTS">Media, Culture, and the Arts </option>
+                      <option value="NSCI">Natural Sciences</option>
+                      <option value="PSCJ">Psychology, Sociology, and Criminal Justice</option>
+                      <option value="AMST">Aviation Maintenance and Structural Technology</option>
+                      <option value="AVSM">Aviation Science and Management</option>
+                      <option value="FLGT">Flight</option>
+                      <option value="BUSN">Business</option>
+                      <option value="EDUC">Education</option>
+                      <option value="HSAD">Health Services Administration</option>
+                      <option value="NURS">Nursing</option>
+                      <option value="OCTA">Occupational Therapy Assistant</option>
+                      <option value="RESP">Respiratory</option>
+                      <option value="ITEC">Information Technology</option>
+                      <option value="GRAD">Office of Graduate Studies</option>
+                      <option value="PRES">Office of the President </option>
+                      <option value="UADV">Division of University Advancement</option>
+                      <option value="FINO">Division of Finance and Operations </option>
+                      <option value="RMAR">Division of Recruitment and Marketing</option>
+                      <option value="STAF">Division of Student Affairs </option>
+                      <option value="OTHR">Other</option>
                     </select>
                   </form>
                 </div>

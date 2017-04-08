@@ -1,38 +1,77 @@
-Profile Page work:
-
-
-Profile Information:
-1) 
-
-
-Change Password:
-1) Narrow the text boxes a bit.
-2) Validate old email with database,
-3) Validate new email (make sure the two match)
-4) Post new password to database when Submit Change button is pressed
-
-
-Change Profile Picture:
-Not sure how this works yet.. Do we have any new information from Addison or Brian on how to do pictures?
-
-
-
-
 RANDOM TO DO (to do only if time permits)
 Give better option for entering phone numbers
 
 
+PROFILE PAGE:
 
-FRONT END:
+Top of page (DONE)
+*
+Session Start
+Check to see if Session Variable for Email is set
+If no, return to login page
 
-DONE: Depart time in Driver form is shorter than the other boxes
-DONE: Driver form needs to be centered 
-DONE: Add a text area for a message from the Driver to the potential Passengers
-DONE: Radio buttons need names for grouping in the Driver form
-DONE: Button on Driver page is not readable (text is wrong color)
-DONE: Button on Driver page should be in a better location
-DONE: Show/Hide relevant information in Driver form
 
-DONE: Button on Passenger page is wrong format/color
+Fix Logout link
+*
+When clicked, before return to login screen,
+clear session variable (email) and
+destroy the session
+then go to login page
 
-NOT NEEDED: Make checkboxes bigger for phones
+
+Fix Department field (DONE)
+*
+Just copy/paste the one that works from the registration form
+
+
+Fill out Profile Info
+*
+Connect to DB
+Bind the needed values (first_name, last_name, email[session variable], phone, department) to some global variables
+Call those global variables in the HTML where they should be output
+Close connection to DB
+---
+SELECT first_name 
+FROM addisongernannt1617db.users 
+WHERE email = 'rodel.flores@mga.edu';
+---
+
+
+Update the Profile Info with whatever the user entered
+*
+IfThen statements ftw
+When button is clicked:
+Remove extra spaces and such from values in fields
+Connect to DB
+If a field is not null or " ",
+  do teh update/set SQL for that column
+Close connection to DB
+---
+UPDATE addisongernannt1617db.users 
+SET first_name = Bob 
+WHERE email = $_SESSION['email'];
+---
+
+
+Change password
+*
+Check to see if the two new password fields match exactly
+If yes
+  Check to see if the new password fits the password regex that Rodel used
+  If yes
+    Connect to DB
+    Select the password from the database and bind it to a local variable
+    Check to see if that local variable matches the old password field in the form
+    If yes
+      do teh update/set SQL for the password
+    If no
+      Tell the user to give the correct old password, else no update
+  If no
+    Notify the user that their password isn't good enough
+If no
+  Tell the user that their new password fields don't match
+---
+UPDATE addisongernannt1617db.users 
+SET pword = $new_pword 
+WHERE email = $_SESSION['email'];
+---
