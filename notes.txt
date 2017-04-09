@@ -37,7 +37,7 @@ WHERE email = 'rodel.flores@mga.edu';
 ---
 
 
-Update the Profile Info with whatever the user entered
+Update the Profile Info with whatever the user entered (DONE)
 *
 IfThen statements ftw
 When button is clicked:
