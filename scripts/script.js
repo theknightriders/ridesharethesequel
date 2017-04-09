@@ -1,5 +1,5 @@
-//supposed to swap viewable and editable modes for profile page
-//not yet working
+
+
 
 $(document).ready(function() {
 
@@ -27,6 +27,8 @@ $(document).ready(function() {
       $('.messageToPassengers').css('display', ($(this).val() === 'yes') ? 'block':'none');
   });
 
+
 })
+
 
 

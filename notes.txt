@@ -52,6 +52,18 @@ SET first_name = Bob
 WHERE email = $_SESSION['email'];
 ---
 
+*
+FOR TOMORROW:
+Can't figure out how to validate:
+if a dash or plus sign is entered into the number, it always validates! >:(
+*
+preg_match("/^[^0-9]{10}$/",$phone)
+
+
+
+
+
+
 
 Change password
 *
