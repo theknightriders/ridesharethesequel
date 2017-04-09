@@ -3,7 +3,7 @@
 session_start();
 
 // TEST - temporarily override the session variable
-$_SESSION['email'] = "myrddincat@gmail.com";
+// $_SESSION['email'] = "myrddincat@gmail.com";
 
 // Make sure the user is logged in
 if ($_SESSION['email'] == "")
@@ -12,33 +12,41 @@ if ($_SESSION['email'] == "")
     header("Location:login.php");
   }
 
+// Function to format input data
+function test_input($data) {
+  // Remove extra spaces, tabs, newlines
+  $data = trim($data);
+  // Remove backslashes
+  $data = stripslashes($data);
+  // Prevent scripts from working if the user enters one
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 // Check to see if anything was submitted via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If something was posted, do this
 
-} else {
-  // If nothing was posted, do this
+  // Take data POSTed from form, 
+  // Send it to test_input function for formatting,
+  // And store it in a new variable
+  $fnameInput = test_input($_POST["profileFnameInput"]);
+  echo "fname: " . $fnameInput . "<br>";
+  $fnameInput = test_input($_POST["profileLnameInput"]);
+  echo "lname: " . $lnameInput . "<br>";
+  $phoneInput = test_input($_POST["profilePhoneInput"]);
+  echo "phone: " . $phoneInput . "<br>";
+  $deptInput = test_input($_POST["profileDeptInput"]);
+  echo "dept: " . $deptInput;
+}
 
-  // Connect to the database
-  // Move all of this to a separate file and just call it here
-        // Store the database connect info into variables
-        $servername = "168.16.222.102";
-        $username = "addisongernannt";
-        $password = "ILiveInMacon2!";
-        $dbname = "addisongernannt1617db";
+// Connect to the database
+include ('mysqli_connect.php');
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-          // If the connect failed, display an error
-          die("Connection failed: " . $conn->connect_error);
-        }
-  // If the connect works, display do this
+// If the connect works, do this
 
   // Prepare the SQL statement
-  $sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = '" . $_SESSION['email'] . "'";
+  $sql = "SELECT first_name, last_name, phone, department FROM users WHERE email = '" . $_SESSION['email'] . "'";
 
   // Bind the result set to a variable
   $result = $conn->query($sql);
@@ -129,13 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       If ($deptCode == "OTHR") {
       $dept = "Other";
       }
-      echo "Department: " . $dept;
     }
   }
 
   // Close the connection
   $conn->close();
-}
 
 
 
@@ -158,11 +164,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/modernizr-custom.js"></script>
+    <script src="scripts/phoneValidateAJAX.js"></script>
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
-  <body class="profileStretchPage">
+  <body class="profileStretchPage" onload="checkPhoneInput()">
     <div class="container profileStretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -204,14 +210,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
               <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
                 <div class="editableProfile">
-                  <!--<form action="profileProcess.php" method="post">--><form>
+                  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileUpdateForm">
                     <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
                     <br>
                     <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
                     <br>
-                    <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                 
+                    <input id="profilePhone" type="number" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                    
                     <br>
-                    <select class="selectpicker orangeDropdown form-control" name="registrationDeptInput" data-width="100%">
+                    <select class="selectpicker orangeDropdown form-control" name="profileDeptInput" data-width="100%">
                       <option selected disabled required>Department</option>
                       <option value="ENGL">English</option>
                       <option value="HPSC">History and Political Science</option>
@@ -237,6 +245,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       <option value="STAF">Division of Student Affairs </option>
                       <option value="OTHR">Other</option>
                     </select>
+                    <br>
+
+                    <div id="phoneValidationOutput" class="text-center"></div>
+
+
+
                   </form>
                 </div>
               </div>
@@ -279,10 +293,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="text-center">
               <br>
               <input type="submit" class="btn btn-primary showHideProfileButton viewableProfile" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
-              <span class="editableProfile">
-                <br>
-                <input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes">
-              </span>
               <br><br>
               <input type="submit" class="btn btn-primary viewableProfile" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
             </div>

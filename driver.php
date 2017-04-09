@@ -8,12 +8,7 @@ session_start();
 		{
 					$newTripDateInput = $_POST['newTripDateInput'];
 					$tripdeparttime = $_POST['tripdeparttime'];
-					if($_POST['oneOrRepeatTrip'] == 'yes'){
-						$oneOrRepeatTrip = 1;
-					}
-					elseif($_POST['oneOrRepeatTrip']= 'no'){
-						$oneOrRepeatTrip = 0;
-					}
+					$oneOrRepeatTrip = $_POST['oneOrRepeatTrip'];
 					$repeatTripFromTo = $_POST['repeatTripFromTo'];
 					$newTripDateInput = $_POST['newTripDateInput'];
 					$departSelect = $_POST['departSelect'];
@@ -23,12 +18,7 @@ session_start();
 					$driverCarModel = $_POST['driverCarModel'];
 					$seatSelect = $_POST['seatSelect'];
 					$smokeFreeYesOrNo = $_POST['smokeFreeYesOrNo'];
-					if($_POST['packageYesOrNo'] == 'yes'){
-						$packageYesOrNo = 1;
-					}
-					elseif($_POST['packageYesOrNo']= 'no'){
-						$packageYesOrNo = 0;
-					}
+					$packageYesOrNo = $_POST['packageYesOrNo'];
 					$messageYesOrNo = $_POST['messageYesOrNo'];
 					if($messageYesOrNo = 'no'){
 						$message = "no Message";
@@ -36,7 +26,7 @@ session_start();
 					$message = $_POST['messageToPassengers'];
 					
 
-					include('mysql_connect.php'); 
+					include('mysqli_connect.php'); 
 					
 					$sqlInsertVehicle="INSERT INTO vehicle(smoke_description,seats_total,package_able,vehicle_year,vehicle_make,vehicle_model) VALUES
 						('$smokeFreeYesOrNo','$seatSelect','$packageYesOrNo','$driverCarYear','$driverCarMake','$driverCarModel')";
@@ -172,24 +162,24 @@ session_start();
 
                       <br>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "departSelect">
-                        <option selected disabled>Departing From:</option>
-                        <option value="EbenezerDepart">Ebenezer Hall, Cochran</option>
-                        <option value="AndersonDepart">Anderson Hall, Cochran</option>
+                        <option selected value="none">Departing From:</option>
+                        <option value="AldermanCochranDepart">Alderman, Cochran</option>
+                        <option value="MemorialCochranDepart">Memorial Hall, Cochran</option>
                         <option value="DublinDepart">Dublin Center Annex Building, Dublin</option>
                         <option value="EastmanDepart">Corporate Hangar, Eastman</option>
-                        <option value="JonesDepart">Charles H. Jones Building, Macon</option>
+                        <option value="JonesMaconDepart">Charles H. Jones Building, Macon</option>
                         <option value="SLCMaconDepart">Student Life Center, Macon</option>
-                        <option value="OakDepart">Oak Hall, Warner Robins</option>
+                        <option value="WarnerRobinsDepart">Oak Hall, Warner Robins</option>
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "destinationSelect">
-                        <option selected disabled>Destination:</option>
-                        <option value="EbenezerArrive">Ebenezer Hall, Cochran</option>
-                        <option value="AndersonArrive">Anderson Hall, Cochran</option>
+                        <option selected value = "none">Destination:</option>
+                        <option value="AldermanCochranArrive">Alderman, Cochran</option>
+                        <option value="MemorialCochranArrive">Memorial Hall, Cochran</option>
                         <option value="DublinArrive">Dublin Center Annex Building, Dublin</option>
                         <option value="EastmanArrive">Corporate Hangar, Eastman</option>
-                        <option value="JonesArrive">Charles H. Jones Building, Macon</option>
+                        <option value="JonesMaconArrive">Charles H. Jones Building, Macon</option>
                         <option value="SLCMaconArrive">student Life Center, Macon</option>
-                        <option value="OakArrive">Oak Hall, Warner Robins</option>
+                        <option value="WarnerRobinsArrive">Oak Hall, Warner Robins</option>
                       </select><br><br>
                       
                       <input id="driverCarYear" type="text" class="form-control" name="driverCarYear" placeholder="Car Year" required>
@@ -272,11 +262,7 @@ session_start();
           <div class="row text-center">
             <h4 class="welcomeHeader">Add a new event, or select one to edit/delete</h4>
           </div>
-
-
-
-          
-          <div class="row">
+	  <div class="row">
             <br>
             <div class="col-md-1"></div>
             <div class="col-md-3">
@@ -287,12 +273,15 @@ session_start();
               </div>
             </div>
             <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
             </div>
             <div class="col-md-1"></div>
           </div>
 
-          <div class="row">
+
+
+          
+		<div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
              <br>
@@ -310,556 +299,29 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/25/2016</td>
-                        <td>3:30 PM</td>
-                        <td>none</td>
-                        <td>Eastman</td>
-                        <td>Warner Robins</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>3x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>5/3/2017</td>
-                        <td>2:00 PM</td>
-                        <td>none</td>
-                        <td>Dublin</td>
-                        <td>Warner Robins</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
-                    <tr>
-                        <td>2/2/2017</td>
-                        <td>10:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Warner Robins</td>
-                        <td>Dublin</td>
-                        <td>1</td>
-                        <td>No</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>4/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Mondays</td>
-                        <td>Macon</td>
-                        <td>Warner Robins</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>3/14/2017</td>
-                        <td>4:00 PM</td>
-                        <td>none</td>
-                        <td>Macon</td>
-                        <td>Dublin</td>
-                        <td>2</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>2/23/2017</td>
-                        <td>3:30 PM</td>
-                        <td>Tuesdays</td>
-                        <td>Macon</td>
-                        <td>Cochran</td>
-                        <td>2</td>
-                        <td>No</td>
-                        <td>1x5</td>
-                    </tr>
-                    <tr>
-                        <td>12/23/2016</td>
-                        <td>9:30 AM</td>
-                        <td>Tuesdays</td>
-                        <td>Cochran</td>
-                        <td>Macon</td>
-                        <td>3</td>
-                        <td>Yes</td>
-                        <td>5x5</td>
-                    </tr>
+                    <?php
+						require ('mysqli_connect.php');
+						$query =   "SELECT trip.trip_date, trip.trip_time, trip.repeat_day, ride.location_start, ride.location_end, vehicle.seats_total, vehicle.smoke_description,vehicle.package_able
+						FROM trip INNER JOIN ride ON trip.trip_id=ride.trip_id INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id WHERE trip.trip_date >= CURDATE()";
+						
+						
+						$result = mysqli_query($conn, $query);
+						if (mysqli_num_rows($result)>0)
+							{															
+									while ($row = mysqli_fetch_assoc($result)){
+										echo "<tr>";
+										echo "<td>" .$row['trip_date']. "</td>" ;
+										echo "<td>" .$row['trip_time']. "</td>" ;
+										echo "<td>" .$row['repeat_day']. "</td>";
+										echo "<td>" .$row['location_start']. "</td>" ;
+										echo "<td>" .$row['location_end']. "</td>" ;
+										echo "<td>" .$row['seats_total']. "</td>";
+										echo "<td>" .$row['smoke_description']. "</td>" ;
+										echo "</tr>";
+									}
+							
+						}
+					?>
                 </tbody>
               </table>
             </div>
