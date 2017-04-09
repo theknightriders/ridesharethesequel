@@ -27,18 +27,52 @@ function test_input($data) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If something was posted, do this
 
+  // If any of the Edit Profile Information fields posted a value
   if (!empty($_POST["profileFnameInput"]) || !empty($_POST["profileLnameInput"]) || !empty($_POST["profilePhoneInput"]) || !empty($_POST["profileDeptInput"])) {
-    // Take data POSTed from form, 
+
+    // Connect to the database
+    include ('mysqli_connect.php');
+
+    // Begin preparing the SQL statement
+    $sql = "UPDATE users ";
+
+    // Take ONLY the data POSTed from the form, 
     // Send it to test_input function for formatting,
-    // And store it in a new variable
+    // Store it in a new global variable
+    // Append data that needs to be updated to $sql
+    if (!empty($_POST["profileFnameInput"])) {
     $fnameInput = test_input($_POST["profileFnameInput"]);
     echo "fname: " . $fnameInput . "<br>";
-    $fnameInput = test_input($_POST["profileLnameInput"]);
+    $sql = $sql . "SET first_name = '" . $fnameInput . "' ";
+    }
+
+    if (!empty($_POST["profileLnameInput"])) {
+    $lnameInput = test_input($_POST["profileLnameInput"]);
     echo "lname: " . $lnameInput . "<br>";
+    $sql = $sql . "SET last_name = '" . $lnameInput . "' ";
+    }
+
+    if (!empty($_POST["profilePhoneInput"])) {
     $phoneInput = test_input($_POST["profilePhoneInput"]);
     echo "phone: " . $phoneInput . "<br>";
+    $sql = $sql . "SET phone = '" . $phoneInput . "' ";
+    }
+
+    if (!empty($_POST["profileDeptInput"])) {
     $deptInput = test_input($_POST["profileDeptInput"]);
     echo "dept: " . $deptInput;
+    $sql = $sql . "SET department = '" . $deptInput . "' ";
+    }
+
+    // Append the last part of the SQL statement
+    $sql = $sql . "WHERE email = '" . $_SESSION['email'] . "';";
+
+    // Send the SQL statement to the database
+    echo $sql . "<br>";
+    $conn->query($sql);
+
+    // Close the db connection
+    $conn->close();
   }
 }
 
@@ -316,7 +350,7 @@ include ('mysqli_connect.php');
                   <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
 
                   <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
-                    <form>
+                    <form id="profileChangePasswordForm">
                       <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Old Password"><br>
                       <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
                       <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br><br>
