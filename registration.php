@@ -1,74 +1,51 @@
 <!DOCTYPE HTML>
 <?php
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+//Define validation method for Registration inputs
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
-			if ((isset($_POST['submitRegistrationButton'])))
-				{
-					if (empty($errors)) //Submission information is valid
-					{
-						$register = "A verification email has been sent to your email address.";
-						
-						//Variables for the major tables are stripped from user inputs to prevent XSS attacks
-						$email = strip_tags($_POST['registrationEmailInput']); //Derived from HTML input variables from 'name'
-						$firstname = strip_tags($_POST['registrationFnameInput']);
-						$lastname = strip_tags($_POST['registrationLnameInput']);
-						$phone = strip_tags($_POST['registrationPhoneInput']);
-						$department = strip_tags($_POST['registrationDeptInput']);
-						$password = strip_tags($_POST['registrationPasswordInput']);
-						
-						//Connect to the database
-						include('mysqli_connect.php');
-						
-						//Begin transaction
-						mysqli_begin_transaction($conn);   
-						
-						//Insertion queries for use into prepared statements
-						$sqlInsertUsers = "INSERT INTO users(email,first_name,last_name,phone,department,pword) VALUES (?,?,?,?,?,?)";
-						
-						//initialize (auto)incrementors          
-						$count=0;
-						$user_id=0;
-						
-						$stmt = mysqli_stmt_init($conn);
-						
-						//Prepared Statements for users table -- prevent SQL injection
-						if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
-							{
-								mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
-								mysqli_stmt_execute($stmt);
-								$count = mysqli_stmt_affected_rows($stmt);
-								$user_id = mysqli_stmt_insert_id($stmt);
-							}
-								
-						//If all records are inserted, commit the transaction, or else rollback
-						if ($count == 1)
-							{
-								mysqli_commit($conn); //commit transaction
-							}     
-						else
-							{  
-								echo ("Data not inserted.");
-								mysqli_rollback($conn); //rollback transaction
-							}
-							
-						mysqli_stmt_close($stmt); //close statement
-						mysqli_close($conn); //close connection
-						
-						include('email.php'); //send email
-					}	
-					else //Invalid inputs
-					{
-						foreach ($errors as $msg)
-						{
-							echo $msg;
-						}
-					}
-				}
-			else
-				{
-					echo "== You must agree to the Terms of Service. ==";
-				}
-		}		
+			$errors = Validate();
+		}
+		
+	function Validate() //Validate registration form inputs
+	{
+		//Define variables to bind input to the database
+		$email = $_POST['registrationEmailInput'];
+		$firstName = $_POST['registrationFnameInput'];
+		$lastName = $_POST['registrationLnameInput'];
+		$phone = $_POST['registrationPhoneInput'];
+		if (isset($_POST['registrationDeptInput']) && !$_POST['registrationDeptInput'] == '0') //Validate dropdown selection
+			{$department = $_POST['registrationDeptInput'];}
+		$password = $_POST['registrationPasswordInput'];
+		
+		//Develop regular expressions
+		$regex_email = "/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD";
+		// "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/"; //For e-mail
+		$regex_phone = "/^[^0-9]{10}$/"; //For phone
+		
+		$errors = array(); //Set array to store error messages
+		
+		//Perform validation checks
+		if (strpbrk($email, '@') == FALSE)
+			{$errors[] = "Email must contain '@'.";}
+		elseif (preg_match($regex_email,$email))
+			{$errors[] = "Email format is incorrect.";} //regular expression validation for email 
+		if (empty($_POST['registrationFnameInput']))
+			{$errors[] = "Please enter a First Name.";}
+		if (empty($_POST['registrationLnameInput']))
+			{$errors[] = "Please enter a Last Name.";}
+		if (empty($_POST['registrationPhoneInput']))
+			{$errors[] = "Please enter a Phone Number.";}
+		elseif (preg_match($regex_phone,$phone))
+			{$errors[] = "Please enter a phone number without dashes.";} //regular expression validation for phone 
+		if (!isset($_POST['registrationDeptInput']))
+			{$errors[] = "Please select a department.";}
+		if (strlen($_POST['registrationPasswordInput']) < 8 )
+			{$errors[] = "Password must be at least 8 characters.";}
+		elseif (strpbrk($password, '0123456789') == FALSE)
+			{$errors[] = "Password must contain at least one number.";}
+			
+		return $errors;
+	}
 ?>
 <html lang="en">
   <head>
@@ -149,7 +126,79 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-4 col-xs-2"></div>
+                    <div class="col-sm-4 col-xs-2">
+					<?php
+						if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+						{
+							if ((isset($_POST['submitRegistrationButton'])))
+								{
+									if (empty($errors)) //Submission information is valid
+									{
+										$register = "A verification email has been sent to your email address.";
+										
+										//Variables for the major tables are stripped from user inputs to prevent XSS attacks
+										$email = strip_tags($_POST['registrationEmailInput']); //Derived from HTML input variables from 'name'
+										$firstname = strip_tags($_POST['registrationFnameInput']);
+										$lastname = strip_tags($_POST['registrationLnameInput']);
+										$phone = strip_tags($_POST['registrationPhoneInput']);
+										$department = strip_tags($_POST['registrationDeptInput']);
+										$password = strip_tags($_POST['registrationPasswordInput']);
+										
+										//Connect to the database
+										include('mysqli_connect.php');
+										
+										//Begin transaction
+										mysqli_begin_transaction($conn);   
+										
+										//Insertion queries for use into prepared statements
+										$sqlInsertUsers = "INSERT INTO users(email,first_name,last_name,phone,department,pword) VALUES (?,?,?,?,?,?)";
+										
+										//initialize (auto)incrementors          
+										$count=0;
+										$user_id=0;
+										
+										$stmt = mysqli_stmt_init($conn);
+										
+										//Prepared Statements for users table -- prevent SQL injection
+										if(mysqli_stmt_prepare($stmt,$sqlInsertUsers))
+											{
+												mysqli_stmt_bind_param($stmt,'sssiss',$email,$firstname,$lastname,$phone,$department,$password);
+												mysqli_stmt_execute($stmt);
+												$count = mysqli_stmt_affected_rows($stmt);
+												$user_id = mysqli_stmt_insert_id($stmt);
+											}
+												
+										//If all records are inserted, commit the transaction, or else rollback
+										if ($count == 1)
+											{
+												mysqli_commit($conn); //commit transaction
+											}     
+										else
+											{  
+												echo ("Data not inserted.");
+												mysqli_rollback($conn); //rollback transaction
+											}
+											
+										mysqli_stmt_close($stmt); //close statement
+										mysqli_close($conn); //close connection
+										
+										include('email.php'); //send email
+									}	
+									else //Invalid inputs
+									{
+										foreach ($errors as $msg)
+										{
+											echo $msg;
+										}
+									}
+								}
+							else
+								{
+									echo "== You must agree to the Terms of Service. ==";
+								}
+						}		
+					?>
+					</div>
                   </div><br>
 
                   <div class="row">
