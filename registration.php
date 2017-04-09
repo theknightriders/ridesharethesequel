@@ -83,13 +83,14 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
-  <body>
-    <div class="container"><div id="container">
+  <body class="stretchPage">
+    <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
           <a href="login.php" title="MGA Knight Riders: Login">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg" />
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" />
+            <br><br>
+            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
         </div>
       </div>
@@ -210,3 +211,12 @@
             </div>
           </div>
         </div>
+        <div id="footer" class="text-center center">
+            <hr>
+            Copyright &copy; 2017 MGA Knight Riders<br>
+            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+        </div>
+
+      </div></div>
+    </body>
+</html>

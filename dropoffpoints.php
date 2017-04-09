@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 
-<!DOCTYPE HTML>
 
 <html class="stretchPage" lang="en">
   <head>
@@ -21,8 +20,9 @@
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+            <br><br>
+            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -35,116 +35,140 @@
           </div>
         </div>
       </div>
+<script>/* activate the carousel */
+$("#modal-carousel").carousel({interval:false});
 
-        <div id="body">
+/* change modal title when slide changes */
+$("#modal-carousel").on("slid.bs.carousel", function () {
+  $(".modal-title").html($(this).find(".active img").attr("title"));
+})
 
-          <div class="row text-center">
-            <h4 class="welcomeHeader">Pick Up &amp; Drop Off Locations:</h4>
-            <h4>(Click to enlarge)</h4>
-          </div>
+/* when clicking a thumbnail */
+$(".row .thumbnail").click(function(){
+    var content = $(".carousel-inner");
+    var title = $(".modal-title");
+  
+    content.empty();  
+    title.empty();
+  
+    var id = this.id;  
+    var repo = $("#img-repo .item");
+    var repoCopy = repo.filter("#" + id).clone();
+    var active = repoCopy.first();
+  
+    active.addClass("active");
+    title.html(active.find("img").attr("title"));
+    content.append(repoCopy);
 
+    // show the modal
+    $("#modal-gallery").modal("show");
+});
+</script>
+ <div id="body">
 
-          <div class="row">
-    <!-- LITTLE MAPS -->
-            <div class="imageList text-center">
-             <div class="col-sm-4 col-xs-2">
+<div class="container">
+  <div class="row">
+    <h1>Pick Up &amp; Meeting Locations:</h1>
+      <h4>(Click to enlarge)</h4>
+        <hr>
+    
+    <div class="row">
+            
+            <div class="col-12 col-md-4 col-sm-6">
+          <a title="Cochran Campus" href="images/maps/cochranmap.png"> 
+            <img class="thumbnail img-responsive" id="cochranmap" src="images/maps/cochranmap.png">
+          </a>
+        </div>
       
-              <h5  class="welcomeHeader"> Ebenezer Hall and Anderson Hall, <br> Cochran </h5>
-              <img id="cochranLittleMap" src="images/cochranMap.png" alt="Cochran Campus" width="300" height="200" data-toggle="modal" data-target="#cochranModal">
-              <h5  class="welcomeHeader"> Dublin Center Annex, <br> Dublin </h5>
-              <img id="dublinLittleMap" src="images/dublinMap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
-             </div>
-              <div class="col-sm-4 col-xs-4">
-              <h5  class="welcomeHeader"> Corporate Hangar,<br> Eastman</h5>
-              <img id="eastmanLittleMap" src="images/eastmanMap.png" alt="Eastman Campus" width="300" height="200" data-toggle="modal" data-target="#eastmanModal">
-              <h5  class="welcomeHeader"> Charles H. Jones and Student Life Center, Macon</h5>
-              <img id="maconLittleMap" src="images/maconMap.png" alt="Macon Campus" width="300" height="200" data-toggle="modal" data-target="#maconModal">
-              </div>
-              <div class="col-sm-4 col-xs-2">
-              <h5  class="welcomeHeader"> Oak Hall,<br> Warner Robins</h5>
-              <img id="wrLittleMap" src="images/wrMap.png" alt="Warner Robins Campus" width="300" height="200" data-toggle="modal" data-target="#wrModal">
-              </div>
-            </div>
-          </div>
-
-    <!-- COCHRAN MODAL -->
-          <div id="cochranModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" id="cochranModalHeader">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <h1 class="text-center">Cochran Campus:</h1><br>
-                  <img class="modal-content" id="cochranBigMap" src="images/cochranMap.png">
-                </div>
-              </div>
-            </div>
-          </div>
-
-    <!-- DUBLIN MODAL -->
-          <div id="dublinModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" id="dublinModalHeader">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <h1 class="text-center">Dublin Campus:</h1><br>
-                  <img class="modal-content" id="dublinBigMap" src="images/dublinMap.png">
-                </div>
-              </div>
-            </div>
-          </div>
-
-    <!-- EASTMAN MODAL -->
-          <div id="eastmanModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" id="eastmanModalHeader">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <h1 class="text-center">Eastman Campus:</h1><br>
-                  <img class="modal-content" id="eastmanBigMap" src="images/eastmanMap.png">
-                </div>
-              </div>
-            </div>
-          </div>
-
-    <!-- MACON MODAL -->
-          <div id="maconModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" id="maconModalHeader">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <h1 class="text-center">Macon Campus:</h1><br>
-                  <img class="modal-content" id="maconBigMap" src="images/maconMap.png">
-                </div>
-              </div>
-            </div>
-          </div>
-
-    <!-- WARNER ROBINS MODAL -->
-          <div id="wrModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" id="wrModalHeader">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <h1 class="text-center">Warner Robins Campus:</h1><br>
-                  <img class="modal-content" id="wrBigMap" src="images/wrMap.png">
-                </div>
-              </div>
-            </div>
-          </div>
-          <br><br><br>
-
+        <div class="col-12 col-md-4 col-sm-6">
+          <a title="Macon Campus" href="images/maps/maconmap.png"> 
+            <img class="thumbnail img-responsive" id="maconmap" src="images/maps/maconmap.png">
+          </a>
 
         </div>
+        <div class="col-12 col-md-4 col-sm-6">
+          <a title="Dublin Campus" href="images/maps/dublinMap.png"> 
+            <img class="thumbnail img-responsive" id="dublinmap" src="images/maps/dublinMap.png">
+          </a>
+        </div>
+    </div>
+     <div class="col-12 col-md-4 col-sm-6">
+          <a title="Eastman Campus" href="images/maps/eastmanMap.png"> 
+            <img class="thumbnail img-responsive" id="eastmanmap" src="images/maps/eastmanMap.png">
+          </a>
+        </div>
+        <div class="col-12 col-md-4 col-sm-6">
+          <a title="Eastman Campus" href="images/maps/wrcmap.png"> 
+            <img class="thumbnail img-responsive" id="wrcmap" src="images/maps/wrcmap.png">
+          </a>
+        </div>
+    
+    <hr>
+    
+  </div>
+</div>
+
+  <div class="hidden" id="img-repo">
+    
+    <!-- #cochran -->
+    <div class="item" id="image-1">
+      <img class="thumbnail img-responsive" title="Cochran Campus Map" src="images/maps/cochranmap.png">
+    </div>
+    <div class="item" id="image-1">
+      <img class="thumbnail img-responsive" title="Alderman Hall, Cochran Campus" src="images/ridesharelocations/aldermanhallcochranmeeting">
+    </div>
+    <div class="item" id="image-1">
+      <img class="thumbnail img-responsive" title="Memorial Hall, Cochran Campus" src="images/ridesharelocations/memorialhallcochranmeeting">
+    </div>
+      
+    <!-- #image-2 -->
+    <div class="item" id="image-2">
+      <img class="thumbnail img-responsive" title="Image 21" src="http://dummyimage.com/600x350/2255EE/969696">
+    </div>
+    <div class="item" id="image-2">
+      <img class="thumbnail img-responsive" title="Image 21" src="http://dummyimage.com/600x600/2255EE/969696">
+    </div>
+    <div class="item" id="image-2">
+      <img class="thumbnail img-responsive" title="Image 23" src="http://dummyimage.com/300x300/2255EE/969696">
+    </div>   
+      
+    <!-- #image-3-->
+    <div class="item" id="image-3">
+      <img class="thumbnail img-responsive" title="Image 31" src="http://dummyimage.com/600x350/449955/FFF">
+    </div>
+    <div class="item" id="image-3">
+      <img class="thumbnail img-responsive" title="Image 32" src="http://dummyimage.com/600x600/449955/FFF">
+    </div>
+    <div class="item" id="image-3">
+      <img class="thumbnail img-responsive" title="Image 33" src="http://dummyimage.com/300x300/449955/FFF">
+    </div>        
+    
+  </div>
+
+<div class="modal" id="modal-gallery" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">×</button>
+          <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+          <div id="modal-carousel" class="carousel">
+   
+            <div class="carousel-inner">           
+            </div>
+            
+            <a class="carousel-control left" href="#modal-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="carousel-control right" href="#modal-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -156,5 +180,5 @@
         </div>
 
     </div></div>
-  </body>
-</html>
+  </body> 
+</html> 
