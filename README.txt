@@ -1,1 +1,0 @@
-For MGA KnightRiders
