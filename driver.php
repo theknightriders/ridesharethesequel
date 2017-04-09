@@ -99,7 +99,7 @@ session_start();
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
              <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">

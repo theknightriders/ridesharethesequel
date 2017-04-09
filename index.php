@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <div class="logoContainer">
           <a href="login.php" title="MGA Knight Riders: Login">
             <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
         </div>

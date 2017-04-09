@@ -32,7 +32,7 @@ session_start();
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
              <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
             </a>
           <div class="topRightMenuContainer">
@@ -83,7 +83,7 @@ session_start();
                   <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6 text-center textbold">
-                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. 
+                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, contact the driver at least an hour beforehand to let them know. If you wish to send a package, please leave the name of the person picking up the package with the driver.
                     </div>
                     <div class="col-sm-3"></div>
                   </div>

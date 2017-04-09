@@ -20,7 +20,7 @@
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
             <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
@@ -48,7 +48,7 @@
             <div class="imageList text-center">
              <div class="col-sm-4 col-xs-2">
       
-              <h5  class="welcomeHeader"> Sanford Hall and Alderman Hall, <br> Cochran </h5>
+              <h5  class="welcomeHeader"> Memorial Hall and Alderman Hall, <br> Cochran </h5>
               <img id="cochranLittleMap" src="images/maps/cochranmap.png" alt="Cochran Campus" width="800" height="700" data-toggle="modal" data-target="#cochranModal">
               <h5  class="welcomeHeader"> Dublin Center Annex Building,<br> Dublin </h5>
               <img id="dublinLittleMap" src="images/maps/dublinmap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
@@ -77,7 +77,7 @@
                 <div class="modal-body">
                   <h1 class="text-center">Cochran Campus:</h1><br>
                   <img class="modal-content" id="cochranBigMap" src="images/maps/cochranmap.png">
-                  <h1 class="text-center">Sanford Hall, Cochran Campus</h1><br>
+                  <h1 class="text-center">Memorial Hall, Cochran Campus</h1><br>
                   <img src="images/ridesharelocations/sanfordhallcochranmeeting.jpg" alt="Sanford Hall">
                   <h1 class="text-center">Alderman Hall, Cochran Campus</h1><br>
                   <img src="images/ridesharelocations/aldermanhall.jpg" alt="Alderman Hall">
