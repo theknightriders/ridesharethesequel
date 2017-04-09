@@ -27,17 +27,19 @@ function test_input($data) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If something was posted, do this
 
-  // Take data POSTed from form, 
-  // Send it to test_input function for formatting,
-  // And store it in a new variable
-  $fnameInput = test_input($_POST["profileFnameInput"]);
-  echo "fname: " . $fnameInput . "<br>";
-  $fnameInput = test_input($_POST["profileLnameInput"]);
-  echo "lname: " . $lnameInput . "<br>";
-  $phoneInput = test_input($_POST["profilePhoneInput"]);
-  echo "phone: " . $phoneInput . "<br>";
-  $deptInput = test_input($_POST["profileDeptInput"]);
-  echo "dept: " . $deptInput;
+  if (!empty($_POST["profileFnameInput"]) || !empty($_POST["profileLnameInput"]) || !empty($_POST["profilePhoneInput"]) || !empty($_POST["profileDeptInput"])) {
+    // Take data POSTed from form, 
+    // Send it to test_input function for formatting,
+    // And store it in a new variable
+    $fnameInput = test_input($_POST["profileFnameInput"]);
+    echo "fname: " . $fnameInput . "<br>";
+    $fnameInput = test_input($_POST["profileLnameInput"]);
+    echo "lname: " . $lnameInput . "<br>";
+    $phoneInput = test_input($_POST["profilePhoneInput"]);
+    echo "phone: " . $phoneInput . "<br>";
+    $deptInput = test_input($_POST["profileDeptInput"]);
+    echo "dept: " . $deptInput;
+  }
 }
 
 // Connect to the database
