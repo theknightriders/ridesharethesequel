@@ -25,9 +25,6 @@ function handleServerResponse() {
       } else {
         document.getElementById("phoneValidationOutput").innerHTML = '<br /><input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes" />';
       }
-      
-      
-
       setTimeout('checkPhoneInput()', 500);
     } else {
       alert("AJAX Error:" + xmlHttp.status);
