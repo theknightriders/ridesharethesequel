@@ -48,20 +48,20 @@
             <div class="imageList text-center">
              <div class="col-sm-4 col-xs-2">
       
-              <h5  class="welcomeHeader"> Ebenezer Hall and Anderson Hall, <br> Cochran </h5>
-              <img id="cochranLittleMap" src="images/cochranMap.png" alt="Cochran Campus" width="800" height="700" data-toggle="modal" data-target="#cochranModal">
-              <h5  class="welcomeHeader"> Dublin Center Annex,<br> Dublin </h5>
-              <img id="dublinLittleMap" src="images/dublinMap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
+              <h5  class="welcomeHeader"> Sanford Hall and Alderman Hall, <br> Cochran </h5>
+              <img id="cochranLittleMap" src="images/maps/cochranmap.png" alt="Cochran Campus" width="800" height="700" data-toggle="modal" data-target="#cochranModal">
+              <h5  class="welcomeHeader"> Dublin Center Annex Building,<br> Dublin </h5>
+              <img id="dublinLittleMap" src="images/maps/dublinmap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
              </div>
               <div class="col-sm-4 col-xs-4">
               <h5  class="welcomeHeader"> Corporate Hangar,<br> Eastman</h5>
-              <img id="eastmanLittleMap" src="images/eastmanMap.png" alt="Eastman Campus" width="300" height="200" data-toggle="modal" data-target="#eastmanModal">
+              <img id="eastmanLittleMap" src="images/maps/eastmanmap.png" alt="Eastman Campus" width="300" height="200" data-toggle="modal" data-target="#eastmanModal">
               <h5  class="welcomeHeader"> Charles H. Jones and Student Life Center, Macon</h5>
-              <img id="maconLittleMap" src="images/maconMap.png" alt="Macon Campus" width="300" height="200" data-toggle="modal" data-target="#maconModal">
+              <img id="maconLittleMap" src="images/maps/maconmap.png" alt="Macon Campus" width="300" height="200" data-toggle="modal" data-target="#maconModal">
               </div>
               <div class="col-sm-4 col-xs-4">
               <h5  class="welcomeHeader"> Oak Hall,<br> Warner Robins</h5>
-              <img id="wrLittleMap" src="images/wrMap.png" alt="Warner Robins Campus" width="300" height="200" data-toggle="modal" data-target="#wrModal">
+              <img id="wrLittleMap" src="images/maps/wrcmap.png" alt="Warner Robins Campus" width="300" height="200" data-toggle="modal" data-target="#wrModal">
               </div>
             </div>
           </div>
@@ -76,7 +76,11 @@
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Cochran Campus:</h1><br>
-                  <img class="modal-content" id="cochranBigMap" src="images/cochranMap.png">
+                  <img class="modal-content" id="cochranBigMap" src="images/maps/cochranmap.png">
+                  <h1 class="text-center">Sanford Hall, Cochran Campus</h1><br>
+                  <img src="images/ridesharelocations/sanfordhallcochranmeeting.jpg" alt="Sanford Hall">
+                  <h1 class="text-center">Alderman Hall, Cochran Campus</h1><br>
+                  <img src="images/ridesharelocations/aldermanhall.jpg" alt="Alderman Hall">
                 </div>
               </div>
             </div>
@@ -91,7 +95,9 @@
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Dublin Campus:</h1><br>
-                  <img class="modal-content" id="dublinBigMap" src="images/dublinMap.png">
+                  <img class="modal-content" id="dublinBigMap" src="images/maps/dublinmap.png">
+                  <h1 class="text-center">Dublin Center Annex Building, Dublin Campus</h1><br>
+                  <img src="images/ridesharelocations/dublinmeeting.jpg" alt="Dublin Center Annex Building">
                 </div>
               </div>
             </div>
@@ -106,7 +112,9 @@
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Eastman Campus:</h1><br>
-                  <img class="modal-content" id="eastmanBigMap" src="images/eastmanMap.png">
+                  <img class="modal-content" id="eastmanBigMap" src="images/maps/eastmanmap.png">
+                  <h1 class="text-center">Corporate Hangar, Eastman Campus</h1><br>
+                  <img src="images/ridesharelocations/eastmanmeeting.jpg" alt="Eastman">
                 </div>
               </div>
             </div>
@@ -121,7 +129,12 @@
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Macon Campus:</h1><br>
-                  <img class="modal-content" id="maconBigMap" src="images/maconMap.png">
+                  <img class="modal-content" id="maconBigMap" src="images/maps/maconmap.png">
+                  <h1 class="text-center">College of Arts and Sciences, Macon Campus</h1><br>
+                  <img src="images/ridesharelocations/coasmeeting.jpg" alt="College of Arts and Sciences">
+                  <h1 class="text-center">Jones Hall, Macon Campus</h1><br>
+                  <img src="images/ridesharelocations/jonesmeeting.jpg" alt="Jones">
+        
                 </div>
               </div>
             </div>
@@ -136,7 +149,9 @@
                 </div>
                 <div class="modal-body">
                   <h1 class="text-center">Warner Robins Campus:</h1><br>
-                  <img class="modal-content" id="wrBigMap" src="images/wrMap.png">
+                  <img class="modal-content" id="wrBigMap" src="images/maps/wrcmap.png">
+                  <h1 class="text-center">Oak Hall, Warner Robins Campus</h1><br>
+                  <img src="images/ridesharelocations/wrmeeting.jpg" alt="Oak Hall Warner Robins Campus">
                 </div>
               </div>
             </div>
@@ -239,7 +254,7 @@
 
                     <p>Police Department Macon Campus: <a href="tel:4784712414"> (478)-471-2414 </a></p>
                     <p>Police Department Cochran Campus: <a href="tel:4789343002"> (478)-934-3002 </a></p>  
-                    <p>Police Department Warner Robins Campus: <a href="tel:4789296750"> (478)-929-6750 </p>
+                    <p>Police Department Warner Robins Campus: <a href="tel:4789296750"> (478)-929-6750 </a> </p>
                     <p> Police Department Eastman Campus:<a href= "tel:4783746403"> (478)-374-6403  </a></p>
                     <p>Police Department Dublin Campus: <a href="tel:4782747751">(478)-274-7751 </a> </p>
 
