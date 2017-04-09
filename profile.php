@@ -12,130 +12,149 @@ if ($_SESSION['email'] == "")
     header("Location:login.php");
   }
 
+// Function to format input data
+function test_input($data) {
+  // Remove extra spaces, tabs, newlines
+  $data = trim($data);
+  // Remove backslashes
+  $data = stripslashes($data);
+  // Prevent scripts from working if the user enters one
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 // Check to see if anything was submitted via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If something was posted, do this
 
-} else {
-  // If nothing was posted, do this
+  // Take data POSTed from form, 
+  // Send it to test_input function for formatting,
+  // And store it in a new variable
+  $fnameInput = test_input($_POST["profileFnameInput"]);
+  echo "fname: " . $fnameInput . "<br>";
+  $fnameInput = test_input($_POST["profileLnameInput"]);
+  echo "lname: " . $lnameInput . "<br>";
+  $phoneInput = test_input($_POST["profilePhoneInput"]);
+  echo "phone: " . $phoneInput . "<br>";
+  $deptInput = test_input($_POST["profileDeptInput"]);
+  echo "dept: " . $deptInput;
+}
 
-  // Connect to the database
-  // Move all of this to a separate file and just call it here
-        // Store the database connect info into variables
-        $servername = "168.16.222.102";
-        $username = "addisongernannt";
-        $password = "ILiveInMacon2!";
-        $dbname = "addisongernannt1617db";
+// Connect to the database
+// Move all of this to a separate file and just call it here
+      // Store the database connect info into variables
+      $servername = "168.16.222.102";
+      $username = "addisongernannt";
+      $password = "ILiveInMacon2!";
+      $dbname = "addisongernannt1617db";
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
-        if ($conn->connect_error) {
-          // If the connect failed, display an error
-          die("Connection failed: " . $conn->connect_error);
-        }
-  // If the connect works, display do this
+      // Check connection
+      if ($conn->connect_error) {
+        // If the connect failed, display an error
+        die("Connection failed: " . $conn->connect_error);
+      }
+// If the connect works, display do this
 
-  // Prepare the SQL statement
-  $sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = '" . $_SESSION['email'] . "'";
+// Prepare the SQL statement
+$sql = "SELECT first_name, last_name, phone, department FROM addisongernannt1617db.users WHERE email = '" . $_SESSION['email'] . "'";
 
-  // Bind the result set to a variable
-  $result = $conn->query($sql);
+// Bind the result set to a variable
+$result = $conn->query($sql);
 
-  // Put the result set into an array
-  if ($result->num_rows > 0) {
-    // Store each element of the array in its own global variable
-    while($row = $result->fetch_assoc()) {
-      $fname = $row['first_name'];
-      $lname = $row['last_name'];
-      $email = $_SESSION['email'];
-      $phone = $row['phone'];
-      // Phone is a little different
-      // It's normally an integer, but we need to display it so that it looks like a phone number.
-      // First, change it to a string.
-      settype($phone, "string");
-      // Next, format the string
-      $phone = "(".substr($phone, 0, 3).") ".substr($phone, 3, 3)."-".substr($phone,6);
-      // Department is also a little different.
-      // We need to look at the department code and store its corresponding department name in the string instead
-      $deptCode = $row['department'];
-      If ($deptCode == "ENGL") {
-      $dept = "English";
-      }
-      If ($deptCode == "HPSC") {
-      $dept = "History and Political Science";
-      }
-      If ($deptCode == "MATH") {
-      $dept = "Mathematics";
-      }
-      If ($deptCode == "ARTS") {
-      $dept = "Media, Culture, and the Arts ";
-      }
-      If ($deptCode == "NSCI") {
-      $dept = "Natural Sciences";
-      }
-      If ($deptCode == "PSCJ") {
-      $dept = "Psychology, Sociology, and Criminal Justice";
-      }
-      If ($deptCode == "AMST") {
-      $dept = "Aviation Maintenance and Structural Technology";
-      }
-      If ($deptCode == "AVSM") {
-      $dept = "Aviation Science and Management";
-      }
-      If ($deptCode == "FLGT") {
-      $dept = "Flight";
-      }
-      If ($deptCode == "BUSN") {
-      $dept = "Business";
-      }
-      If ($deptCode == "EDUC") {
-      $dept = "Education";
-      }
-      If ($deptCode == "HSAD") {
-      $dept = "Health Services Administration";
-      }
-      If ($deptCode == "NURS") {
-      $dept = "Nursing";
-      }
-      If ($deptCode == "OCTA") {
-      $dept = "Occupational Therapy Assistant";
-      }
-      If ($deptCode == "RESP") {
-      $dept = "Respiratory";
-      }
-      If ($deptCode == "ITEC") {
-      $dept = "Information Technology";
-      }
-      If ($deptCode == "GRAD") {
-      $dept = "Office of Graduate Studies";
-      }
-      If ($deptCode == "PRES") {
-      $dept = "Office of the President ";
-      }
-      If ($deptCode == "UADV") {
-      $dept = "Division of University Advancement";
-      }
-      If ($deptCode == "FINO") {
-      $dept = "Division of Finance and Operations ";
-      }
-      If ($deptCode == "RMAR") {
-      $dept = "Division of Recruitment and Marketing";
-      }
-      If ($deptCode == "STAF") {
-      $dept = "Division of Student Affairs ";
-      }
-      If ($deptCode == "OTHR") {
-      $dept = "Other";
-      }
-      echo "Department: " . $dept;
+// Put the result set into an array
+if ($result->num_rows > 0) {
+  // Store each element of the array in its own global variable
+  while($row = $result->fetch_assoc()) {
+    $fname = $row['first_name'];
+    $lname = $row['last_name'];
+    $email = $_SESSION['email'];
+    $phone = $row['phone'];
+    // Phone is a little different
+    // It's normally an integer, but we need to display it so that it looks like a phone number.
+    // First, change it to a string.
+    settype($phone, "string");
+    // Next, format the string
+    $phone = "(".substr($phone, 0, 3).") ".substr($phone, 3, 3)."-".substr($phone,6);
+    // Department is also a little different.
+    // We need to look at the department code and store its corresponding department name in the string instead
+    $deptCode = $row['department'];
+    If ($deptCode == "ENGL") {
+    $dept = "English";
+    }
+    If ($deptCode == "HPSC") {
+    $dept = "History and Political Science";
+    }
+    If ($deptCode == "MATH") {
+    $dept = "Mathematics";
+    }
+    If ($deptCode == "ARTS") {
+    $dept = "Media, Culture, and the Arts ";
+    }
+    If ($deptCode == "NSCI") {
+    $dept = "Natural Sciences";
+    }
+    If ($deptCode == "PSCJ") {
+    $dept = "Psychology, Sociology, and Criminal Justice";
+    }
+    If ($deptCode == "AMST") {
+    $dept = "Aviation Maintenance and Structural Technology";
+    }
+    If ($deptCode == "AVSM") {
+    $dept = "Aviation Science and Management";
+    }
+    If ($deptCode == "FLGT") {
+    $dept = "Flight";
+    }
+    If ($deptCode == "BUSN") {
+    $dept = "Business";
+    }
+    If ($deptCode == "EDUC") {
+    $dept = "Education";
+    }
+    If ($deptCode == "HSAD") {
+    $dept = "Health Services Administration";
+    }
+    If ($deptCode == "NURS") {
+    $dept = "Nursing";
+    }
+    If ($deptCode == "OCTA") {
+    $dept = "Occupational Therapy Assistant";
+    }
+    If ($deptCode == "RESP") {
+    $dept = "Respiratory";
+    }
+    If ($deptCode == "ITEC") {
+    $dept = "Information Technology";
+    }
+    If ($deptCode == "GRAD") {
+    $dept = "Office of Graduate Studies";
+    }
+    If ($deptCode == "PRES") {
+    $dept = "Office of the President ";
+    }
+    If ($deptCode == "UADV") {
+    $dept = "Division of University Advancement";
+    }
+    If ($deptCode == "FINO") {
+    $dept = "Division of Finance and Operations ";
+    }
+    If ($deptCode == "RMAR") {
+    $dept = "Division of Recruitment and Marketing";
+    }
+    If ($deptCode == "STAF") {
+    $dept = "Division of Student Affairs ";
+    }
+    If ($deptCode == "OTHR") {
+    $dept = "Other";
     }
   }
-
-  // Close the connection
-  $conn->close();
 }
+
+// Close the connection
+$conn->close();
 
 
 
@@ -158,11 +177,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/modernizr-custom.js"></script>
+    <script src="scripts/phoneValidateAJAX.js"></script>
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
-  <body class="profileStretchPage">
+  <body class="profileStretchPage" onload="checkPhoneInput()">
     <div class="container profileStretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -203,14 +222,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
               <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
                 <div class="editableProfile">
-                  <!--<form action="profileProcess.php" method="post">--><form>
+                  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileUpdateForm">
                     <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
                     <br>
                     <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
                     <br>
-                    <input id="profilePhone" type="text" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                 
+                    <input id="profilePhone" type="number" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
+                    
                     <br>
-                    <select class="selectpicker orangeDropdown form-control" name="registrationDeptInput" data-width="100%">
+                    <select class="selectpicker orangeDropdown form-control" name="profileDeptInput" data-width="100%">
                       <option selected disabled required>Department</option>
                       <option value="ENGL">English</option>
                       <option value="HPSC">History and Political Science</option>
@@ -236,6 +257,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       <option value="STAF">Division of Student Affairs </option>
                       <option value="OTHR">Other</option>
                     </select>
+                    <br>
+
+                    <div id="phoneValidationOutput" class="text-center"></div>
+
+
+
                   </form>
                 </div>
               </div>
@@ -278,10 +305,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="text-center">
               <br>
               <input type="submit" class="btn btn-primary showHideProfileButton viewableProfile" id="editProfileButton" name="editProfileButton" value="Edit Profile Information">
-              <span class="editableProfile">
-                <br>
-                <input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes">
-              </span>
               <br><br>
               <input type="submit" class="btn btn-primary viewableProfile" name="changePasswordButton" value="Change Password" data-toggle="modal" data-target="#changePasswordModal">
             </div>
