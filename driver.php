@@ -98,8 +98,9 @@ session_start();
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+             <br><br>
+            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -286,7 +287,7 @@ session_start();
               </div>
             </div>
             <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
             </div>
             <div class="col-md-1"></div>
           </div>

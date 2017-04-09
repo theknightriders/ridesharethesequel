@@ -20,8 +20,9 @@
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+            <br><br>
+            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -32,6 +33,7 @@
               <li><a href="index.php">Logout</a></li>
             </ul>
           </div>
+        </div>
         </div>
       </div>
 
@@ -53,7 +55,7 @@
 
           <div class="col-sm-3 col-xs-4">
             <a href="driver.php" class="btn btn-default">
-              <img class="welcomeSelectImage" src="images/driver.png" alt="Passenger Image"><br>
+              <img class="welcomeSelectImage" src="images/driverwelcome.jpg" alt="Driver Image"><br>
               <h4 class="welcomeHeader text-center">Drive</h4>
             </a>
           </div>
@@ -62,7 +64,7 @@
 
           <div class="col-sm-3 col-xs-4">
             <a href="passenger.php" class="btn btn-default">
-              <img class="welcomeSelectImage" src="images/passenger.png" alt="Passenger Image">
+              <img class="welcomeSelectImage" src="images/passengerwelcome.jpg" alt="Passenger Image">
               <h4 class="welcomeHeader text-center">Ride</h4>
             </a>
           </div>
