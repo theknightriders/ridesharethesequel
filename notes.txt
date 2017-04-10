@@ -75,3 +75,28 @@ UPDATE addisongernannt1617db.users
 SET pword = $new_pword 
 WHERE email = $_SESSION['email'];
 ---
+
+
+Picture Upload
+*
+
+---
+
+---
+
+
+********
+ EXTRAS
+********
+Alert the user when their password is changed/saved
+
+
+
+
+
+ ***********
+* TEST AREA *
+ ***********
+
+For some reason, the profile won't update if you fill out a phone number and any other field.
+

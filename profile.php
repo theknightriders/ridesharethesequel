@@ -2,9 +2,6 @@
 // Needs to be at the top of every page
 session_start();
 
-// TEST - temporarily override the session variable
-// $_SESSION['email'] = "myrddincat@gmail.com";
-
 // Make sure the user is logged in
 if ($_SESSION['email'] == "")
   {
@@ -27,53 +24,54 @@ function test_input($data) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If something was posted, do this
 
-  // If any of the Edit Profile Information fields posted a value
-  if (!empty($_POST["profileFnameInput"]) || !empty($_POST["profileLnameInput"]) || !empty($_POST["profilePhoneInput"]) || !empty($_POST["profileDeptInput"])) {
+  // Connect to the database
+  include ('mysqli_connect.php');
 
-    // Connect to the database
-    include ('mysqli_connect.php');
+  // Begin preparing the SQL statement
+  $sql = "UPDATE users SET ";
 
-    // Begin preparing the SQL statement
-    $sql = "UPDATE users ";
-
-    // Take ONLY the data POSTed from the form, 
-    // Send it to test_input function for formatting,
-    // Store it in a new global variable
-    // Append data that needs to be updated to $sql
-    if (!empty($_POST["profileFnameInput"])) {
-    $fnameInput = test_input($_POST["profileFnameInput"]);
-    echo "fname: " . $fnameInput . "<br>";
-    $sql = $sql . "SET first_name = '" . $fnameInput . "' ";
-    }
-
-    if (!empty($_POST["profileLnameInput"])) {
-    $lnameInput = test_input($_POST["profileLnameInput"]);
-    echo "lname: " . $lnameInput . "<br>";
-    $sql = $sql . "SET last_name = '" . $lnameInput . "' ";
-    }
-
-    if (!empty($_POST["profilePhoneInput"])) {
-    $phoneInput = test_input($_POST["profilePhoneInput"]);
-    echo "phone: " . $phoneInput . "<br>";
-    $sql = $sql . "SET phone = '" . $phoneInput . "' ";
-    }
-
-    if (!empty($_POST["profileDeptInput"])) {
-    $deptInput = test_input($_POST["profileDeptInput"]);
-    echo "dept: " . $deptInput;
-    $sql = $sql . "SET department = '" . $deptInput . "' ";
-    }
-
-    // Append the last part of the SQL statement
-    $sql = $sql . "WHERE email = '" . $_SESSION['email'] . "';";
-
-    // Send the SQL statement to the database
-    echo $sql . "<br>";
-    $conn->query($sql);
-
-    // Close the db connection
-    $conn->close();
+  // Take ONLY the data POSTed from the form, 
+  // Send it to test_input function for formatting,
+  // Store it in a new global variable
+  // Append data that needs to be updated to $sql
+  if (!empty($_POST["profileFnameInput"])) {
+  $fnameInput = test_input($_POST["profileFnameInput"]);
+  $sql = $sql . "first_name = '" . $fnameInput . "', ";
   }
+
+  if (!empty($_POST["profileLnameInput"])) {
+  $lnameInput = test_input($_POST["profileLnameInput"]);
+  $sql = $sql . "last_name = '" . $lnameInput . "', ";
+  }
+
+  if (!empty($_POST["profilePhoneInput"])) {
+  $phoneInput = test_input($_POST["profilePhoneInput"]);
+  $sql = $sql . "phone = '" . $phoneInput . "', ";
+  }
+
+  if (!empty($_POST["profileDeptInput"])) {
+  $deptInput = test_input($_POST["profileDeptInput"]);
+  $sql = $sql . "department = '" . $deptInput . "', ";
+  }
+
+  if (!empty($_POST["changePasswordNewInput"])) {
+  $pwordInput = test_input($_POST["changePasswordNewInput"]);
+  $sql = $sql . "pword = '" . $pwordInput . "', ";
+  echo "<script type='text/javascript'>alert('Your password has been updated!');</script>";
+  }
+
+  // Trim the trailing ", " from the string
+  $sql = rtrim($sql, ', ');
+
+  // Append the last part of the SQL statement
+  $sql = $sql . "WHERE email = '" . $_SESSION['email'] . "';";
+
+  // Send the SQL statement to the database
+  $conn->query($sql);
+
+  // Close the db connection
+  $conn->close();
+
 }
 
 // Connect to the database
@@ -200,11 +198,11 @@ include ('mysqli_connect.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/phoneValidateAJAX.js"></script>
+    <script src="scripts/ajaxValidation.js"></script>
     <link rel="stylesheet" href="styles/style.css">
   </head>
 
-  <body class="profileStretchPage" onload="checkPhoneInput()">
+  <body class="profileStretchPage">
     <div class="container profileStretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -251,11 +249,9 @@ include ('mysqli_connect.php');
                     <br>
                     <input id="profileLname" type="text" class="form-control" name="profileLnameInput" placeholder="Last Name">
                     <br>
-                 
-                    <input id="profilePhone" type="number" class="form-control" name="profilePhoneInput" placeholder="Phone Number">
-                    
+                    <input id="profilePhone" type="number" class="form-control" name="profilePhoneInput" placeholder="Phone Number" min="1000000000" max="9999999999">
                     <br>
-                    <select class="selectpicker orangeDropdown form-control" name="profileDeptInput" data-width="100%">
+                    <select class="selectpicker orangeDropdown form-control" id="profileDept" name="profileDeptInput" data-width="100%">
                       <option selected disabled required>Department</option>
                       <option value="ENGL">English</option>
                       <option value="HPSC">History and Political Science</option>
@@ -282,11 +278,11 @@ include ('mysqli_connect.php');
                       <option value="OTHR">Other</option>
                     </select>
                     <br>
-
                     <div id="phoneValidationOutput" class="text-center"></div>
-
-
-
+                    <br>
+                    <div class="text-center">
+                      <input type="button" class="btn btn-primary" name="cancelProfile" id="cancelProfile" value="Cancel" onclick="cancelProfileForm()">
+                    </div>
                   </form>
                 </div>
               </div>
@@ -342,25 +338,28 @@ include ('mysqli_connect.php');
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header" id="changePasswordModalHeader">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="reset" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
                 <h1 class="text-center">Change Password</h1><br>
                 <div class="row">
-                  <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-2 col-sm-3"></div>
 
-                  <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
-                    <form id="profileChangePasswordForm">
+                  <div class="col-xs-8 col-sm-6">
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileChangePasswordForm">
+                      <input type="hidden" value="itsNotGood" id="pwordChecker" name="pwordChecker">
                       <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Old Password"><br>
                       <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
-                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br><br>
+                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password">
+                      <div id="pwordUpdateOutput" class="text-center"></div>
+                      <br>
                       <div class="text-center">
-                        <input type="submit" class="btn btn-primary" name="submitPasswordChangeButton" value="Submit Change"><br>
-                     </div>
+                        <input type="button" class="btn btn-primary" name="cancelPword" id="cancelPword" value="Cancel" onclick="cancelPwordForm()">
+                      </div>
                     </form>
                   </div>
                   
-                  <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-2 col-sm-3"></div>
                 </div>
               </div>
             </div>
@@ -379,23 +378,16 @@ include ('mysqli_connect.php');
                 <form>
                   <div class="text-center">
                     <input type="button" class="btn btn-primary" name="uploadNewProfilePicButton" value="Upload"><br>
-                 </div>
+                  </div>
                   <div class="text-center"><br><br>
                     <input type="submit" class="btn btn-primary" name="submitProfilePicChangeButton" value="Submit Change"><br>
-                 </div>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-
-
-
-
       </div>
-
-
-
 
       <div id="footer" class="text-center center">
           <hr>
@@ -404,6 +396,10 @@ include ('mysqli_connect.php');
       </div>
 
     </div></div>
-    
+
+
+    <script type="text/javascript">
+      validatePhoneAndPass();
+    </script>
   </body>
 </html>
