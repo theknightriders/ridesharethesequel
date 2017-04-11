@@ -1,15 +1,28 @@
 <?php
-        $to = $email;
-        $subject = "Knight Riders Registration";
-        
-        $message = "Thank you for signing up with Knight Riders! \r\n
+// Swift Mailer Library
+require_once 'F:\xampp\htdocs\knightridertest4\switftmailer\lib\swift_required.php';
+
+// Mail Transport
+$transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
+    ->setUsername('mgaknightriders@gmail.com') // Your Gmail Username
+    ->setPassword('addison1'); // Your Gmail Password
+
+// Mailer
+$mailer = Swift_Mailer::newInstance($transport);
+
+// Create a message
+$message = Swift_Message::newInstance('Knight Riders Registration -- DO NOT REPLY')
+    ->setFrom(array($email => $fname)) // can be $_POST['email'] etc...
+    ->setTo(array($email => $lname)) // your email / multiple supported.
+    ->setBody('Thank you for signing up with Knight Riders! \r\n
 					Please click on or copy/paste the URL below to login. \r\n
-					(Insert URL Here)";
-		$message = wordwrap($message, 70, "\r\n"); //Wordwrap in case a line exceeds 70 characters
-		$message = str_replace("\n.", "\n..",$message); //Account for PHP-to-SMTP full stop
-        
-        $header = "From:MGAKnightRiders@mga.edu";
-        
-        mail($to,$subject,$message,$header);
+					(http://webdav.mga.edu/addison.gernannt/)', 'text/html');
+
+// Send the message
+if ($mailer->send($message)) {
+    echo 'Registration pending -- please check your email for verification';
+} else {
+    echo 'Something is not quite right. Please check your information and resubmit.';
+}
+
 ?>
-      
