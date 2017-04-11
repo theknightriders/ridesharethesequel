@@ -10,9 +10,9 @@ echo '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>';
 echo '<response>';
   
   // Get the POST data and put it into variables
-  $oldPword = $_POST['oldEmailInputValue'];
-  $newPword = $_POST['newEmailInputValue'];
-  $newPwordCheck = $_POST['newEmailInputValueCheck'];
+  $oldPword = $_POST['oldPwordInputValue'];
+  $newPword = $_POST['newPwordInputValue'];
+  $newPwordCheck = $_POST['newPwordInputValueCheck'];
   $phoneValidationOutputVariable = $_POST['phoneInputValue'];
   $fnameCheck = $_POST['fnameInputValue'];
   $lnameCheck = $_POST['lnameInputValue'];

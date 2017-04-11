@@ -6,16 +6,16 @@ function validatePhoneAndPass() {
   // If it's ready..
   if(xHttp.readyState==0 || xHttp.readyState==4) {
     // Define some variables and pull values from forms to give them life
-    oldEmailInputValue = encodeURIComponent(document.getElementById("changePasswordOld").value);
-    newEmailInputValue = encodeURIComponent(document.getElementById("changePasswordNew").value);
-    newEmailInputValueCheck = encodeURIComponent(document.getElementById("changePasswordNew02").value);
+    oldPwordInputValue = encodeURIComponent(document.getElementById("changePasswordOld").value);
+    newPwordInputValue = encodeURIComponent(document.getElementById("changePasswordNew").value);
+    newPwordInputValueCheck = encodeURIComponent(document.getElementById("changePasswordNew02").value);
     phoneInputValue = encodeURIComponent(document.getElementById("profilePhone").value);
     fnameInputValue = encodeURIComponent(document.getElementById("profileFname").value);
     lnameInputValue = encodeURIComponent(document.getElementById("profileLname").value);
     deptInputValue = encodeURIComponent(document.getElementById("profileDept").value);
 
     // Put the variables into a parameter string
-    params = "oldEmailInputValue=" + oldEmailInputValue + "&newEmailInputValue=" + newEmailInputValue + "&newEmailInputValueCheck=" + newEmailInputValueCheck + "&phoneInputValue=" + phoneInputValue + "&fnameInputValue=" + fnameInputValue + "&lnameInputValue=" + lnameInputValue + "&deptInputValue=" + deptInputValue;
+    params = "oldPwordInputValue=" + oldPwordInputValue + "&newPwordInputValue=" + newPwordInputValue + "&newPwordInputValueCheck=" + newPwordInputValueCheck + "&phoneInputValue=" + phoneInputValue + "&fnameInputValue=" + fnameInputValue + "&lnameInputValue=" + lnameInputValue + "&deptInputValue=" + deptInputValue;
 
     // POST the parameter string to the place where it needs to go
     xHttp.open("POST", "ajaxValidation.php", true);
@@ -54,36 +54,44 @@ function handleServerResponse() {
         message = message.replace("password message", "");
         if(message=="NoMatch") {
           document.getElementById("pwordChecker").value = "itsNotGood";
-          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">' + "Password doesn't match Password Confirmation." + '</span><br /><input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes" disabled />';
+          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">Password doesn\'t match Password Confirmation.</span>';
+        document.getElementById("submitPwordButton").disabled = true;
         }
         if(message=="Nope") {
           document.getElementById("pwordChecker").value = "itsNotGood";
-          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">' + "Your Old Password is incorrect." + '</span><br /><input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes" disabled />';
+          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">Your Old Password is incorrect.</span>';
+        document.getElementById("submitPwordButton").disabled = true;
         }
         if(message=="Empty") {
           document.getElementById("pwordChecker").value = "itsNotGood";
-          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">' + "Please enter a New Password." + '</span><br /><input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes" disabled />';
+          document.getElementById("pwordUpdateOutput").innerHTML = '<span class="error">Please enter a New Password.</span>';
+        document.getElementById("submitPwordButton").disabled = true;
         }
         if(message=="Yep") {
           document.getElementById("pwordChecker").value = "itsGood";
-          document.getElementById("pwordUpdateOutput").innerHTML = '<br /><input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes""/>';
+        document.getElementById("pwordUpdateOutput").innerHTML = '';
+        document.getElementById("submitPwordButton").disabled = false;
         }
       }
 
       if(message=="Phone Number must be a 10 digit integer!") {
         document.getElementById("pwordChecker").value = "itsNotGood";
-        document.getElementById("phoneValidationOutput").innerHTML = '<span class="error">' + message + '</span><br /><input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes" disabled />';
+        document.getElementById("phoneValidationOutput").innerHTML = '<span class="error">' + message + '</span>';
+        document.getElementById("submitProfileButton").disabled = true;
       }
 
       if(message=="Phone Number is good" || message=="Something Changed") {
         document.getElementById("pwordChecker").value = "itsNotGood";
-        document.getElementById("phoneValidationOutput").innerHTML = '<br /><input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes" />';
+        document.getElementById("phoneValidationOutput").innerHTML = '';
+        document.getElementById("submitProfileButton").disabled = false;
       }
 
       if(message=="All Empty") {
         document.getElementById("pwordChecker").value = "itsNotGood";
-        document.getElementById("phoneValidationOutput").innerHTML = '<br /><input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes" disabled />';
-        document.getElementById("pwordUpdateOutput").innerHTML = '<br /><input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes" disabled />';
+        document.getElementById("phoneValidationOutput").innerHTML = '';
+        document.getElementById("submitProfileButton").disabled = true;
+        document.getElementById("pwordUpdateOutput").innerHTML = '';
+        document.getElementById("submitPwordButton").disabled = true;
       }
 
       // Run that original function again after 0.5 seconds

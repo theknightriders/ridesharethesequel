@@ -9,6 +9,9 @@ if ($_SESSION['email'] == "")
     header("Location:login.php");
   }
 
+// Make the email available as a string variable
+$email = $_SESSION['email'];
+
 // Function to format input data
 function test_input($data) {
   // Remove extra spaces, tabs, newlines
@@ -57,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST["changePasswordNewInput"])) {
   $pwordInput = test_input($_POST["changePasswordNewInput"]);
   $sql = $sql . "pword = '" . $pwordInput . "', ";
-  echo "<script type='text/javascript'>alert('Your password has been updated!');</script>";
   }
 
   // Trim the trailing ", " from the string
@@ -74,13 +76,100 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
+///////////////////
+// Profile Picture uploads
+
+
+$partsOfEmail = explode("@", $email);
+$newPicName = $partsOfEmail[0];
+$newPicName = str_replace(".", "", $newPicName);
+$uploadErrorString = "<span class='error'>";
+$target_dir = "profilePics/";
+$target_file = $target_dir . basename($_FILES["profilePicFile"]["name"]);
+$newFileName = $target_dir . $newPicName;
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+$newFileName .= "." . $imageFileType;
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["submitProfilePicChangeButton"])) {
+    $check = getimagesize($_FILES["profilePicFile"]["tmp_name"]);
+    if($check !== false) {
+        $uploadOk = 1;
+    } else {
+        $uploadErrorString .= "File is not an image.<br>";
+        $uploadOk = 0;
+    }
+}
+
+// Check if file already exists
+if (file_exists($target_file)) {
+    $uploadErrorString .= "Sorry, file already exists.<br>";
+    $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["profilePicFile"]["size"] > 500000) {
+    $uploadErrorString .= "Sorry, your file is too large.<br>";
+    $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    $uploadErrorString .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+    $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    $uploadErrorString .= " Sorry, your file was not uploaded.<br>";
+
+// if everything is ok, try to upload file
+} else {
+
+    // Deal with overwriting the previous file
+    if (file_exists('$newFileName')) {
+        chmod('$newFileName',0755);
+        unlink('$newFileName');
+    }
+
+    // Try to upload the file
+    if (move_uploaded_file($_FILES["profilePicFile"]["tmp_name"], $newFileName)) {
+
+        // Connect to the database
+        include ('mysqli_connect.php');
+
+        // Begin preparing the SQL statement
+        $sql = "UPDATE users SET profile_image = '" . $newFileName . "' WHERE email = '" . $_SESSION['email'] . "';";
+
+        // Send the SQL statement to the database
+        $conn->query($sql);
+
+        // Close the db connection
+        $conn->close();
+
+    // One more part to the error message
+    } else {
+        $uploadErrorString .= "Sorry, there was an error uploading your file.<br>";
+    }
+}
+
+$uploadErrorString .= "</span>";
+// $uploadErrorString needs to be sent to someplace better - just doing it here for now
+echo $uploadErrorString;
+
+
+
+
+
+////////////////////
+// Set up the page
 // Connect to the database
 include ('mysqli_connect.php');
 
-// If the connect works, do this
-
   // Prepare the SQL statement
-  $sql = "SELECT first_name, last_name, phone, department FROM users WHERE email = '" . $_SESSION['email'] . "'";
+  $sql = "SELECT first_name, last_name, phone, department, profile_image FROM users WHERE email = '" . $_SESSION['email'] . "'";
 
   // Bind the result set to a variable
   $result = $conn->query($sql);
@@ -91,8 +180,8 @@ include ('mysqli_connect.php');
     while($row = $result->fetch_assoc()) {
       $fname = $row['first_name'];
       $lname = $row['last_name'];
-      $email = $_SESSION['email'];
       $phone = $row['phone'];
+      $profilePic = $row['profile_image'];
       // Phone is a little different
       // It's normally an integer, but we need to display it so that it looks like a phone number.
       // First, change it to a string.
@@ -176,9 +265,6 @@ include ('mysqli_connect.php');
 
   // Close the connection
   $conn->close();
-
-
-
 ?>
 
 
@@ -233,8 +319,10 @@ include ('mysqli_connect.php');
 
         <div class="col-sm-5 col-sm-push-5 text-center">
           <div class="profilePicContainer">
-            <img src="images/profile.jpg" class="profilePic" alt="profile picture">
+            <br><br><br><br>
+            <img src=<?php echo $profilePic?> class="profilePic" alt="profile picture">
           </div>
+          <br><br>
           <button type="button" class="btn btn-primary profilePic viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
         </div>
 
@@ -278,9 +366,12 @@ include ('mysqli_connect.php');
                       <option value="OTHR">Other</option>
                     </select>
                     <br>
-                    <div id="phoneValidationOutput" class="text-center"></div>
-                    <br>
+                    <div id="phoneValidationOutput" class="text-center">
+                    </div>
                     <div class="text-center">
+                      <br>
+                      <input type="submit" class="btn btn-primary showHideProfileButton" id="submitProfileButton" name="submitProfileButton" value="Submit Changes" />
+                      <br><br>
                       <input type="button" class="btn btn-primary" name="cancelProfile" id="cancelProfile" value="Cancel" onclick="cancelProfileForm()">
                     </div>
                   </form>
@@ -348,12 +439,15 @@ include ('mysqli_connect.php');
                   <div class="col-xs-8 col-sm-6">
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileChangePasswordForm">
                       <input type="hidden" value="itsNotGood" id="pwordChecker" name="pwordChecker">
-                      <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Old Password"><br>
                       <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
-                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password">
+                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br>
+                      <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Current Password">
                       <div id="pwordUpdateOutput" class="text-center"></div>
                       <br>
                       <div class="text-center">
+                        <br>
+                        <input type="submit" class="btn btn-primary" id="submitPwordButton" name="submitPwordButton" value="Submit Changes">
+                        <br><br>
                         <input type="button" class="btn btn-primary" name="cancelPword" id="cancelPword" value="Cancel" onclick="cancelPwordForm()">
                       </div>
                     </form>
@@ -375,9 +469,9 @@ include ('mysqli_connect.php');
               </div>
               <div class="modal-body">
                 <h1 class="text-center">Upload New Profile Picture:</h1><br>
-                <form>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
                   <div class="text-center">
-                    <input type="button" class="btn btn-primary" name="uploadNewProfilePicButton" value="Upload"><br>
+                    <input type="file" class="center fileStyle" name="profilePicFile" id="profilePicFile"><br>
                   </div>
                   <div class="text-center"><br><br>
                     <input type="submit" class="btn btn-primary" name="submitProfilePicChangeButton" value="Submit Change"><br>
