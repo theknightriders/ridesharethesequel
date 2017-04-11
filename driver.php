@@ -24,7 +24,7 @@ session_start();
 						$message = "no Message";
 					}
 					$message = $_POST['messageToPassengers'];
-					
+          $user = $_SESSION["id"];
 
 					include('mysqli_connect.php'); 
 					
