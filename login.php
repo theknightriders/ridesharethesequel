@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <div class="col-sm-4 col-xs-2"></div>
         </div>
         <div class="row text-center">
-          <br><a href="#" data-toggle="modal" data-target="#whatDoModal">What is MGA Rideshare?</a>
+          <br><a href="#" data-toggle="modal" data-target="#whatDoModal">What is Knight Rider?</a>
         </div>
 
   <!-- WHAT DO MODAL -->
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <div class="modal-body">
                 <div class="row">
                   <br><br>
-                  <h4 class="welcomeHeader text-center">What is MGA Rideshare?</h5>
+                  <h4 class="welcomeHeader text-center">What is Knight Rider?</h5>
                 </div>
 
                 <div class="row">

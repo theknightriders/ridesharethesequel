@@ -24,8 +24,9 @@ session_start();
 						$message = "no Message";
 					}
 					$message = $_POST['messageToPassengers'];
-					$user = $_SESSION["id"];
-					
+          $user = $_SESSION["id"];
+
+
 					include('mysqli_connect.php'); 
 					
 					$sqlInsertVehicle="INSERT INTO vehicle(smoke_description,seats_total,package_able,vehicle_year,vehicle_make,vehicle_model) VALUES
