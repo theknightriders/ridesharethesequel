@@ -44,4 +44,3 @@ function cancelPwordForm() {
   $('#changePasswordNew02').val('');
   $('#changePasswordModal').modal('toggle');
 }
-
