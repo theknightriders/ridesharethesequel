@@ -24,7 +24,7 @@ session_start();
 						$message = "no Message";
 					}
 					$message = $_POST['messageToPassengers'];
-          $user = $_SESSION["id"];
+          			$user = $_SESSION["id"];
 
 
 					include('mysqli_connect.php'); 
@@ -364,6 +364,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
 <!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> -->
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/png" src="images/cornericon.png">
     <script src="scripts/script.js"></script>
   </head>
 <!-- 
@@ -559,7 +560,7 @@ session_start();
               </div>
             </div>
             <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -624,8 +625,8 @@ session_start();
 		?>
         <div id="footer" class="text-center center">
             <hr>
-            Copyright &copy; 2017 MGA Knight Riders<br>
-            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+            Copyright &copy; 2017 Knight Rider<br>
+            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
         </div>
 
     </div></div>

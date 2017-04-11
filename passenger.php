@@ -21,6 +21,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/png" src="images/cornericon.png">
   </head>
 
   <body class="extendForTable stretchPage">
@@ -83,7 +84,7 @@ session_start();
                   <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6 text-center textbold">
-                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. 
+                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. If you are scheduling a package for pick up, please leave the name of the person picking up with the driver. 
                     </div>
                     <div class="col-sm-3"></div>
                   </div>
@@ -95,10 +96,15 @@ session_start();
           <div class="row text-center">
             <h4 class="welcomeHeader">Please select a ride:</h4>
           </div>
-
+           
           <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
+              <div class="col-md-7 centerWhenSmol">
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
              <br>
               <table id="example" class="display nowrap" cellspacing="0" width="75%">
                 <thead>
@@ -111,7 +117,7 @@ session_start();
                         <th>Number <br> of Seats</th>
                         <th>Smoke Free</th>
                         <th>Packages</th>
-                        <th><a href ="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
+                        <th>Money <br> Saved </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,8 +161,8 @@ session_start();
 
       <div id="footer" class="text-center center">
           <hr>
-          Copyright &copy; 2017 MGA Knight Riders<br>
-          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+          Copyright &copy; 2017 Knight Rider<br>
+          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
       </div>
 
     </div></div>

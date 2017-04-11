@@ -286,6 +286,7 @@ include ('mysqli_connect.php');
     <script src="scripts/script.js"></script>
     <script src="scripts/ajaxValidation.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/png" src="images/cornericon.png">
   </head>
 
   <body class="profileStretchPage">
@@ -485,8 +486,8 @@ include ('mysqli_connect.php');
 
       <div id="footer" class="text-center center">
           <hr>
-          Copyright &copy; 2017 MGA Knight Riders<br>
-          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+          Copyright &copy; 2017 Knight Rider<br>
+          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
       </div>
 
     </div></div>

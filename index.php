@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/png" src="images/cornericon.png">
   </head>
 
   <body>
@@ -233,8 +234,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
       <div id="footer" class="text-center center">
         <hr>
-        Copyright &copy; 2017 MGA Knight Riders<br>
-        Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+        Copyright &copy; Knight Rider<br>
+        Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
       </div>
     </div></div>
   </body>
