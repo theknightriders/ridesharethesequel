@@ -24,36 +24,322 @@ session_start();
 						$message = "no Message";
 					}
 					$message = $_POST['messageToPassengers'];
+					$user = $_SESSION["id"];
 					
-
 					include('mysqli_connect.php'); 
 					
 					$sqlInsertVehicle="INSERT INTO vehicle(smoke_description,seats_total,package_able,vehicle_year,vehicle_make,vehicle_model) VALUES
 						('$smokeFreeYesOrNo','$seatSelect','$packageYesOrNo','$driverCarYear','$driverCarMake','$driverCarModel')";
 					
+					$vehicleQuery = "SELECT vehicle_id FROM vehicle ORDER BY vehicle_id DESC LIMIT 1";
+					$vehicleResult = mysqli_query($conn,$vehicleQuery);
+					if (mysqli_num_rows($vehicleResult) > 0) {
+						// output data of each row
+						while($row = mysqli_fetch_assoc($vehicleResult)) {
+							$vehicle = $row['vehicle_id'];
+						}
+					}
 					if ($conn->query($sqlInsertVehicle) === TRUE) {
 						//echo "New Vehicle record created successfully";
 					} else {
 						echo "Error: " . $sqlInsertVehicle . "<br>" . $conn->error;
 					}
-					$sqlInsertRide="INSERT INTO ride(location_start,location_end,message) VALUES
-						('$departSelect','$destinationSelect','$message')";
-						
-					if ($conn->query($sqlInsertRide) === TRUE) {
-						//echo "New Ride record created successfully";
-					} else {
-						echo "Error: " . $sqlInsertRide . "<br>" . $conn->error;
-					}
+
+
+			
+			if(isset($_POST['departSelect'])){
+				$roi=0;
+				/*Jones Macon Campus */
+				if ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive' ){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive' ){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'DublinArrive') {
+					$mileage = 60;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 68;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive') {
+					$mileage = 22;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				/*SLC Macon */
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive' ){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive' ){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'DublinArrive') {
+					$mileage = 60;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 68;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive') {
+					$mileage = 22;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				/*Ebenezer Cochran*/
+
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
 					
-					$sqlInsertTrip="INSERT INTO trip(trip_date,trip_time,trip_repeat,repeat_day) VALUES
-						('$newTripDateInput','$tripdeparttime','$oneOrRepeatTrip','$repeatTripFromTo')";
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
 					
-					if ($conn->query($sqlInsertTrip) === TRUE) {
-						//echo "New Trip record created successfully";
-					} else {
-						echo "Error: " . $sqlInsertTrip . "<br>" . $conn->error;
-					}
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
+					$mileage = 32;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 20;
+					$roi = $mileage * 0.53;
+					//echo $roi;
 					
+				}
+				elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
+					$mileage = 30;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+					
+				}
+				/*Anderson Cochran*/
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart'&& $_POST['destinationSelect'] == 'SLCMaconArrive'){
+					$mileage = 48;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+					
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+					
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
+					$mileage = 32;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 20;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+					
+				}
+				elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
+					$mileage = 30;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+					
+				}
+				/*Dublin*/
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
+					$mileage = 60;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
+					$mileage = 60;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
+					$mileage = 32;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
+					$mileage = 32;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 34;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
+					$mileage = 50;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				/*Eastman*/
+				elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
+					$mileage = 68;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
+					$mileage = 68;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
+					$mileage = 20;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
+					$mileage = 20;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
+					$mileage = 34;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'DublinDepart' && WarnerRobins.isSelected()){
+					$mileage = 50;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				/*WarnerRobins*/
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
+					$mileage = 22;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
+					$mileage = 22;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
+					$mileage = 30;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
+					$mileage = 30;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
+					$mileage = 50;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
+					$mileage = 50;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
+					$mileage = 0;
+					$roi = $mileage * 0.53;
+					//echo $roi;
+
+				}
+				else{
+					echo "Please choose a starting location and an ending location";
+				}
+					
+			}
+
+			$sqlInsertRide="INSERT INTO ride(user_id,vehicle_id,trip_date,trip_time,trip_repeat,repeat_day,location_start,location_end,message,roi) VALUES
+				('$user','$vehicle','$newTripDateInput','$tripdeparttime','$oneOrRepeatTrip','$repeatTripFromTo','$departSelect','$destinationSelect','$message','$roi')";
+				
+			if ($conn->query($sqlInsertRide) === TRUE) {
+				//echo "New Ride record created successfully";
+			} else {
+				echo "Error: " . $sqlInsertRide . "<br>" . $conn->error;
+			}			
 		}
 		
 		?>
@@ -88,9 +374,8 @@ session_start();
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-             <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
-            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
+            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
+            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -162,7 +447,7 @@ session_start();
 
                       <br>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "departSelect">
-                        <option selected value="none">Departing From:</option>
+                        <option selected="selected" value="none">Departing From:</option>
                         <option value="AldermanCochranDepart">Alderman, Cochran</option>
                         <option value="MemorialCochranDepart">Memorial Hall, Cochran</option>
                         <option value="DublinDepart">Dublin Center Annex Building, Dublin</option>
@@ -172,7 +457,7 @@ session_start();
                         <option value="WarnerRobinsDepart">Oak Hall, Warner Robins</option>
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "destinationSelect">
-                        <option selected value = "none">Destination:</option>
+                        <option selected="selected" value = "none">Destination:</option>
                         <option value="AldermanCochranArrive">Alderman, Cochran</option>
                         <option value="MemorialCochranArrive">Memorial Hall, Cochran</option>
                         <option value="DublinArrive">Dublin Center Annex Building, Dublin</option>
@@ -201,11 +486,11 @@ session_start();
                       <div class="text-center"><br>
                         <div>Is your vehicle<br>smoke-free?</div>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanYes" type="radio" name="smokeFreeYesOrNo" value="1" checked="checked">
+                          <input id="newTripSmokeFreeBooleanYes" type="radio" name="smokeFreeYesOrNo" value="yes" checked="checked">
                           Yes
                         </label>
                         <label class="radio-inline">
-                          <input id="newTripSmokeFreeBooleanNo" type="radio" name="smokeFreeYesOrNo" value="0">
+                          <input id="newTripSmokeFreeBooleanNo" type="radio" name="smokeFreeYesOrNo" value="no">
                           No
                         </label>
                       </div><br>
@@ -279,7 +564,6 @@ session_start();
           </div>
 
 
-
           
 		<div class="row">
             <div class="col-lg-1"></div>
@@ -295,14 +579,15 @@ session_start();
                         <th>Destination</th>
                         <th># of Seats</th>
                         <th>Smoke Free</th>
-                        <th>Packages</th>
+                        <th>Money Saved</th>
+						<th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
 						require ('mysqli_connect.php');
-						$query =   "SELECT trip.trip_date, trip.trip_time, trip.repeat_day, ride.location_start, ride.location_end, vehicle.seats_total, vehicle.smoke_description,vehicle.package_able
-						FROM trip INNER JOIN ride ON trip.trip_id=ride.trip_id INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id WHERE trip.trip_date >= CURDATE()";
+						$query =   "SELECT ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,ride.roi
+						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id WHERE ride.trip_date >= CURDATE()";
 						
 						
 						$result = mysqli_query($conn, $query);
@@ -316,7 +601,8 @@ session_start();
 										echo "<td>" .$row['location_start']. "</td>" ;
 										echo "<td>" .$row['location_end']. "</td>" ;
 										echo "<td>" .$row['seats_total']. "</td>";
-										echo "<td>" .$row['smoke_description']. "</td>" ;
+										echo "<td>" .$row['smoke_description']. "</td>";
+										echo "<td>" .$row['roi']. "</td>" ;
 										echo "</tr>";
 									}
 							
