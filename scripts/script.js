@@ -30,5 +30,17 @@ $(document).ready(function() {
 
 })
 
+function cancelProfileForm() {
+  $('#profileFname').val('');
+  $('#profileLname').val('');
+  $('#profilePhone').val('');
+  $(".viewableProfile").toggle();
+  $(".editableProfile").toggle();
+}
 
-
+function cancelPwordForm() {
+  $('#changePasswordOld').val('');
+  $('#changePasswordNew').val('');
+  $('#changePasswordNew02').val('');
+  $('#changePasswordModal').modal('toggle');
+}
