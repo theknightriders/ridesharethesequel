@@ -1,5 +1,11 @@
 <?php
 session_start();
+// Make sure the user is logged in
+if ($_SESSION['email'] == "")
+  {
+    // If they're  not logged in, go to the login page
+    header("Location:login.php");
+  }
 ?>
 
 <!DOCTYPE HTML>
