@@ -349,15 +349,15 @@ else
               <table id="example" class="display nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Repeat</th>
-                        <th>Departing</th>
-                        <th>Destination</th>
-                        <th># of Seats</th>
-                        <th>Smoke Free</th>
-                        <th>Package</th>
-                        <th>Money Saved</th>
+                        <th class="tripdate">Date</th>
+                        <th class="triptime">Time</th>
+                        <th class="repeatday">Repeat</th>
+                        <th class="locationstart">Departing</th>
+                        <th class="locationend">Destination</th>
+                        <th class="seatstotal"># of Seats</th>
+                        <th class="smokedescription">Smoke Free</th>
+                        <th class="packageable">Package</th>
+                        <th class="roi">Money Saved</th>
 						<th></th>
                     </tr>
                 </thead>
@@ -374,15 +374,15 @@ else
 									while ($row = mysqli_fetch_assoc($result)){
 										$vehicle = $row['vehicle_id'];
 										echo "<tr>";
-										echo "<td>" .$row['trip_date']. "</td>" ;
-										echo "<td>" .$row['trip_time']. "</td>" ;
-										echo "<td>" .$row['repeat_day']. "</td>";
-										echo "<td>" .$row['location_start']. "</td>" ;
-										echo "<td>" .$row['location_end']. "</td>" ;
-										echo "<td>" .$row['seats_total']. "</td>";
-										echo "<td>" .$row['smoke_description']. "</td>";									
-										echo "<td>" .$row['package_able']. "</td>";									
-										echo "<td>$" .$row['roi']. "</td>" ;
+										echo "<td class="tripdate">" .$row['trip_date']. "</td>" ;
+										echo "<td class="triptime">" .$row['trip_time']. "</td>" ;
+										echo "<td class="repeatday">" .$row['repeat_day']. "</td>";
+										echo "<td class="locationstart">" .$row['location_start']. "</td>" ;
+										echo "<td class="locationend">" .$row['location_end']. "</td>" ;
+										echo "<td class="seatstotal">" .$row['seats_total']. "</td>";
+										echo "<td class="smokedescription">" .$row['smoke_description']. "</td>";									
+										echo "<td class="packageable">" .$row['package_able']. "</td>";									
+										echo "<td class="roi">$" .$row['roi']. "</td>" ;
 										?>
 										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#editTripModal">Edit</button></td>
 										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#deleteTripModal">Delete</button></td>
