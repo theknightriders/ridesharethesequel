@@ -55,7 +55,7 @@
       <div id="footer" class="text-center center">
           <hr>
           Copyright &copy; 2017 MGA Knight Riders<br>
-          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">MGA Knight Riders</a>
+          Website Development by <a href="mailto:mgaknightriders@gmail.com">MGA Knight Riders</a>
       </div>
 
     </div></div>

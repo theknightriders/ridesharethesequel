@@ -254,6 +254,8 @@
                   <div class="text-center">
 
                     <label><input type="checkbox" value="agree" required>&nbsp;I have read and agree to the Terms &amp; Conditions.</label><br><br>
+                    <label><input type="checkbox" value="agree" required>&nbsp;Driver Training Checkbox</label><br><br>
+                  
                     <input type="submit" class="btn btn-primary" name="submitRegistrationButton" value="Submit Registration"><br>
                   </div>
                 </form>
@@ -264,7 +266,7 @@
         <div id="footer" class="text-center center">
             <hr>
             Copyright &copy; 2017 Knight Rider<br>
-            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
+            Website Development by <a href="mailto:mgaknightriders@gmail.com">Knight Rider</a>
         </div>
 
       </div></div>

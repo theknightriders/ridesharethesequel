@@ -57,11 +57,11 @@
       
               <h5  class="welcomeHeader"> Memorial Hall and Alderman Hall, <br> Cochran </h5>
               <img id="cochranLittleMap" src="images/maps/cochranmap.png" alt="Cochran Campus" width="800" height="700" data-toggle="modal" data-target="#cochranModal">
-              <h5  class="welcomeHeader"> Dublin Center Annex Building,<br> Dublin </h5>
+              <h5  class="welcomeHeader"> Dublin Center Library Building,<br> Dublin </h5>
               <img id="dublinLittleMap" src="images/maps/dublinmap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
              </div>
               <div class="col-sm-4 col-xs-4">
-              <h5  class="welcomeHeader"> Corporate Hangar,<br> Eastman</h5>
+              <h5  class="welcomeHeader"> Main Campus,<br> Eastman</h5>
               <img id="eastmanLittleMap" src="images/maps/eastmanmap.png" alt="Eastman Campus" width="300" height="200" data-toggle="modal" data-target="#eastmanModal">
               <h5  class="welcomeHeader"> Charles H. Jones and Student Life Center, Macon</h5>
               <img id="maconLittleMap" src="images/maps/maconmap.png" alt="Macon Campus" width="300" height="200" data-toggle="modal" data-target="#maconModal">
@@ -103,7 +103,7 @@
                 <div class="modal-body">
                   <h1 class="text-center">Dublin Campus:</h1><br>
                   <img class="modal-content" id="dublinBigMap" src="images/maps/dublinmap.png">
-                  <h1 class="text-center">Dublin Center Annex Building, Dublin Campus</h1><br>
+                  <h1 class="text-center">Dublin Center Library Building, Dublin Campus</h1><br>
                   <img src="images/ridesharelocations/dublinmeeting.jpg" alt="Dublin Center Annex Building">
                 </div>
               </div>
@@ -120,7 +120,7 @@
                 <div class="modal-body">
                   <h1 class="text-center">Eastman Campus:</h1><br>
                   <img class="modal-content" id="eastmanBigMap" src="images/maps/eastmanmap.png">
-                  <h1 class="text-center">Corporate Hangar, Eastman Campus</h1><br>
+                  <h1 class="text-center">Main Campus, Eastman Campus</h1><br>
                   <img src="images/ridesharelocations/eastmanmeeting.jpg" alt="Eastman">
                 </div>
               </div>
@@ -168,7 +168,7 @@
         <div id="footer" class="text-center center">
             <hr>
             Copyright &copy; 2017 Knight Rider<br>
-            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
+            Website Development by <a href="mailto:mgaknightriders@gmail.com">Knight Rider</a>
         </div>
 
     </div></div>

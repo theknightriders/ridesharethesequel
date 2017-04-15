@@ -488,7 +488,7 @@ include ('mysqli_connect.php');
       <div id="footer" class="text-center center">
           <hr>
           Copyright &copy; 2017 Knight Rider<br>
-          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
+          Website Development by <a href="mailto:mgaknightriders@gmail.com">Knight Rider</a>
       </div>
 
     </div></div>
