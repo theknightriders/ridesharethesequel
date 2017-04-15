@@ -153,8 +153,8 @@ else
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-            <img class="logoSmall" src="images/mga/MiddleGeorgia_Inst_Vert.jpg"  alt="small logo"/>
-            <img class="logoBig" src="images/mga/MiddleGeorgia_Inst_EXHoriz.jpg" alt="big logo" />
+            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
+            <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
           <div class="topRightMenuContainer">
             <ul class="text-right topRightMenu">
@@ -385,7 +385,7 @@ else
 										echo "<td>$" .$row['roi']. "</td>" ;
 										?>
 										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#editTripModal">Edit</button></td>
-										<td><button type="button" class="btn btn-primary">Delete</button></td>
+										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#deleteTripModal">Delete</button></td>
 										<?php
 										echo "</tr>";
 										
@@ -396,6 +396,25 @@ else
 					?>
                 </tbody>
               </table>
+              <div id="deleteTripModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modalDriver">
+                  <div class="modal-content">
+                    <div class="modal-header" id="deletetrip">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                         <p> Are you sure that you would like to delete this ride? </p>
+                        </div>
+                        <div class="text-center">
+                          <button type="button" class="btn btn-primary" id ="yesDeleteTrip " data-toggle="modal" data-target="">Yes</button></td>
+                          <button type="button" class="btn btn-primary" id="noDeleteTrip" data-toggle="modal" data-target="">No</button></td>
+                        </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-lg-1"></div>
           </div>
@@ -409,7 +428,7 @@ else
         <div id="footer" class="text-center center">
             <hr>
             Copyright &copy; 2017 Knight Rider<br>
-            Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
+            Website Development by <a href="mailto:mgaknightriders@gmail.com">Knight Rider</a>
         </div>
 
     </div></div>
