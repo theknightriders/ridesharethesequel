@@ -129,8 +129,8 @@ if ($_SESSION['email'] == "")
                 <tbody>
 				<?php
 						require ('mysqli_connect.php');
-						$query =   "SELECT ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,ride.roi
-						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id WHERE ride.trip_date >= CURDATE()";
+						$query =   "SELECT users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
+						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id where ride.trip_date >= CURDATE()";
 						
 						
 						$result = mysqli_query($conn, $query);
@@ -138,13 +138,14 @@ if ($_SESSION['email'] == "")
 							{															
 									while ($row = mysqli_fetch_assoc($result)){
 										echo "<tr>";
+										echo "<td>" .$row['first_name']." ". $row['last_name']."</td>" ;
 										echo "<td>" .$row['trip_date']. "</td>" ;
 										echo "<td>" .$row['trip_time']. "</td>" ;
-										echo "<td>" .$row['repeat_day']. "</td>";
 										echo "<td>" .$row['location_start']. "</td>" ;
 										echo "<td>" .$row['location_end']. "</td>" ;
 										echo "<td>" .$row['seats_total']. "</td>";
 										echo "<td>" .$row['smoke_description']. "</td>";
+										echo "<td>" .$row['package_able']. "</td>";
 										echo "<td>" .$row['roi']. "</td>" ;
 										echo "</tr>";?>
 										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
@@ -168,7 +169,7 @@ if ($_SESSION['email'] == "")
       <div id="footer" class="text-center center">
           <hr>
           Copyright &copy; 2017 Knight Rider<br>
-          Website Development by <a href="mailto:mgaknightriders@gmail.com">Knight Rider</a>
+          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
       </div>
 
     </div></div>
