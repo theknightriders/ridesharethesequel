@@ -52,18 +52,18 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-2 col-xs-1"></div>
+          <div class="col-sm-2 col-xs-3"></div>
 
-          <div class="col-sm-3 col-xs-4">
+          <div class="col-sm-4 col-xs-7">
             <a href="driver.php" class="btn btn-default">
               <img class="welcomeSelectImage" src="images/driverwelcome.jpg" alt="Driver Image"><br>
               <h4 class="welcomeHeader text-center">Drive</h4>
             </a>
           </div>
 
-          <div class="col-sm-2 col-xs-2"></div>
+          <div class="col-sm-3 col-xs-3"></div>
 
-          <div class="col-sm-3 col-xs-4">
+          <div class="col-sm-4 col-xs-7">
             <a href="passenger.php" class="btn btn-default">
               <img class="welcomeSelectImage" src="images/passengerwelcome.jpg" alt="Passenger Image">
               <h4 class="welcomeHeader text-center">Ride</h4>

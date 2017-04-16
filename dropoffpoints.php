@@ -41,38 +41,35 @@
       </div>
 
  <div id="body">
- 
-  <div id="body">
-
-          <div class="row text-center">
-            <h4 class="welcomeHeader">Pick Up &amp; Meeting Locations:</h4>
-            <h4>(Click to enlarge)</h4>
-          </div>
-
-
-          <div class="row">
+    <div class="row text-center">
+        <h4 class="welcomeHeader">Pick Up &amp; Meeting Locations:</h4>
+        <h4>(Click to enlarge)</h4>
+     </div>
+    <div class="row">
     <!-- LITTLE MAPS -->
-            <div class="imageList text-center">
-             <div class="col-sm-4 col-xs-2">
-      
+      <div class="imageList text-center">
+           <div class="col-sm-4 col-xs-12">
               <h5  class="welcomeHeader"> Memorial Hall and Alderman Hall, <br> Cochran </h5>
               <img id="cochranLittleMap" src="images/maps/cochranmap.png" alt="Cochran Campus" width="800" height="700" data-toggle="modal" data-target="#cochranModal">
+            </div>
+            <div class="col-sm-4 col-xs-12">
               <h5  class="welcomeHeader"> Dublin Center Library Building,<br> Dublin </h5>
               <img id="dublinLittleMap" src="images/maps/dublinmap.png" alt="Dublin Campus" width="300" height="200" data-toggle="modal" data-target="#dublinModal">
-             </div>
-              <div class="col-sm-4 col-xs-4">
+            </div>
+            <div class="col-sm-4 col-xs-12">
               <h5  class="welcomeHeader"> Main Campus,<br> Eastman</h5>
               <img id="eastmanLittleMap" src="images/maps/eastmanmap.png" alt="Eastman Campus" width="300" height="200" data-toggle="modal" data-target="#eastmanModal">
+            </div>
+            <div class="col-sm-4 col-xs-12">
               <h5  class="welcomeHeader"> Charles H. Jones and Student Life Center, Macon</h5>
               <img id="maconLittleMap" src="images/maps/maconmap.png" alt="Macon Campus" width="300" height="200" data-toggle="modal" data-target="#maconModal">
-              </div>
-              <div class="col-sm-4 col-xs-4">
-              <h5  class="welcomeHeader"> Oak Hall,<br> Warner Robins</h5>
-              <img id="wrLittleMap" src="images/maps/wrcmap.png" alt="Warner Robins Campus" width="300" height="200" data-toggle="modal" data-target="#wrModal">
-              </div>
             </div>
-          </div>
-
+            <div class="col-sm-4 col-xs-12">
+              <h5  class="welcomeHeader"> Nola Brantley Library,<br> Warner Robins</h5>
+              <img id="wrLittleMap" src="images/maps/wrcmap.png" alt="Warner Robins Campus" width="300" height="200" data-toggle="modal" data-target="#wrModal">
+            </div>
+           </div>
+     </div>
 
     <!-- COCHRAN MODAL -->
           <div id="cochranModal" class="modal fade" role="dialog">
@@ -157,7 +154,7 @@
                 <div class="modal-body">
                   <h1 class="text-center">Warner Robins Campus:</h1><br>
                   <img class="modal-content" id="wrBigMap" src="images/maps/wrcmap.png">
-                  <h1 class="text-center">Oak Hall, Warner Robins Campus</h1><br>
+                  <h1 class="text-center">Nola Brantley Library, Warner Robins Campus</h1><br>
                   <img src="images/ridesharelocations/wrmeeting.jpg" alt="Oak Hall Warner Robins Campus">
                 </div>
               </div>
