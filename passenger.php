@@ -30,10 +30,7 @@ if ($_SESSION['email'] == "")
     <link rel="icon" type="image/png" src="images/cornericon.png">
   </head>
 
-  <body class="extendForTable stretchPage">
-    <script type="text/javascript">
-      $('newTripTime').timepicker();
-    </script>
+ <body class="extendForTable stretchPage">
     <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -127,41 +124,38 @@ if ($_SESSION['email'] == "")
                     </tr>
                 </thead>
                 <tbody>
-				<?php
-						require ('mysqli_connect.php');
-						$query =   "SELECT users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
-						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id where ride.trip_date >= CURDATE()";
-						
-						
-						$result = mysqli_query($conn, $query);
-						if (mysqli_num_rows($result)>0)
-							{															
-									while ($row = mysqli_fetch_assoc($result)){
-										echo "<tr>";
-										echo "<td>" .$row['first_name']." ". $row['last_name']."</td>" ;
-										echo "<td>" .$row['trip_date']. "</td>" ;
-										echo "<td>" .$row['trip_time']. "</td>" ;
-										echo "<td>" .$row['location_start']. "</td>" ;
-										echo "<td>" .$row['location_end']. "</td>" ;
-										echo "<td>" .$row['seats_total']. "</td>";
-										echo "<td>" .$row['smoke_description']. "</td>";
-										echo "<td>" .$row['package_able']. "</td>";
-										echo "<td>" .$row['roi']. "</td>" ;
-										echo "</tr>";?>
-										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
-										<?php echo "</tr>";
-									}
-							
-						}
-					?>
+                  				<?php
+                  						require ('mysqli_connect.php');
+                  						$query =   "SELECT users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
+                  						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id where ride.trip_date >= CURDATE()";
+                  						
+                  						
+                  						$result = mysqli_query($conn, $query);
+                  						if (mysqli_num_rows($result)>0)
+                  							{															
+                  									while ($row = mysqli_fetch_assoc($result)){
+                  										echo "<tr>";
+                  										echo "<td>" .$row['first_name']." ". $row['last_name']."</td>" ;
+                  										echo "<td>" .$row['trip_date']. "</td>" ;
+                  										echo "<td>" .$row['trip_time']. "</td>" ;
+                  										echo "<td>" .$row['location_start']. "</td>" ;
+                  										echo "<td>" .$row['location_end']. "</td>" ;
+                  										echo "<td>" .$row['seats_total']. "</td>";
+                  										echo "<td>" .$row['smoke_description']. "</td>";
+                  										echo "<td>" .$row['package_able']. "</td>";
+                  										echo "<td>" .$row['roi']. "</td>" ;
+                  										echo "</tr>";?>
+                  										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
+                  										<?php echo "</tr>";
+                  									}
+                  							
+                  						}
+                  					?>
                 </tbody>
               </table>
             </div>
             <div class="col-lg-1"></div>
           </div>
-
-
-      </div>
 
 
 

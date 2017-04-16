@@ -144,11 +144,9 @@ else
     <link rel="icon" type="image/png" src="images/cornericon.png">
     <script src="scripts/script.js"></script>
   </head>
-<!-- 
-  <body class="extendForTable stretchPage">
-    <script type="text/javascript">
-      $('newTripTime').timepicker();
-    </script> -->
+
+<body class="extendForTable stretchPage">
+
     <div class="container stretchPage"><div id="container">
       <div class="page-header">
         <div class="logoContainer">
@@ -229,7 +227,7 @@ else
                         <option selected="selected" value="none">Departing From:</option>
                         <option value="AldermanCochranDepart">Alderman, Cochran</option>
                         <option value="MemorialCochranDepart">Memorial Hall, Cochran</option>
-                        <option value="DublinDepart">Dublin Center Annex Building, Dublin</option>
+                        <option value="DublinDepart">Dublin Center Library Building, Dublin</option>
                         <option value="EastmanDepart">Corporate Hangar, Eastman</option>
                         <option value="JonesMaconDepart">Charles H. Jones Building, Macon</option>
                         <option value="SLCMaconDepart">Student Life Center, Macon</option>
@@ -239,8 +237,8 @@ else
                         <option selected="selected" value = "none">Destination:</option>
                         <option value="AldermanCochranArrive">Alderman, Cochran</option>
                         <option value="MemorialCochranArrive">Memorial Hall, Cochran</option>
-                        <option value="DublinArrive">Dublin Center Annex Building, Dublin</option>
-                        <option value="EastmanArrive">Corporate Hangar, Eastman</option>
+                        <option value="DublinArrive">Dublin Center Library Building, Dublin</option>
+                        <option value="EastmanArrive">Main Campus, Eastman</option>
                         <option value="JonesMaconArrive">Charles H. Jones Building, Macon</option>
                         <option value="SLCMaconArrive">student Life Center, Macon</option>
                         <option value="WarnerRobinsArrive">Oak Hall, Warner Robins</option>
@@ -358,6 +356,7 @@ else
                         <th class="smokedescription">Smoke Free</th>
                         <th class="packageable">Package</th>
                         <th class="roi">Money Saved</th>
+                        <th>  </th>
 						<th></th>
                     </tr>
                 </thead>
