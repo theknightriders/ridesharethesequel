@@ -228,7 +228,7 @@ else
                         <option value="AldermanCochranDepart">Alderman, Cochran</option>
                         <option value="MemorialCochranDepart">Memorial Hall, Cochran</option>
                         <option value="DublinDepart">Dublin Center Library Building, Dublin</option>
-                        <option value="EastmanDepart">Corporate Hangar, Eastman</option>
+                        <option value="EastmanDepart">Main Campus, Eastman</option>
                         <option value="JonesMaconDepart">Charles H. Jones Building, Macon</option>
                         <option value="SLCMaconDepart">Student Life Center, Macon</option>
                         <option value="WarnerRobinsDepart">Oak Hall, Warner Robins</option>

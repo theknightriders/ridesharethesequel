@@ -104,7 +104,7 @@ if ($_SESSION['email'] == "")
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
               <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -163,7 +163,7 @@ if ($_SESSION['email'] == "")
       <div id="footer" class="text-center center">
           <hr>
           Copyright &copy; 2017 Knight Rider<br>
-          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
+          Website Development by <a href="mailto:mGAknightriders@gmail.com">Knight Rider</a>
       </div>
 
     </div></div>
