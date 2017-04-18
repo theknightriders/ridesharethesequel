@@ -366,7 +366,7 @@ else
                 </thead>
                 <tbody>
                     <?php
-						$vehicle=1;
+						$vehicle=0;
 						include ('mysqli_connect.php');
 						$query =   "SELECT vehicle.vehicle_id,users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
 						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id WHERE ride.trip_date >=  CURDATE() AND users.user_id = $user_id";
