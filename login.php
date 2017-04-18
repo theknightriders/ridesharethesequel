@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -28,9 +27,8 @@
       <div id="body">
         <div class="row">
           <div class="col-sm-4 col-xs-2"></div>
-          
           <div class="col-sm-4 col-xs-8">
-		  <?php
+<?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		if ((empty($_POST['Email']) || (empty($_POST['Password'])))) //Blank email or password field
@@ -118,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <div class="row">
                   <div class="col-xs-1"></div>
                   <div class="col-xs-10">
-                  <p>KnightRiders is a carpooling service for faculty and staff members at Middle Georgia State University. Carpooling is a cost effective and an environmentally friendly way for faculty and staff members to travel between Middle Georgia State University's five campuses. This service is free of charge and is a great way to save money, save the environment, and build a stronger community.</p>
+                  <p>Knight Rider is a carpooling service for faculty and staff members at Middle Georgia State University. Carpooling is a cost effective and an environmentally friendly way for faculty and staff members to travel between Middle Georgia State University's five campuses. This service is free of charge and is a great way to save money, help the environment, and build a stronger community.</p>
                   </div>
                   <div class="col-xs-1"></div>
                 </div>
@@ -205,9 +203,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     <p> In your choice of riding with a driver outside of the MGA rideshare, we assume no responsibility for the safety of your ride. While we have a list of safety guidelines for our drivers to follow,  but some drivers may not abide by them. Every driver is required to have a driver’s license, and the appropriate automobile insurance coverage to transport a MGA rider. It is also critical that they follow all traffic lights and signs during an MGA rideshare drive to ensure the riders’ safety.  Please practice discretion and do not get in a car if you feel uncomfortable.  Call law enforcement if you are concerned about your safety. </p> 
 
                       <ul>
-                        <li> Wear your seatbelt </li>
-                        <li> Keep distractions to a minimum </li>
-                        <li>Minimize stops enroute or discuss stops ahead of time with the driver.</li>
+                        <li> Wear your seatbelt. </li>
+                        <li> Keep distractions to a minimum. </li>
+                        <li>Minimize stops enroute or discuss stops ahead of time with the driver. </li>
                       </ul>
 
 
