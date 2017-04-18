@@ -2,11 +2,7 @@
  * TO DO *
   *******
 
-Javascript/AJAX to display errors in a better location
-
-Tell the user when their password has been updated
-
-Set some dimension parameters for profile pictures
+Figure out how to give permissions to upload files into the folder for the online version of the site.
 
 
 
