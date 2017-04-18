@@ -237,7 +237,7 @@
           <div class="row">
             <div class="col-xs-1"></div>
             <div class="col-xs-10">
-            <b>For Drivers: </b>
+            <strong>For Drivers: </strong>
                   <p> For the safety of our drivers and passengers, this policy defines the regulations of transporting faculty and staff. It is important that drivers obey all traffic rules and signs when transporting rideshare passengers. Drivers are expected to travel safely to the rideshare destinations. Safety is paramount to ensure that all riders feel safe when riding with a driver and to minimize car accidents. All drivers must have a valid driver’s license certifying they know the traffic rules while of driving and have taken MGA’s Motor Vehicle Training, as outlined in the Motor Vehicle Use Policy . They must also have an insurance policy on file with their personal vehicles. Please contact law enforcement if you are concerned about your safety.</p>
                     <ul>
                       <li> Keep your eyes focused on driving </li>

@@ -2,7 +2,13 @@
  * TO DO *
   *******
 
-Figure out how to give permissions to upload files into the folder for the online version of the site.
+Make a field for a blob type
+
+Utilize the blob type
+
+Recall the profile picture correctly from a blob type
+
+Bring the user's data into the form fields for editing profile information
 
 
 
