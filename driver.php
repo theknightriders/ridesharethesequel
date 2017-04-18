@@ -230,7 +230,7 @@ else
                       <br>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "departSelect">
                         <option selected="selected" value="none">Departing From:</option>
-                        <option value="AldermanCochranDepart">Alderman, Cochran</option>
+                        <option value="AldermanCochranDepart">Alderman Hall, Cochran</option>
                         <option value="MemorialCochranDepart">Memorial Hall, Cochran</option>
                         <option value="DublinDepart">Dublin Center Library Building, Dublin</option>
                         <option value="EastmanDepart">Main Campus, Eastman</option>
@@ -240,7 +240,7 @@ else
                       </select>
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "destinationSelect">
                         <option selected="selected" value = "none">Destination:</option>
-                        <option value="AldermanCochranArrive">Alderman, Cochran</option>
+                        <option value="AldermanCochranArrive">Alderman Hall, Cochran</option>
                         <option value="MemorialCochranArrive">Memorial Hall, Cochran</option>
                         <option value="DublinArrive">Dublin Center Library Building, Dublin</option>
                         <option value="EastmanArrive">Main Campus, Eastman</option>

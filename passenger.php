@@ -88,7 +88,7 @@ if ($_SESSION['email'] == "")
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
               <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
             </div>
             <div class="col-md-1"></div>
           </div>
