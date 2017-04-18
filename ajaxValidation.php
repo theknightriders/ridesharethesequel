@@ -68,6 +68,8 @@ echo '<response>';
         if (!empty($oldPword) && $oldPword == $actPword) {
           // Send this message if the old password is correct
           $pwordMessage = $pwordMessage . "Yep";
+          // Set this session variable so profile.php knows to tell the user that their change was successful:
+          $_SESSION['passwordHasChanged'] = "Yes";
         } else {
           // Send this message if the old password is incorrect
           $pwordMessage = $pwordMessage . "Nope";
