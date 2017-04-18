@@ -65,31 +65,10 @@ if ($_SESSION['email'] == "")
                 <div class="modal-body">
                   <h1 class="text-center">Driver's Contact Information:</h1><br>
                   <div class="row">
-                    <div class="col-sm-6 text-center">
-                      (REPLACE WITH NAME)<br>
-                      (REPLACE WITH P NUMBER)<br>
-                      (REPLACE WITH EMAIL)<br>
-                    </div>
-
-                    <div class="col-sm-6 text-center">
-                      (REPLACE WITH COLOR)<br>
-                      (REPLACE WITH YEAR)<br>
-                      (REPLACE WITH MAKE)<br>
-                      (REPLACE WITH MODEL)<br>
-                    </div>
-                  </div>
-
-                  <br>
-                  Message from the driver:
-                  <br>
-                  (REPLACE WITH MESSAGE FROM THE DRIVER)
-                  <br><br>
-                  <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6 text-center textbold">
                       Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. If you are scheduling a package for pick up, please leave the name of the person picking up with the driver. 
                     </div>
-                    <div class="col-sm-3"></div>
                   </div>
                 </div>
               </div>
@@ -104,7 +83,7 @@ if ($_SESSION['email'] == "")
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
               <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -126,8 +105,7 @@ if ($_SESSION['email'] == "")
                 <tbody>
                   				<?php
                   						require ('mysqli_connect.php');
-                  						$query =   "SELECT users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
-                  						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id where ride.trip_date >= CURDATE()";
+                  						$query =   "SELECT users.first_name,users.last_name,users.phone,users.email,ride.trip_date, ride.trip_time, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi,vehicle.vehicle_year,vehicle.vehicle_make,vehicle.vehicle_model,ride.message FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id WHERE ride.trip_date >= CURDATE()";
                   						
                   						
                   						$result = mysqli_query($conn, $query);
@@ -143,9 +121,11 @@ if ($_SESSION['email'] == "")
                   										echo "<td>" .$row['seats_total']. "</td>";
                   										echo "<td>" .$row['smoke_description']. "</td>";
                   										echo "<td>" .$row['package_able']. "</td>";
-                  										echo "<td>" .$row['roi']. "</td>" ;
-                  										echo "</tr>";?>
-                  										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
+                  										echo "<td>$" .$row['roi']. "</td>" ;
+                  										echo "</tr><td>";
+                  										
+														echo $row['phone'] . " | " .$row['email'] . " | " .$row['vehicle_year'] . ", " .$row['vehicle_make'] . ", " .$row['vehicle_model'] . " | " .$row['message'] ;?>
+														<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
                   										<?php echo "</tr>";
                   									}
                   							
@@ -163,7 +143,7 @@ if ($_SESSION['email'] == "")
       <div id="footer" class="text-center center">
           <hr>
           Copyright &copy; 2017 Knight Rider<br>
-          Website Development by <a href="mailto:mGAknightriders@gmail.com">Knight Rider</a>
+          Website Development by <a href="mailto:MGAKnightRiders@mga.edu">Knight Rider</a>
       </div>
 
     </div></div>
