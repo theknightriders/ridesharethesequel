@@ -9,7 +9,21 @@ else
 {
 	// Make the email available as a string variable
 	$email = $_SESSION['email'];
+	
+	include('mysqli_connect.php');
+	
+	//Select user_id for subsequent queries
+	$sql = "SELECT user_id FROM users WHERE email = '$email'";
+	$rs = mysqli_query($conn, $sql);
+	if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
+		{
+			while ($row = mysqli_fetch_assoc($rs))
+			{
+				$user_id = $row['user_id'];
+			}
+		}
 }
+
 ?>
 
 <!DOCTYPE HTML>
@@ -46,16 +60,7 @@ else
 			
 			include('ROI.php');
 
-			//Select user_id for subsequent query into ride table
-			$sql = "SELECT user_id FROM users WHERE email = '$email'";
-			$rs = mysqli_query($conn, $sql);
-			if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
-				{
-					while ($row = mysqli_fetch_assoc($rs))
-					{
-						$user_id = $row['user_id'];
-					}
-				}
+
 
 			//Insertion queries for use into prepared statements
 			$sqlInsertVehicle="INSERT INTO vehicle(smoke_description,seats_total,package_able,vehicle_year,vehicle_make,vehicle_model) VALUES (?,?,?,?,?,?)";
@@ -356,12 +361,12 @@ else
                         <th class="smokedescription">Smoke Free</th>
                         <th class="packageable">Package</th>
                         <th class="roi">Money Saved</th>
-                        <th>  </th>
 						<th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+						$vehicle=0;
 						include ('mysqli_connect.php');
 						$query =   "SELECT vehicle.vehicle_id,users.first_name,users.last_name,ride.trip_date, ride.trip_time, ride.repeat_day, ride.location_start, ride.location_end,vehicle.seats_total, vehicle.smoke_description,vehicle.package_able,ride.roi
 						FROM ride INNER JOIN vehicle ON vehicle.vehicle_id=ride.vehicle_id INNER JOIN users ON ride.user_id = users.user_id WHERE ride.trip_date >=  CURDATE() AND users.user_id = $user_id";
@@ -371,7 +376,7 @@ else
 						if (mysqli_num_rows($result)>0)
 							{															
 									while ($row = mysqli_fetch_assoc($result)){
-										$vehicle = $row['vehicle_id'];
+										$vehicle_id = $row['vehicle_id'];
 										echo "<tr>";
 										echo "<td>" .$row['trip_date']. "</td>" ;
 										echo "<td>" .$row['trip_time']. "</td>" ;
@@ -382,38 +387,15 @@ else
 										echo "<td>" .$row['smoke_description']. "</td>";									
 										echo "<td>" .$row['package_able']. "</td>";									
 										echo "<td>$" .$row['roi']. "</td>" ;
-										?>
-										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#editTripModal">Edit</button></td>
-										<td><button type="button" class="btn btn-primary" id ="$vehicle " data-toggle="modal" data-target="#deleteTripModal">Delete</button></td>
-										<?php
+										echo "<td><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#deleteTripModal\">Delete</button></td>";
 										echo "</tr>";
 										
 									}
 
 							}
-						include('editRide.php');
 					?>
                 </tbody>
               </table>
-              <div id="deleteTripModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modalDriver">
-                  <div class="modal-content">
-                    <div class="modal-header" id="deletetrip">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center">
-                         <p> Are you sure that you would like to delete this ride? </p>
-                        </div>
-                        <div class="text-center">
-                          <button type="button" class="btn btn-primary" id ="yesDeleteTrip " data-toggle="modal" data-target="">Yes</button></td>
-                          <button type="button" class="btn btn-primary" id="noDeleteTrip" data-toggle="modal" data-target="">No</button></td>
-                        </div>
-                    
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="col-lg-1"></div>
           </div>
