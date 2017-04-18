@@ -240,7 +240,7 @@ else
                         <option value="DublinArrive">Dublin Center Library Building, Dublin</option>
                         <option value="EastmanArrive">Main Campus, Eastman</option>
                         <option value="JonesMaconArrive">Charles H. Jones Building, Macon</option>
-                        <option value="SLCMaconArrive">student Life Center, Macon</option>
+                        <option value="SLCMaconArrive">Student Life Center, Macon</option>
                         <option value="WarnerRobinsArrive">Oak Hall, Warner Robins</option>
                       </select><br><br>
                       
@@ -249,7 +249,7 @@ else
                       <input id="driverCarModel" type="text" class="form-control" name="driverCarModel" placeholder="Car Model" required><br>
 
                       <select class="selectpicker orangeDropdown form-control" data-width="100%" name = "seatSelect">
-                        <option selected disabled>Number of Seats:</option>
+                        <option selected disabled>Number of Available Seats:</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -304,7 +304,7 @@ else
 
                       <div class="messageToPassengers">
                         <br>
-                        <textarea class="form-control" rows="3" id="messageToPassengers" name = "messageToPassengers"value = "none">Leave your message here.</textarea>
+                        <textarea class="form-control" rows="3" id="messageToPassengers" name = "messageToPassengers"value = "none"></textarea>
                       </div>
 
                       <div class="text-center">

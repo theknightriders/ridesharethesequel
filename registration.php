@@ -29,7 +29,7 @@
 		if (strstr($email, '@mga.edu') == FALSE)
 			{$errors[] = "You must register with an MGA email address.";}
 		//elseif (preg_match($regex_email,$email))
-		//	{$errors[] = "Email format is incorrect.";} //regular expression validation for email (taken
+		//	{$errors[] = "Email format is incorrect.";} //regular expression validation for email
 		if (empty($_POST['registrationFnameInput']))
 			{$errors[] = "Please enter a First Name.";}
 		if (empty($_POST['registrationLnameInput']))

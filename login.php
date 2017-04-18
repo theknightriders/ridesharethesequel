@@ -1,40 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-	{
-		if ((empty($_POST['Email']) || (empty($_POST['Password'])))) //Blank email or password field
-			{
-				echo "== Enter an Email and Password. ==";
-			}
-		else
-			{
-				session_start();			
-				require ('mysqli_connect.php'); //PHP file that executes connection to the database
-				
-				//Define variables used to compare user input to the database
-				$email = $_POST['Email']; 
-				$password = $_POST['Password'];	
-				
-				//SQL query from the database to select email and password from the table that contains both
-				$sql = "SELECT email, pword FROM users WHERE email = '$email' AND pword = '$password'"; 
-				//TESTING PURPOSES ONLY
-				//echo $sql;
-				
-				$rs = mysqli_query($conn, $sql); //record set variable from connection to database and sql query statement
-				
-				if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
-					{
-						$row = mysqli_fetch_array($rs);
-						$_SESSION['email'] = $row['email']; //Fetch the ID of the matching email and password from the database
-						header("Location:welcome.php"); //If login is successful, take them to this page.
-					}
-				else //invalid login
-					{
-						$errmsg = "== Invalid Email or Password. ==";
-					}
-			}
-	}	
-?>
-
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -67,6 +30,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <div class="col-sm-4 col-xs-2"></div>
           
           <div class="col-sm-4 col-xs-8">
+		  <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		if ((empty($_POST['Email']) || (empty($_POST['Password'])))) //Blank email or password field
+			{
+				echo "<b>Enter an Email and Password</b>";
+			}
+		else
+			{
+				session_start();			
+				require ('mysqli_connect.php'); //PHP file that executes connection to the database
+				
+				//Define variables used to compare user input to the database
+				$email = $_POST['Email']; 
+				$password = $_POST['Password'];	
+				
+				//SQL query from the database to select email and password from the table that contains both
+				$sql = "SELECT email, pword FROM users WHERE email = '$email' AND pword = '$password'"; 
+				//TESTING PURPOSES ONLY
+				//echo $sql;
+				
+				$rs = mysqli_query($conn, $sql); //record set variable from connection to database and sql query statement
+				
+				if (mysqli_num_rows($rs) == 1) //If a username and password set matches, login is successful.
+					{
+						$row = mysqli_fetch_array($rs);
+						$_SESSION['email'] = $row['email']; //Fetch the ID of the matching email and password from the database
+						header("Location:welcome.php"); //If login is successful, take them to this page.
+					}
+				else //invalid login
+					{
+						$errmsg = "<b>Invalid Email or Password</b>";
+					}
+			}
+	}	
+?>
   <!-- SIGN IN FORM --> 
 			<div>
 				<?php
