@@ -12,10 +12,6 @@ if ($_SESSION['email'] == "")
 // Make the email available as a string variable
 $email = $_SESSION['email'];
 
-// Set some variables for later use
-$_SESSION['passwordHasChanged'] = "No";
-$uploadErrorString = "";
-
 // Function to format input data
 function test_input($data) {
   // Remove extra spaces, tabs, newlines
@@ -88,7 +84,7 @@ if (isset($_FILES["profilePicFile"])) {
   $partsOfEmail = explode("@", $email);
   $newPicName = $partsOfEmail[0];
   $newPicName = str_replace(".", "", $newPicName);
-  $uploadErrorString = "";
+  $uploadErrorString = "<span class='error'>";
   $target_dir = "profilePics/";
   $target_file = $target_dir . basename($_FILES["profilePicFile"]["name"]);
   $newFileName = $target_dir . $newPicName;
@@ -98,71 +94,71 @@ if (isset($_FILES["profilePicFile"])) {
 
   // Check if image file is a actual image or fake image
   if(isset($_POST["submitProfilePicChangeButton"])) {
-    // Check to see if file was too large to process (config file determines this size)
-    if(isset($_FILES['profilePicFile'])) {
-      // 
       $check = getimagesize($_FILES["profilePicFile"]["tmp_name"]);
       if($check !== false) {
-        $uploadOk = 1;
+          $uploadOk = 1;
       } else {
-        $uploadErrorString .= "Sorry, that file is not an image.<br>";
-        $uploadOk = 0;
+          $uploadErrorString .= "File is not an image.<br>";
+          $uploadOk = 0;
       }
-    } else {
-      $uploadErrorString .= "Sorry, that file is too large.<br>";
+  }
+
+  // Check if file already exists
+  if (file_exists($target_file)) {
+      $uploadErrorString .= "Sorry, file already exists.<br>";
       $uploadOk = 0;
-    }
   }
 
   // Check file size
   if ($_FILES["profilePicFile"]["size"] > 500000) {
-    $uploadErrorString .= "Sorry, that file is too large.<br>";
-    $uploadOk = 0;
+      $uploadErrorString .= "Sorry, your file is too large.<br>";
+      $uploadOk = 0;
   }
 
   // Allow certain file formats
   if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
   && $imageFileType != "gif" ) {
-    $uploadErrorString .= "Sorry, only .jpg, .jpeg, .png, and .gif files are allowed.<br>";
-    $uploadOk = 0;
+      $uploadErrorString .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+      $uploadOk = 0;
   }
 
   // Check if $uploadOk is set to 0 by an error
   if ($uploadOk == 0) {
-    $uploadErrorString .= " Sorry, your file was not uploaded.<br>";
+      $uploadErrorString .= " Sorry, your file was not uploaded.<br>";
 
   // if everything is ok, try to upload file
   } else {
 
-    // Deal with overwriting the previous file
-    if (file_exists('$newFileName')) {
-      chmod('$newFileName',0755);
-      unlink('$newFileName');
+      // Deal with overwriting the previous file
+      if (file_exists('$newFileName')) {
+          chmod('$newFileName',0755);
+          unlink('$newFileName');
+      }
+
+      // Try to upload the file
+      if (move_uploaded_file($_FILES["profilePicFile"]["tmp_name"], $newFileName)) {
+
+          // Connect to the database
+          include ('mysqli_connect.php');
+
+          // Begin preparing the SQL statement
+          $sql = "UPDATE users SET profile_image = '" . $newFileName . "' WHERE email = '" . $_SESSION['email'] . "';";
+
+          // Send the SQL statement to the database
+          $conn->query($sql);
+
+          // Close the db connection
+          $conn->close();
+
+      // One more part to the error message
+      } else {
+          $uploadErrorString .= "Sorry, there was an error uploading your file.<br>";
+      }
   }
 
-    // Try to upload the file
-    if (move_uploaded_file($_FILES["profilePicFile"]["tmp_name"], $newFileName)) {
-
-      // Connect to the database
-      include ('mysqli_connect.php');
-
-      // Begin preparing the SQL statement
-      $sql = "UPDATE users SET profile_image = '" . $newFileName . "' WHERE email = '" . $_SESSION['email'] . "';";
-
-      // Send the SQL statement to the database
-      $conn->query($sql);
-
-      // Close the db connection
-      $conn->close();
-
-    // One more part to the error message
-    } else {
-      $uploadErrorString .= "Sorry, there was an error uploading your file.<br>";
-    }
-  }
-
-  // Trim the trailing <br> from the string
-  $uploadErrorString = rtrim($uploadErrorString, '<br>');
+  $uploadErrorString .= "</span>";
+  // $uploadErrorString needs to be sent to someplace better - just doing it here for now
+  echo $uploadErrorString;
 
 }
 
@@ -299,7 +295,7 @@ include ('mysqli_connect.php');
       <div class="page-header">
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
-            <br><br>
+             <br><br>
             <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
           </a>
@@ -321,50 +317,22 @@ include ('mysqli_connect.php');
       </div>
 
       <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6 text-center">
-          <?php 
-            // If there's an error message, display it here:
-            if ($uploadErrorString != "") {
-              echo '<div class="alert alert-danger alert-dismissible fade in show" role="alert">';
-                echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                  echo '<span aria-hidden="true">&times;</span>';
-                echo '</button>';
-                echo $uploadErrorString;
-              echo '</div>';
-              $uploadErrorString = "";
-            }
+        <div class="col-sm-1"></div>
 
-            // If the password has been changed, display a message:
-            if ($_SESSION['passwordHasChanged'] == "Yes") {
-              echo '<div class="alert alert-success alert-dismissible fade in show" role="alert">';
-                echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                  echo '<span aria-hidden="true">&times;</span>';
-                echo '</button>';
-                echo 'Password successfully changed!';
-              echo '</div>';
-              $_SESSION['passwordHasChanged'] = "No";
-            }
-          ?>
-        </div>
-        <div class="col-sm-3"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-1"></div>
-
-        <div class="col-lg-5 col-lg-push-5 text-center">
+        <div class="col-sm-5 col-sm-push-5 text-center">
           <div class="profilePicContainer">
-            <img src=<?php echo $profilePic?> class="profilePic profilePagePicture" alt="profile picture">
+            <br><br><br><br>
+            <img src=<?php echo $profilePic?> class="profilePic" alt="profile picture">
           </div>
           <br><br>
-          <button type="button" class="btn btn-primary viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
+          <button type="button" class="btn btn-primary profilePic viewableProfile" data-toggle="modal" data-target="#changeProfilePicModal">Change Profile Picture</button><br><br>
         </div>
 
-        <div class="col-lg-5 col-lg-pull-5"><br><br>
+        <div class="col-sm-5 col-sm-pull-5">
+          <div class="profileAlign"><br><br><br><br></div><div><br><br><br><br></div>
             <div class="row">
-              <div class="col-xs-3 col-sm-4 col-lg-3"></div>
-              <div class="col-xs-6 col-sm-4 col-lg-6">
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
+              <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
                 <div class="editableProfile">
                   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileUpdateForm">
                     <input id="profileFname" type="text" class="form-control" name="profileFnameInput" placeholder="First Name">
@@ -411,13 +379,13 @@ include ('mysqli_connect.php');
                   </form>
                 </div>
               </div>
-              <div class="col-xs-3 col-sm-4 col-lg-3"></div>
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2"></div>
             </div>
 
             <div class="row viewableProfile">
               <div class="centerDiv">
-                <div class="col-sm-2 col-lg-1"></div>
-                <div class="col-sm-8 col-lg-10">
+                <div class="col-xs-2 col-sm"></div>
+                <div class="col-xs-8 col-sm-12">
                   <table class="table">
                     <tbody>
                       <tr>
@@ -443,7 +411,7 @@ include ('mysqli_connect.php');
                     </tbody>
                   </table>
                 </div>
-                <div class="col-sm-2 col-lg-1"></div>
+                <div class="col-xs-2 col-sm"></div>
               </div>
             </div>
 
@@ -455,7 +423,7 @@ include ('mysqli_connect.php');
             </div>
           </div>
 
-          <div class="col-lg-1"></div>
+          <div class="col-sm-1"></div>
         </div>
 
 <!-- CHANGE PASSWORD FORM -->
@@ -473,8 +441,8 @@ include ('mysqli_connect.php');
                   <div class="col-xs-8 col-sm-6">
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="profileChangePasswordForm">
                       <input type="hidden" value="itsNotGood" id="pwordChecker" name="pwordChecker">
-                      <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password" minlength="8" required><br>
-                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password" minlength="8" required><br>
+                      <input id="changePasswordNew" type="password" class="form-control" name="changePasswordNewInput" placeholder="New Password"><br>
+                      <input id="changePasswordNew02" type="password" class="form-control" name="changePasswordNew02Input" placeholder="Re-enter New Password"><br>
                       <input id="changePasswordOld" type="password" class="form-control" name="changePasswordOldInput" placeholder="Current Password">
                       <div id="pwordUpdateOutput" class="text-center"></div>
                       <br>
@@ -507,10 +475,8 @@ include ('mysqli_connect.php');
                   <div class="text-center">
                     <input type="file" class="center fileStyle" name="profilePicFile" id="profilePicFile"><br>
                   </div>
-                  <div class="text-center"><br>
-                    <input type="submit" class="btn btn-primary" name="submitProfilePicChangeButton" value="Submit Change">
-                    <br><br>
-                    <input type="button" class="btn btn-primary" name="cancelPicUpload" id="cancelPicUpload" value="Cancel" data-dismiss="modal">
+                  <div class="text-center"><br><br>
+                    <input type="submit" class="btn btn-primary" name="submitProfilePicChangeButton" value="Submit Change"><br>
                   </div>
                 </form>
               </div>

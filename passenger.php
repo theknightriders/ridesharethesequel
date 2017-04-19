@@ -36,7 +36,7 @@ if ($_SESSION['email'] == "")
         <div class="logoContainer">
           <a href="welcome.php" title="MGA Knight Riders: Homepage">
              <br><br>
-            <img class="logoSmall" src="images/KRLogoVert.png"  alt="small logo"/>
+            <img class="logoSmall" src="images/KRLogoVert.jpg"  alt="small logo"/>
             <img class="logoBig" src="images/KRLogoHorizontal.jpg" alt="big logo" />
             </a>
           <div class="topRightMenuContainer">
@@ -63,16 +63,11 @@ if ($_SESSION['email'] == "")
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <h1 class="text-center">Contact Driver:</h1><br>
+                  <h1 class="text-center">Driver's Contact Information:</h1><br>
                   <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6 text-center textbold">
-                      For seat availability, please call or email this driver with the information they have provided.
-					  If you wish to cancel, you should contact the driver again to let them know.
-					  For package delivery, please include the name and details of who will be picking up the package.
-					  <br><br><br>
-					  Thanks for Riding!
-					  <br><br><br>
+                      Please remember that it is your responsibility to contact the driver to let them know that you plan to ride with them. If you wish to cancel, you should contact the driver again to let them know. If you are scheduling a package for pick up, please leave the name of the person picking up with the driver. 
                     </div>
                   </div>
                 </div>
@@ -88,7 +83,7 @@ if ($_SESSION['email'] == "")
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
               <div class="col-md-7 centerWhenSmol">
-              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Meeting Locations</a>
+              <br class="visibleWhenSmol"><a href="dropoffpoints.php" class="btn btn-primary">Drop Off Points</a>
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -127,11 +122,11 @@ if ($_SESSION['email'] == "")
                   										echo "<td>" .$row['smoke_description']. "</td>";
                   										echo "<td>" .$row['package_able']. "</td>";
                   										echo "<td>$" .$row['roi']. "</td>" ;
-                  										echo "</tr><td> ";?>
-                  										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button> &nbsp;
-														<?php
-														 echo $row['phone'] . " | " .$row['email'] . " | " .$row['vehicle_year'] . ", " .$row['vehicle_make'] . ", " .$row['vehicle_model'] . " | " .$row['message'];
-														 echo "</td></tr>";
+                  										echo "</tr><td>";
+                  										
+														echo $row['phone'] . " | " .$row['email'] . " | " .$row['vehicle_year'] . ", " .$row['vehicle_make'] . ", " .$row['vehicle_model'] . " | " .$row['message'] ;?>
+														<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
+                  										<?php echo "</tr>";
                   									}
                   							
                   						}

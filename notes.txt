@@ -2,13 +2,11 @@
  * TO DO *
   *******
 
-Make a field for a blob type
+Javascript/AJAX to display errors in a better location
 
-Utilize the blob type
+Tell the user when their password has been updated
 
-Recall the profile picture correctly from a blob type
-
-Bring the user's data into the form fields for editing profile information
+Set some dimension parameters for profile pictures
 
 
 

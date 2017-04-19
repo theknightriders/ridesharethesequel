@@ -31,6 +31,9 @@ $(document).ready(function() {
 })
 
 function cancelProfileForm() {
+  $('#profileFname').val('');
+  $('#profileLname').val('');
+  $('#profilePhone').val('');
   $(".viewableProfile").toggle();
   $(".editableProfile").toggle();
 }
