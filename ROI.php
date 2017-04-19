@@ -1,289 +1,265 @@
 <?php
-	//Calculate ROI - BACKEND
-	$rate = 0.53; //Set mileage rate constant
-	if(isset($_POST['departSelect']))
+//Initialize variables
+$roi = 0;
+$mileage = 0;
+$rate = 0.53;
+
+//Determine Mileage
+if (isset($_POST['departSelect']))
 	{
-		$roi=0;
-		/*Jones Macon Campus */
-		if ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive' ){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive' ){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'DublinArrive') {
-			$mileage = 60;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 68;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive') {
-			$mileage = 22;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		/*SLC Macon */
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive' ){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive' ){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'JonesMaconDepart' && $_POST['destinationSelect'] == 'DublinArrive') {
-			$mileage = 60;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 68;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'SLCMaconDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive') {
-			$mileage = 22;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		/*Ebenezer Cochran*/
-
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
+		switch($_POST['departSelect']) //Select Departure
+		{
+			case 'Macon-Jones': //Depart Jones Building 
+			{
+				switch($_POST['destinationSelect']) //Select Arrival
+				{
+					case 'Macon-SLC':
+						$mileage = 0;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 0;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 48;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 48;
+						break;
+						
+					case 'Dublin':
+						$mileage = 60;
+						break;
+						
+					case 'Eastman':
+						$mileage = 68;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 22;
+						break;
+				}
+				break;	
+			}
 			
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
+			case 'Macon-SLC': //Depart Student Life Center
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 0;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 0;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 48;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 48;
+						break;
+						
+					case 'Dublin':
+						$mileage = 60;
+						break;
+						
+					case 'Eastman':
+						$mileage = 68;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 22;
+						break;
+				}
+				break;	
+			}
 			
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
-			$mileage = 32;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 20;
-			$roi = $mileage * $rate;
-			//echo $roi;
+			case 'Cochran-Alderman': //Depart Alderman
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 48;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 48;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 0;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 0;
+						break;
+						
+					case 'Dublin':
+						$mileage = 32;
+						break;
+						
+					case 'Eastman':
+						$mileage = 20;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 30;
+						break;
+				}
+				break;
+			}
 			
-		}
-		elseif ($_POST['departSelect'] == 'AldermanCochranDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
-			$mileage = 30;
-			$roi = $mileage * $rate;
-			//echo $roi;
+			case 'Cochran-Memorial': //Depart Memorial
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 48;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 48;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 0;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 0;
+						break;
+						
+					case 'Dublin':
+						$mileage = 32;
+						break;
+						
+					case 'Eastman':
+						$mileage = 20;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 30;
+						break;
+				}
+				break;
+			}
 			
-		}
-		/*Anderson Cochran*/
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart'&& $_POST['destinationSelect'] == 'SLCMaconArrive'){
-			$mileage = 48;
-			$roi = $mileage * $rate;
-			//echo $roi;
+			case 'Dublin': //Depart Dublin
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 60;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 60;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 32;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 30;
+						break;
+						
+					case 'Dublin':
+						$mileage = 0;
+						break;
+						
+					case 'Eastman':
+						$mileage = 34;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 50;
+						break;
+				}
+				break;
+			}
 			
-		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
+			case 'Eastman': //Depart Eastman
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 68;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 68;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 20;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 20;
+						break;
+						
+					case 'Dublin':
+						$mileage = 34;
+						break;
+						
+					case 'Eastman':
+						$mileage = 0;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 50;
+						break;
+				}
+				break;
+			}
 			
+			case 'Warner Robins': //Depart Warner Robins
+			{
+				switch($_POST['destinationSelect'])
+				{
+					case 'Macon-SLC':
+						$mileage = 32;
+						break;
+						
+					case 'Macon-Jones':
+						$mileage = 32;
+						break;
+						
+					case 'Cochran-Alderman':
+						$mileage = 20;
+						break;
+					
+					case 'Cochran-Memorial':
+						$mileage = 20;
+						break;
+						
+					case 'Dublin':
+						$mileage = 50;
+						break;
+						
+					case 'Eastman':
+						$mileage = 50;
+						break;
+						
+					case 'Warner Robins':
+						$mileage = 0;
+						break;
+				}
+				break;
+			}
 		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
-			$mileage = 32;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 20;
-			$roi = $mileage * $rate;
-			//echo $roi;
-			
-		}
-		elseif ($_POST['departSelect'] == 'MemorialCochranDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
-			$mileage = 30;
-			$roi = $mileage * $rate;
-			//echo $roi;
-			
-		}
-		/*Dublin*/
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
-			$mileage = 60;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
-			$mileage = 60;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
-			$mileage = 32;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
-			$mileage = 32;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 34;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
-			$mileage = 50;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		/*Eastman*/
-		elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
-			$mileage = 68;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
-			$mileage = 68;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
-			$mileage = 20;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
-			$mileage = 20;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'EastmanDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
-			$mileage = 34;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'DublinDepart' && WarnerRobins.isSelected()){
-			$mileage = 50;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		/*WarnerRobins*/
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'JonesMaconArrive'){
-			$mileage = 22;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'SLCMaconArrive'){
-			$mileage = 22;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'AldermanCochranArrive') {
-			$mileage = 30;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' &&$_POST['destinationSelect'] == 'MemorialCochranArrive') {
-			$mileage = 30;
-			$roi = $mileage * $rate;
-			//echo $roi;
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'EastmanArrive'){
-			$mileage = 50;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'DublinArrive'){
-			$mileage = 50;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		elseif ($_POST['departSelect'] == 'WarnerRobinsDepart' && $_POST['destinationSelect'] == 'WarnerRobinsArrive'){
-			$mileage = 0;
-			$roi = $mileage * $rate;
-			//echo $roi;
-
-		}
-		else{
-			echo "Please choose a starting location and an ending location";
-		}
-			
+		//Calculate ROI
+		$roi = $mileage * $rate;
+		//echo $roi; //Test Purposes Only
+	}
+else
+	{
+		echo "Please choose a starting location and an ending location";
 	}
 ?>

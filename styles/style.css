@@ -413,13 +413,8 @@ img {
   .container {
     max-width: 80%;
   }
-
   .textbold {
     font-weight: bold;
-  }
-
-  .profilePagePicture {
-    max-height: 300px;
   }
 
 
@@ -429,6 +424,10 @@ img {
 
 /** Large devices (desktops, 992px and up) */
 @media only screen and (min-device-width: 992px) {
+
+  .profileAlign {
+    display: block;
+  }
 
   .centerWhenSmol {
     text-align: right;
