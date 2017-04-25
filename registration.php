@@ -220,32 +220,17 @@
                     <div class="col-xs-1"></div>
 
                     <div class="col-xs-10">
-                      <p>
-                      I will take some magic white, and a little bit of Vandyke brown and a little touch of yellow. Trees grow however makes them happy. If these lines aren't straight, your water's going to run right out of your painting and get your floor wet. It's beautiful - and we haven't even done anything to it yet.
-                      </p>
+                      
+						<p>KnightRider is intended to assist and enable members of the MGA university community in making carpooling arrangements. This program was initiated in response to calls from Governor Sonny Perdue and Chancellor Corlis Cummings for state agencies and the Board of Regents to take positive measures to save fuel and energy costs. Use of this web resource is voluntary and is limited to faculty, staff and students of MGA. Only persons with a valid, current GCSU or Bobcat e-mail account will be permitted to register as subscribers to this website or to post and view postings concerning ride-sharing opportunities.</p>
 
-                      <p>
-                      Talk to trees, look at the birds. Whatever it takes. Be brave. We'll take a little bit of Van Dyke Brown. Little trees and bushes grow however makes them happy. You are only limited by your imagination. Do an almighty painting with us.
-                      </p>
+						<p>This website provides a means for MGA faculty, staff and students to communicate easily regarding ride-sharing and carpooling opportunities based on compatible work and class schedules, points of origin, and destinations. It is intended for ride-sharing to and from work or class and for work-related travel. Once a potential participant is identified, specific arrangements should be handled by direct communication outside the website. This website is not intended for ride-sharing arrangements for travel not related to employment or enrollment at MGA, which should be made separately.</p>
 
-                      <p>
-                      Let's put some highlights on these little trees. The sun wouldn't forget them. It's a very cold picture, I may have to go get my coat. It’s about to freeze me to death. You can't make a mistake. Anything that happens you can learn to use - and make something beautiful out of it. That's why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. See. We take the corner of the brush and let it play back-and-forth. You create the dream - then you bring it into your world.
-                      </p>
+						<p>Employees should understand that travel to and from the workplace is generally considered not to be within the scope of employment and injuries to persons or property arising while going to and from work are not covered by university liability insurance. Similarly, students who share rides to class or elsewhere on campus do so voluntarily and at their own risk. While state employees are being encouraged to carpool to and from work and to shares rides on work-related assignments, and participants will gain personally in terms of cost savings, it should be recognized that potential damages or injuries incurred due to accident or otherwise are not being underwritten or insured by the State of Georgia or the Board of Regents. The risk to an individual employee or student who participates in a carpool or other ride-sharing arrangement is comparable to the risk he or she would incur when offering or accepting a ride to or from a friend for personal travel. Participants should exercise ordinary prudence and satisfy themselves that other participating drivers are licensed, competent drivers and that vehicles are appropriately insured.</p>
 
-                      <p>
-                      It just happens - whether or not you worried about it or tried to plan it. Only God can make a tree - but you can paint one. All you need to paint is a few tools, a little instruction, and a vision in your mind. Tree trunks grow however makes them happy. I guess I'm a little weird. I like to talk to trees and animals. That's okay though; I have more fun than most people. You don't have to spend all your time thinking about what you're doing, you just let it happen.
-                      </p>
+						<p>MGA will, to the best of its ability, maintain the privacy of information posted on this website. Users acknowledge that information posted on the site may be viewed by other authorized registrants. Users further acknowledge the risk that information posted on the site may be viewed by unauthorized users gaining access to authorized accounts. Posting of information should be limited to the express purposes of the ShareRide program. Posting of obscene, pornographic or harassing messages is strictly prohibited. Concerns about handling or content of site postings should be communicated promptly to the webmaster at mgaknightriders@gmail.com</p>
 
-                      <p>
-                      You can do it. Maybe he has a little friend that lives right over here. Trees cover up a multitude of sins.
-                      </p>
+						<p>By registering as a user of the MGA ShareRide website, each registrant agrees to release and hereby releases the Board of Regents, Middle Georgia State University, and their officers, employees and agents from any and all liability, damages and costs, including attorney's fees, arising from the use of this website or participation in carpooling or ride-sharing arrangements made in whole or in part through the use of this website.</p>
 
-                      <p>
-                      The shadows are just like the highlights, but we're going in the opposite direction. Fluff that up. Maybe there's a happy little bush that lives right there.
-                      </p>
-
-                      <p>
-                      Let's get crazy. With practice comes confidence. Only eight colors that you need. We must be quiet, soft and gentle.
                       </p>
                     </div>
 
