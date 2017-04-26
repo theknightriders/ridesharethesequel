@@ -122,11 +122,11 @@ if ($_SESSION['email'] == "")
                   										echo "<td>" .$row['smoke_description']. "</td>";
                   										echo "<td>" .$row['package_able']. "</td>";
                   										echo "<td>$" .$row['roi']. "</td>" ;
-                  										echo "</tr><td>";
-                  										
-														echo $row['phone'] . " | " .$row['email'] . " | " .$row['vehicle_year'] . ", " .$row['vehicle_make'] . ", " .$row['vehicle_model'] . " | " .$row['message'] ;?>
-														<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button></td>
-                  										<?php echo "</tr>";
+                  										echo "</tr><td> ";?>
+                  										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">Book Ride</button> &nbsp;
+														<?php
+														 echo $row['phone'] . " | " .$row['email'] . " | " .$row['vehicle_year'] . ", " .$row['vehicle_make'] . ", " .$row['vehicle_model'] . " | " .$row['message'];
+														 echo "</td></tr>";
                   									}
                   							
                   						}
